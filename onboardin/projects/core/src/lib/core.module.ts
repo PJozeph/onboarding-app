@@ -1,16 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CoreComponent } from './core.component';
-
+import { HeaderComponent } from './components/header/header.component';
+import { ProfileCardComponent } from './components/profile-card/profile-card.component';
+import { ProfilesComponent } from './components/profile-card/profiles/profiles.component';
 
 
 @NgModule({
   declarations: [
-    CoreComponent
+    HeaderComponent,
+    ProfileCardComponent,
+    ProfilesComponent
   ],
   imports: [
+    CommonModule
   ],
   exports: [
-    CoreComponent
+    HeaderComponent,
+    ProfileCardComponent,
+    ProfilesComponent
   ]
 })
 export class CoreModule { }
