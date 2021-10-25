@@ -1,4 +1,19 @@
 
-.container {
+.app-container {
     margin-top: 3rem;
+    display: flex;
+    overflow: hidden;
+    height: 100%;
 }
+
+.app-item {
+    width: 15rem; /* A fixed width as the default */
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+  }
+
+  .app-item-center { 
+    flex-grow: 1; /* Set the middle element to grow and stretch */
+    margin-left: 3rem;
+  }
