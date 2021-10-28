@@ -1,0 +1,19 @@
+.btn-container {
+    margin: 0.5rem;
+    width: 9rem;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 0.7rem;
+}
+
+.icon {
+    margin: 0.2rem;
+}
+
+img {
+    height: 1.7rem;
+}
+
+.name {
+    margin: auto 0;
+}

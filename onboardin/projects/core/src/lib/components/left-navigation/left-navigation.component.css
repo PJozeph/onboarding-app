@@ -1,0 +1,10 @@
+
+.left-navigation-container {
+    width: 9rem; 
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    margin: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
