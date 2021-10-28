@@ -9,13 +9,10 @@ export class ButtonComponent implements OnInit {
 
   @Input() iconPath : string;
   @Input() name : string;
-  @Output() onClick = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    
-  }
 
 }

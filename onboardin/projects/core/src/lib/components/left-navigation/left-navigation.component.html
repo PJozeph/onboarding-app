@@ -1,10 +1,12 @@
 <div class="left-navigation-container">
     <lib-button
         [iconPath]="'assets/icons/plus-lg.svg'"
-        [name]="'Add NewComer'">
+        [name]="'Add NewComer'"
+        (click)="onAddNewComer()">
     </lib-button>
     <lib-button
         [iconPath]="'assets/icons/list.svg'"
-        [name]="'NewComers'">
+        [name]="'NewComers'"
+        (click)="onListNewComers()">
     </lib-button>
 </div>

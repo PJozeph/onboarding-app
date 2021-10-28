@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-left-navigation',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftNavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
+
+  public onAddNewComer() {
+    this.router.navigate(['/add-newcomer'])
+  }
+
+  public onListNewComers() {
+    this.router.navigate(['/list-comers'])
+  }
 
   ngOnInit(): void {
   }

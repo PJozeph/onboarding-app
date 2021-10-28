@@ -6,6 +6,7 @@ import { ProfilesComponent } from './components/profile-card/profiles/profiles.c
 import { ButtonComponent } from './components/button/button.component';
 import { LeftNavigationComponent } from './components/left-navigation/left-navigation.component';
 import { OnHoverDirective } from './directives/onhover.directive';
+import { AddNewcomerComponent } from './pages/addnewcomer/addnewcomer.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { OnHoverDirective } from './directives/onhover.directive';
     ButtonComponent,
     LeftNavigationComponent,
     OnHoverDirective,
+    AddNewcomerComponent,
   ],
   imports: [
     CommonModule
@@ -25,7 +27,8 @@ import { OnHoverDirective } from './directives/onhover.directive';
     ProfileCardComponent,
     ProfilesComponent,
     ButtonComponent,
-    LeftNavigationComponent
+    LeftNavigationComponent,
+    AddNewcomerComponent
   ]
 })
 export class CoreModule { }
