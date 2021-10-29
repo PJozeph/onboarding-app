@@ -1,0 +1,21 @@
+<!-- <p>task-manager works!</p> -->
+
+<div class="task-manager-container">
+    <div class="task-list">
+        <app-task></app-task>
+        <app-task></app-task>
+        <app-task></app-task>
+    </div>
+    <div class="profile-container">
+        <div class="upper-container">
+            <div>current task</div>
+            <lib-profile-card 
+                [profile]="profile"
+                [showEdit]="false">
+            </lib-profile-card>
+        </div>
+        <div class="task-detailes">
+            <div>task detailes</div>
+        </div>
+    </div>
+</div>

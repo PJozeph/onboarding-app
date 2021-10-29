@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Profile } from './profile.modal';
 
 @Component({
@@ -8,11 +9,16 @@ import { Profile } from './profile.modal';
 })
 export class ProfileCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   @Input() profile : Profile;
+  @Input() showEdit : boolean = true;
 
   ngOnInit(): void {
+  }
+
+  public onSelect(profileId : number){
+    this.router.navigate(['profile/' + profileId])
   }
 
 }

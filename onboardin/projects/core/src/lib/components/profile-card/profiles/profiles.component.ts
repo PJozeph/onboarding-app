@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Profile } from '../profile.modal';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'lib-profiles',
@@ -8,22 +9,12 @@ import { Profile } from '../profile.modal';
 })
 export class ProfilesComponent implements OnInit {
 
-  constructor() { }
-
-  profiles : Profile [] = [new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf'),
-                                   new Profile('asdf', 'asddf')]
-
+  constructor(private profilesService : ProfileService) { }
+  
+  profiles : Profile [] = []
+  
   ngOnInit(): void {
+    this.profiles  = this.profilesService.getProfiles()
   }
 
 }

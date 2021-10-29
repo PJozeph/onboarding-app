@@ -1,11 +1,11 @@
 
 
 <div class="container">
-    <div class="header">
+    <div *ngIf="showEdit" class="header">
         <img src="assets/icons/three-dots.svg" alt="settings-icon">
     </div>
-    <div class="profile-picture">
+    <div class="profile-picture" (click)="onSelect(profile.id)">
         <img src="assets/profile-picture.jpg" alt="" class="image">
     </div>
-    <div class="profile-name">Jhon Sminth</div>
+    <div class="profile-name">{{profile.name}}</div>
 </div>
