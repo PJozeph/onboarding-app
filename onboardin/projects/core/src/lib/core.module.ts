@@ -28,7 +28,8 @@ import { AddNewcomerComponent } from './pages/addnewcomer/addnewcomer.component'
     ProfilesComponent,
     ButtonComponent,
     LeftNavigationComponent,
-    AddNewcomerComponent
+    AddNewcomerComponent,
+    OnHoverDirective
   ]
 })
 export class CoreModule { }

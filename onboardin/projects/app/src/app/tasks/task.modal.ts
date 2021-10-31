@@ -1,6 +1,8 @@
 
 
-export class Task {
-
-    constructor(public id: number, name : string){}
+export class TaskCard {
+    constructor(public id: number,
+                public name : string,
+                public description : string, 
+                public iconPath : string){}
 }

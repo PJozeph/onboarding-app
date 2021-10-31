@@ -1,0 +1,34 @@
+.task-container {
+    width: 20rem;
+    height: 6rem;
+    margin: 0.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.task-name {
+    color: #1A3EF7;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.task-description {
+    width: 12rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+
+.task-context-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.8rem;
+}
+
+img{
+    width: 3.5rem;
+    height: 3.5rem;
+}
