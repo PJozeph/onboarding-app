@@ -1,9 +1,11 @@
 <div class="task-list-container">
     <div class="row">
-        <div class="col" *ngFor="let task of tasks">
-            <app-task
-            [task] = "task"
-            ></app-task>
+        <div class="col-sm" style="width: 18rem;" *ngFor="let task of tasks">
+            <div class="item">
+                <app-task
+                    [task] = "task"
+                ></app-task>
+            </div>
         </div>
       </div>
 </div>

@@ -13,17 +13,17 @@ import { TaskService } from '../task.service';
 export class TaskManagerComponent implements OnInit {
 
   profile : Profile;
-  tasks : TaskCard [] = [];
+  tasks : TaskCard [];
 
   constructor(private activatedRoute : ActivatedRoute,
               private profileService: ProfileService,
               private taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.tasks = this.taskService.getTasks();
     this.activatedRoute.params.subscribe( param => {
       const {profileId} = param;
-        this.profile = this.profileService.getProfileById(parseInt(profileId))
+      this.profile = this.profileService.getProfileById(parseInt(profileId))
+      this.tasks = this.taskService.getTasksByUser(this.profile.id)
     });
   }
 
