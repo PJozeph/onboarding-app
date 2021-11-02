@@ -14,7 +14,13 @@
                 </lib-profile-card>
             </div>
             <div class="task-detailes">
-                <div>task detailes</div>
+                <ng-container ngProjectAs="[goals]">
+                    <p>Is content projection cool?</p>
+                 </ng-container>
+                 <ng-container ngProjectAs="[email]">
+                    <p>Is content projection cool?</p>
+                 </ng-container>
+                 
             </div>
         </div>
     </div>

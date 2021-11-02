@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TaskCard } from '../task.modal';
+import { TaskModel } from '../task.modal';
 
 @Component({
   selector: 'app-task',
@@ -8,7 +8,7 @@ import { TaskCard } from '../task.modal';
 })
 export class TaskCardComponent implements OnInit {
 
-  @Input() task : TaskCard;
+  @Input() task : TaskModel;
 
   constructor() { }
 

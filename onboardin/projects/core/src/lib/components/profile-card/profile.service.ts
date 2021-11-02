@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { TaskCard } from 'projects/app/src/app/tasks/task.modal';
 import { Profile } from './profile.modal';
 
 @Injectable({
@@ -19,6 +18,8 @@ export class ProfileService {
     new Profile(8, 'Molnár Ákos', 'assets/profile_5.jpg', [4]),
     new Profile(9, 'Kelemen István', 'assets/profile_6.jpg', [4]),
     new Profile(10, 'Takács Bence', 'assets/profile_7.jpg', [1,2]),
+    new Profile(11, 'Hollik István', 'assets/profile_8.jpg', [1,2]),
+    new Profile(11, 'Hollik István', 'assets/profile_8.jpg', [1,2]),
     new Profile(11, 'Hollik István', 'assets/profile_8.jpg', [1,2])
   ]
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Profile } from 'projects/core/src/lib/components/profile-card/profile.modal';
 import { ProfileService } from 'projects/core/src/lib/components/profile-card/profile.service';
-import { TaskCard } from '../task.modal';
+import { TaskModel } from '../task.modal';
 import { TaskService } from '../task.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { TaskService } from '../task.service';
 export class TaskManagerComponent implements OnInit {
 
   profile : Profile;
-  tasks : TaskCard [];
+  tasks : TaskModel [];
 
   constructor(private activatedRoute : ActivatedRoute,
               private profileService: ProfileService,

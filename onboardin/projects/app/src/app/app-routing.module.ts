@@ -9,7 +9,7 @@ const routes: Routes = [
 
   {path: 'add-newcomer' , component : AddNewcomerComponent},
   {path: 'tasks' , component : TaskListComponent},
-  {path: 'profile/:profileId' , component : TaskManagerComponent},
+  {path: 'profile/:profileId' , component : TaskManagerComponent },
   {path: 'list-newcomers' , component : ProfilesComponent},
   {path: '' , component : ProfilesComponent},
 
