@@ -1,27 +1,27 @@
 <div class="container">
     <div class="task-manager-container">
-            <div class="task-list">
-                <app-task *ngFor="let task of tasks" 
-                    [task]="task">
-                </app-task>
-            </div>
+        <div class="task-list">
+            <app-task *ngFor="let task of tasks"
+                [active]="selectedTask == task"
+                [task]="task"
+                [isTaskManager]="true" 
+                [showIcon]="false"
+                (click)="onSelect(task)">
+            </app-task>
+        </div>
         <div class="profile-container">
-            <div class="upper-container">
-                <div>current task</div>
-                <lib-profile-card 
-                    [profile]="profile" 
-                    [showEdit]="false">
-                </lib-profile-card>
-            </div>
-            <div class="task-detailes">
-                <ng-container ngProjectAs="[goals]">
-                    <p>Is content projection cool?</p>
-                 </ng-container>
-                 <ng-container ngProjectAs="[email]">
-                    <p>Is content projection cool?</p>
-                 </ng-container>
-                 
-            </div>
+            <lib-profile-card 
+                [profile]="profile" 
+                [showEdit]="false">
+            </lib-profile-card>
+        </div>
+    </div>
+    <div class="task-detailes">
+        <div *ngIf="selectedTask.name === 'Goals'">
+            <div style="background-color: brown;">goals component</div>
+        </div>
+        <div *ngIf="selectedTask.name === 'Email Template'">
+            <div style="background-color: blue;">email component</div>
         </div>
     </div>
 </div>

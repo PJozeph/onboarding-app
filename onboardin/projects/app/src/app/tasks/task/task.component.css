@@ -1,11 +1,21 @@
 .task-container {
-    width: 17rem;
     height: 6rem;
     margin: 0.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
+}
+
+.task-manager-container {
+    width: 10rem;
+}
+
+.selected-name {
+    color: #1890FF !important;
+}
+.selected-description {
+    color: #40A9FF !important;
 }
 
 .task-name {
@@ -15,17 +25,28 @@
     font-weight: bold;
 }
 
+.task-name.tm-name {
+    color: black;
+}
+
 .task-description {
-    width: 12rem;
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8rem;
     font-weight: normal;
+    white-space: pre-wrap;
 }
+
 
 .task-context-container{
     display: flex;
     flex-direction: column;
     margin-left: 0.8rem;
+    width: 12rem;
+}
+
+.task-context-container.task-manager{
+    width: 10rem;
 }
 
 img{

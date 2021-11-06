@@ -14,6 +14,8 @@ export class TaskManagerComponent implements OnInit {
 
   profile : Profile;
   tasks : TaskModel [];
+  selectedTask: TaskModel;
+  taskSelected : boolean;
 
   constructor(private activatedRoute : ActivatedRoute,
               private profileService: ProfileService,
@@ -22,9 +24,14 @@ export class TaskManagerComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( param => {
       const {profileId} = param;
-      this.profile = this.profileService.getProfileById(parseInt(profileId))
-      this.tasks = this.taskService.getTasksByUser(this.profile.id)
+      this.profile = this.profileService.getProfileById(parseInt(profileId));
+      this.tasks = this.taskService.getTasksByUser(this.profile.id);
+      this.selectedTask = this.tasks[0];
     });
+  }
+
+  public onSelect(task: TaskModel) {
+    this.selectedTask = task;
   }
 
 }

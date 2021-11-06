@@ -12,11 +12,11 @@
 }
 
 .task-list {
-    width: 25rem; 
     height: 100%;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    width: 61rem;
+    overflow: hidden;
 }
 
 .task-detailes {
@@ -27,5 +27,9 @@
 }
 
 .profile-container {
-    width: 100%;
+    margin-left: 4rem;
+}
+
+.active{
+ background-color: brown;
 }
