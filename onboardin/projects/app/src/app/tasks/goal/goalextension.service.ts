@@ -27,7 +27,28 @@ export class GoalExtensionService {
   public addGoal(profile : Profile, goalTitle: string){
     const copyProfile : Profile = {...profile}
     const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
-    goalExtension.goal.push({id: 1, comment : [], completed : false, name : goalTitle});
+    let currentMaxId = goalExtension.goal.length;
+    const incremented = currentMaxId+2
+    goalExtension.goal.push({id: incremented, comment : [], completed : false, name : goalTitle});
+    this.extensionSubject.next(copyProfile.extension)
+  }
+
+  public markCompleted(profile : Profile, goalId: number){
+    const copyProfile : Profile = {...profile}
+    const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
+
+    let newGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;
+    newGoal.completed = true;
+  }
+
+  public undoCompleted(profile : Profile, goalId: number){
+    const copyProfile : Profile = {...profile}
+    const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
+
+    let newGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;
+    newGoal.completed = false;
+
+    this.extensionSubject.next(copyProfile.extension)
   }
 
 

@@ -32,12 +32,20 @@ export class GoalComponent implements OnInit, OnDestroy {
     this.isInputActive = true;
   }
 
+  public markCompleted(profile : Profile, goalId: number) {
+    this.goalExtensionService.markCompleted(profile, goalId);
+  }
+
+  public undoCompleted(profile : Profile, goalId: number){
+    this.goalExtensionService.undoCompleted(profile, goalId)
+  }
+
   public onInputCancel() {
     this.isInputActive = false;
   }
 
   public onInputAdd(goalTitle: string){
-    this.goalExtensionService.addGoal(this.profile,goalTitle)
+    this.goalExtensionService.addGoal(this.profile, goalTitle)
   }
 
   ngOnDestroy(): void {

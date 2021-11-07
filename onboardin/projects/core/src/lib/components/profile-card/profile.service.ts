@@ -18,7 +18,8 @@ export class ProfileService {
     new Profile(2, 'Kis Balázs', 'assets/profile-picture.jpg', new GoalExtension( 
       [
         {id: 1, completed: false, comment: ['Comment1', 'comment2'],name:'Complete Terminal Installation'},
-        {id: 1, completed: false, comment: ['Comment1', 'comment2'],name:'Complete Card Activation'},
+        {id: 2, completed: true, comment: ['Comment1', 'comment2'],name:'Complete Card Activation'},
+        {id: 3, completed: true, comment: ['Comment1', 'comment2'],name:'Fix First Bug'},
       ])),
     new Profile(3, 'Nagy Attila', 'assets/Pallagi_profile.jpg', new GoalExtension( [])),
     new Profile(4, 'Pallagi Andrea', 'assets/funny_profile_pic.jpg', new GoalExtension( [])),

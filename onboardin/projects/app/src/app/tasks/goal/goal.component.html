@@ -1,7 +1,10 @@
 <div *ngFor="let goalItem of goalExtension.goal" class="extension-container">
     <div class="goal-item" [ngClass]="{'uncompleted' : !goalItem.completed}">
-            <img *ngIf="!goalItem.completed" src="assets/icons/circle.svg">
-            <img class="icon-completed" *ngIf="goalItem.completed" src="assets/icons/check2-circle.svg">
+            <img *ngIf="!goalItem.completed" src="assets/icons/circle.svg" 
+                (click)="markCompleted(profile, goalItem.id)">
+            <img class="icon-completed" *ngIf="goalItem.completed" 
+                 src="assets/icons/check2-circle.svg"
+                 (click)="undoCompleted(profile, goalItem.id)">
             <div class="goal-name">
                 {{goalItem.name}}
             </div>
