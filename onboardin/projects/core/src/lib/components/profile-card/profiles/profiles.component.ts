@@ -14,7 +14,9 @@ export class ProfilesComponent implements OnInit {
   profiles : Profile [] = []
   
   ngOnInit(): void {
-    this.profiles  = this.profilesService.getProfiles()
+    this.profilesService.getProfiles().subscribe( profiles => {
+      this.profiles = profiles
+    })
   }
 
 }

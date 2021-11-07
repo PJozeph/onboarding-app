@@ -18,7 +18,9 @@
     </div>
     <div class="task-detailes">
         <div *ngIf="selectedTask.name === 'Goals'">
-            <div style="background-color: brown;">goals component</div>
+            <app-goal
+                [profile]="profile"
+            ></app-goal>
         </div>
         <div *ngIf="selectedTask.name === 'Email Template'">
             <div style="background-color: blue;">email component</div>

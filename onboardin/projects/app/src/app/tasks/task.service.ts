@@ -12,9 +12,9 @@ export class TaskService {
       new TaskModel(1, 2, 'Email Template', 'Ipsum has been \nthe industry ', "assets/icons/email.svg"),
       new TaskModel(2, 1, 'First Project', 'Ipsum has been \nthe industry ', "assets/icons/project.svg"),
       new TaskModel(3, 1, '1o1 Template', 'Ipsum has been \nthe industry ', "assets/icons/chat.svg" ),
-      new TaskModel(6, 1, 'Feedback', 'Ipsum has been \nthe industry ',  "assets/icons/feedback.svg"),
-      new TaskModel(7, 1, 'Knowledge and Skills', 'Ipsum has been \nthe industry ',  "assets/icons/atom.svg"),
-      new GoalTask(8, 2, "Goals", "description", "iconPath", ["comment1", "comment2"])
+      new TaskModel(4, 1, 'Feedback', 'Ipsum has been \nthe industry ',  "assets/icons/feedback.svg"),
+      new TaskModel(5, 1, 'Knowledge and Skills', 'Ipsum has been \nthe industry ',  "assets/icons/atom.svg"),
+      new GoalTask(6, 2, "Goals", "description", "iconPath", ["Ez egy comment", "Ez a második comment"])
     ]
       
   constructor() { }

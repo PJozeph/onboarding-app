@@ -1,0 +1,7 @@
+.input.container {
+    display: flex;
+}
+
+.analog-container {
+    margin: 0.5rem;
+}
