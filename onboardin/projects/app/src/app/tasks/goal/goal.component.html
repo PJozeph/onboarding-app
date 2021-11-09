@@ -1,13 +1,16 @@
-<div *ngFor="let goalItem of goalExtension.goal" class="extension-container">
-    <div class="goal-item" [ngClass]="{'uncompleted' : !goalItem.completed}">
-            <img *ngIf="!goalItem.completed" src="assets/icons/circle.svg" 
-                (click)="markCompleted(profile, goalItem.id)">
+<div class="goals-list">
+    <div *ngFor="let goalItem of goalExtension.goal" class="extension-container">
+        <div class="goal-item" [ngClass]="{'uncompleted' : !goalItem.completed}">
+            <img *ngIf="!goalItem.completed" 
+                 src="assets/icons/circle.svg"
+                 (click)="markCompleted(profile, goalItem.id)">
             <img class="icon-completed" *ngIf="goalItem.completed" 
                  src="assets/icons/check2-circle.svg"
-                 (click)="undoCompleted(profile, goalItem.id)">
+                (click)="undoCompleted(profile, goalItem.id)">
             <div class="goal-name">
                 {{goalItem.name}}
             </div>
+        </div>
     </div>
 </div>
 <div class="add-goal-container" *ngIf="!isInputActive" (click)="onAddGoalSelect()">
@@ -20,7 +23,7 @@
             Add goal
         </div>
 </div>
-<div *ngIf="isInputActive" >
+<div *ngIf="isInputActive" style="margin: 1rem;">
     <app-input
         (onCancelEvent)="onInputCancel()"
         (onAddEvent)="onInputAdd($event)">

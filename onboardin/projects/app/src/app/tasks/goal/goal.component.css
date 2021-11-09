@@ -30,10 +30,16 @@ img{
 .add-goal-container{
     width: 15rem;
     display: flex;
-    margin-left: 1rem;
+    margin: 1rem;
 }
 
 .goal-name {
     font-weight: bold;
     margin-left: 0.5rem;
+}
+
+.goals-list{
+    height: 30rem;
+    overflow-y: auto;
+    margin-top: 13rem;
 }

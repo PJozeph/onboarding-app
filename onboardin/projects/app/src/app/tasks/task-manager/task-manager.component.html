@@ -16,11 +16,11 @@
             </lib-profile-card>
         </div>
     </div>
-    <div class="task-detailes">
+    <div class="extension-detailes">
         <div *ngIf="selectedTask.name === 'Goals'">
-            <app-goal
-                [profile]="profile"
-            ></app-goal>
+                <app-goal
+                    [profile]="profile">
+                </app-goal>
         </div>
         <div *ngIf="selectedTask.name === 'Email Template'">
             <div style="background-color: blue;">email component</div>
