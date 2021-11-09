@@ -25,7 +25,7 @@ export class TaskManagerComponent implements OnInit {
     this.activatedRoute.params.subscribe( param => {
       const {profileId} = param;
       this.profile = this.profileService.getProfileById(parseInt(profileId));
-      this.tasks = this.taskService.getTasksByUser(this.profile.id);
+      this.tasks = this.taskService.getTasks();
       this.selectedTask = this.tasks[0];
     });
   }

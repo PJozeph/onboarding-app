@@ -9,7 +9,7 @@ export class GoalTask extends TaskModel  {
                  public description: string, 
                  public iconPath: string,
                  public comments: string[] ) {
-        super(id,userId, name, description, iconPath);
+        super(id, name, description, iconPath);
     }    
 
 }
