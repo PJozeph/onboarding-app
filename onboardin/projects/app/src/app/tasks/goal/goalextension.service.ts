@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { User } from 'projects/core/src/lib/components/profile-card/user.modal';
+import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Observable, Subject } from 'rxjs';
-import { GoalExtension } from '../../extension/extension.goal.modal';
-import { Extension } from '../../extension/extension.modal';
+import { GoalExtension } from '../../extension/modal/extension.goal.modal';
+import { Extension } from '../../extension/modal/extension.modal';
 
 @Injectable({
   providedIn: 'root'

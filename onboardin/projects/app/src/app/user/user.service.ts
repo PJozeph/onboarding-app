@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { User } from "projects/core/src/lib/components/profile-card/user.modal";
+import { User } from "projects/core/src/lib/components/user-card/user.modal";
 import { BehaviorSubject } from "rxjs";
-import { GoalExtension } from "../extension/extension.goal.modal";
+import { GoalExtension } from "../extension/modal/extension.goal.modal";
+import { FeedbackExtension } from "../extension/modal/feedbackextension.modal";
 
 @Injectable({
     providedIn: 'root'
@@ -35,7 +36,8 @@ import { GoalExtension } from "../extension/extension.goal.modal";
       new User(11, 'Takács Bence', 'assets/profile_7.jpg', new GoalExtension( [])),
       new User(12, 'Hollik István', 'assets/profile_8.jpg', new GoalExtension( [])),
       new User(13, 'Hollik István', 'assets/profile_8.jpg', new GoalExtension( [])),
-      new User(14, 'Hollik István', 'assets/profile_8.jpg', new GoalExtension( []))
+      new User(14, 'Hollik István', 'assets/profile_8.jpg', 
+        new FeedbackExtension( {comment : ['First comment']}  ))
     ]);
   
   

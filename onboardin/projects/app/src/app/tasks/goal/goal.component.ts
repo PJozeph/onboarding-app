@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { User } from 'projects/core/src/lib/components/profile-card/user.modal';
+import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Subscription } from 'rxjs';
-import { GoalExtension } from '../../extension/extension.goal.modal';
+import { GoalExtension } from '../../extension/modal/extension.goal.modal';
 import { GoalExtensionService } from './goalextension.service';
 
 @Component({

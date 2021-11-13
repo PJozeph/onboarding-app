@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
 import { Storage } from '@angular/fire/storage';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { User } from 'projects/core/src/lib/components/profile-card/user.modal';
+import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Observable, Subject } from 'rxjs';
 
 

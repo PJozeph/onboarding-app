@@ -1,5 +1,4 @@
-import { GoalExtension } from "projects/app/src/app/extension/extension.goal.modal";
-import { Extension } from "projects/app/src/app/extension/extension.modal";
+import { Extension } from "projects/app/src/app/extension/modal/extension.modal";
 
 export class User {
     constructor(public id : number, 

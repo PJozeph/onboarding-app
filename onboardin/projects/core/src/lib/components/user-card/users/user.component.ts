@@ -3,11 +3,11 @@ import { UserService } from 'projects/app/src/app/user/user.service';
 import { User } from '../user.modal';
 
 @Component({
-  selector: 'lib-profiles',
-  templateUrl: './profiles.component.html',
-  styleUrls: ['./profiles.component.css']
+  selector: 'lib-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
-export class ProfilesComponent implements OnInit {
+export class UsersComponent implements OnInit {
 
   constructor(private profilesService : UserService) { }
   

@@ -22,10 +22,9 @@ export class SignInComponent implements OnInit {
   }
 
   public login(){
-    this.organizationService.createOrganization('test');
-      // this.authService.googleLogin().subscribe( user => {
-      //   this.userService.addUser(user);
-      // })
+      this.authService.googleLogin().subscribe( user => {
+        this.userService.addUser(user);
+      })
 
   }
 

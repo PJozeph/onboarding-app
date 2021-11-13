@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { User } from './user.modal';
 
 @Component({
-  selector: 'lib-profile-card',
-  templateUrl: './profile-card.component.html',
-  styleUrls: ['./profile-card.component.css']
+  selector: 'lib-user-card',
+  templateUrl: './usercard.component.html',
+  styleUrls: ['./usercard.component.css']
 })
-export class ProfileCardComponent implements OnInit {
+export class UserCardComponent implements OnInit {
 
   constructor(private router : Router) { }
 

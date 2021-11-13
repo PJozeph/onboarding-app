@@ -1,25 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { environment } from './../../../app/src/environments/environment';
 import { HeaderComponent } from './components/header/header.component';
-import { ProfileCardComponent } from './components/profile-card/profile-card.component';
-import { ProfilesComponent } from './components/profile-card/profiles/profiles.component';
-import { ButtonComponent } from './components/button/button.component';
+import { ButtonComponent } from './components/left-navigation/button/button.component';
 import { LeftNavigationComponent } from './components/left-navigation/left-navigation.component';
+import { UserCardComponent } from './components/user-card/usercard.component';
+import { UsersComponent } from './components/user-card/users/user.component';
 import { OnHoverDirective } from './directives/onhover.directive';
 import { AddNewcomerComponent } from './pages/addnewcomer/addnewcomer.component';
-import { AuthModule } from 'projects/app/src/app/auth/auth.module';
-import { AngularFireModule} from '@angular/fire/compat'
-import { provideFirebaseApp, initializeApp }  from '@angular/fire/app';
-import { getAuth, provideAuth }  from '@angular/fire/auth';
-import { getFirestore, provideFirestore }  from '@angular/fire/firestore';
-import { getStorage, provideStorage }  from '@angular/fire/storage';
-import { environment } from './../../../app/src/environments/environment';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    ProfileCardComponent,
-    ProfilesComponent,
+    UserCardComponent,
+    UsersComponent,
     ButtonComponent,
     LeftNavigationComponent,
     OnHoverDirective,
@@ -35,8 +34,8 @@ import { environment } from './../../../app/src/environments/environment';
   ],
   exports: [
     HeaderComponent,
-    ProfileCardComponent,
-    ProfilesComponent,
+    UserCardComponent,
+    UsersComponent,
     ButtonComponent,
     LeftNavigationComponent,
     AddNewcomerComponent,
