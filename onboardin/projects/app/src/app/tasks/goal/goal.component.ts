@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Profile } from 'projects/core/src/lib/components/profile-card/profile.modal';
-import { ProfileService } from 'projects/core/src/lib/components/profile-card/profile.service';
+import { User } from 'projects/core/src/lib/components/profile-card/user.modal';
 import { Subscription } from 'rxjs';
 import { GoalExtension } from '../../extension/extension.goal.modal';
 import { GoalExtensionService } from './goalextension.service';
@@ -12,10 +11,9 @@ import { GoalExtensionService } from './goalextension.service';
 })
 export class GoalComponent implements OnInit, OnDestroy {
 
-  constructor(private profileService: ProfileService,
-              private goalExtensionService: GoalExtensionService) { }
+  constructor(private goalExtensionService: GoalExtensionService) { }
 
-  @Input() profile : Profile;
+  @Input() profile : User;
   isInputActive: boolean = false
 
   goalExtension : GoalExtension ;
@@ -32,11 +30,11 @@ export class GoalComponent implements OnInit, OnDestroy {
     this.isInputActive = true;
   }
 
-  public markCompleted(profile : Profile, goalId: number) {
+  public markCompleted(profile : User, goalId: number) {
     this.goalExtensionService.markCompleted(profile, goalId);
   }
 
-  public undoCompleted(profile : Profile, goalId: number){
+  public undoCompleted(profile : User, goalId: number){
     this.goalExtensionService.undoCompleted(profile, goalId)
   }
 

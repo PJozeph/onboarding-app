@@ -1,0 +1,13 @@
+img {
+    width: 4.5rem;
+}
+
+.new-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-item  {
+    background-color: aquamarine;
+}

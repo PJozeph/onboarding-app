@@ -1,7 +1,7 @@
 import { GoalExtension } from "projects/app/src/app/extension/extension.goal.modal";
 import { Extension } from "projects/app/src/app/extension/extension.modal";
 
-export class Profile {
+export class User {
     constructor(public id : number, 
                 public name : string, 
                 public imagePath: string,

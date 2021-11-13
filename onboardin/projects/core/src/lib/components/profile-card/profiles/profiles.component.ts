@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from '../profile.modal';
-import { ProfileService } from '../profile.service';
+import { UserService } from 'projects/app/src/app/user/user.service';
+import { User } from '../user.modal';
 
 @Component({
   selector: 'lib-profiles',
@@ -9,9 +9,9 @@ import { ProfileService } from '../profile.service';
 })
 export class ProfilesComponent implements OnInit {
 
-  constructor(private profilesService : ProfileService) { }
+  constructor(private profilesService : UserService) { }
   
-  profiles : Profile [] = []
+  profiles : User [] = []
   
   ngOnInit(): void {
     this.profilesService.getProfiles().subscribe( profiles => {

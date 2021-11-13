@@ -15,7 +15,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    width: 61rem;
+    width: 40rem;
     overflow: hidden;
 }
 
@@ -30,3 +30,15 @@
     margin-left: 4rem;
 }
 
+img{
+    height: 1.3rem;
+}
+
+.extension-list {
+    display: flex;
+}
+
+.arrow-icon{
+    display: flex;
+    align-items: center;
+}

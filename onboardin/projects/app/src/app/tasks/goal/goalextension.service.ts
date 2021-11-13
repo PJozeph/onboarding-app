@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Profile } from 'projects/core/src/lib/components/profile-card/profile.modal';
-import { ProfileService } from 'projects/core/src/lib/components/profile-card/profile.service';
+import { User } from 'projects/core/src/lib/components/profile-card/user.modal';
 import { Observable, Subject } from 'rxjs';
 import { GoalExtension } from '../../extension/extension.goal.modal';
 import { Extension } from '../../extension/extension.modal';
@@ -10,12 +9,12 @@ import { Extension } from '../../extension/extension.modal';
 })
 export class GoalExtensionService {
 
-  private profile : Profile;
+  private profile : User;
   private extensionSubject = new Subject<Extension>();
 
-  constructor(private profileService : ProfileService) { }
+  constructor() { }
 
-  public setProfile(profile: Profile) {
+  public setProfile(profile: User) {
     this.profile = profile;
     this.extensionSubject.next(profile.extension)
   }
@@ -24,8 +23,8 @@ export class GoalExtensionService {
     return this.extensionSubject.asObservable()
   }
 
-  public addGoal(profile : Profile, goalTitle: string){
-    const copyProfile : Profile = {...profile}
+  public addGoal(profile : User, goalTitle: string){
+    const copyProfile : User = {...profile}
     const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
     let currentMaxId = goalExtension.goal.length;
     const incremented = currentMaxId+2
@@ -33,16 +32,16 @@ export class GoalExtensionService {
     this.extensionSubject.next(copyProfile.extension)
   }
 
-  public markCompleted(profile : Profile, goalId: number){
-    const copyProfile : Profile = {...profile}
+  public markCompleted(profile : User, goalId: number){
+    const copyProfile : User = {...profile}
     const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
 
     let newGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;
     newGoal.completed = true;
   }
 
-  public undoCompleted(profile : Profile, goalId: number){
-    const copyProfile : Profile = {...profile}
+  public undoCompleted(profile : User, goalId: number){
+    const copyProfile : User = {...profile}
     const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
 
     let newGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Profile } from './profile.modal';
+import { User } from './user.modal';
 
 @Component({
   selector: 'lib-profile-card',
@@ -11,7 +11,7 @@ export class ProfileCardComponent implements OnInit {
 
   constructor(private router : Router) { }
 
-  @Input() profile : Profile;
+  @Input() profile : User;
   @Input() showEdit : boolean = true;
 
   ngOnInit(): void {

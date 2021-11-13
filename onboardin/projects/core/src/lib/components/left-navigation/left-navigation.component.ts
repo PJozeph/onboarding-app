@@ -22,6 +22,10 @@ export class LeftNavigationComponent implements OnInit {
     this.router.navigate(['/tasks'])
   }
 
+  public onLogin() {
+    this.router.navigate(['/login'])
+  }
+
   ngOnInit(): void {
   }
 
