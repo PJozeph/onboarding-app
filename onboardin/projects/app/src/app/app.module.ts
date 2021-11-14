@@ -7,6 +7,7 @@ import { CoreModule } from 'projects/core/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { HeaderComponent } from './header/header.component';
 import { reducers } from './store';
 import { TaskModule } from './tasks/task.module';
 
@@ -14,6 +15,7 @@ import { TaskModule } from './tasks/task.module';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent
   ],
   imports: [
     TaskModule,

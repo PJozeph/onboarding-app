@@ -1,0 +1,39 @@
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    height: 30rem;
+    margin: auto;
+    width: 20rem;
+    padding: 1rem;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    height: 2.5rem;
+}
+
+.dialog-form {
+    display: flex;
+    flex-direction: column;
+    height: 11rem;
+    justify-content: space-around;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.google-logo img {
+    height: 2.3rem;
+    margin: 0.8rem;
+}
+
+.auth-providers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}

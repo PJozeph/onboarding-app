@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { OrganizationService } from 'projects/core/src/lib/services/organization.service';
 import { UserService } from '../../../user/user.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css'],
 })
-export class SignInComponent implements OnInit {
+export class AuthComponent implements OnInit {
 
   constructor(private authService: AuthService, 
               private userService: UserService,
@@ -17,15 +17,10 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public create() {
-    this.organizationService.createOrganization('test');
-  }
-
   public login(){
       this.authService.googleLogin().subscribe( user => {
         this.userService.addUser(user);
       })
-
   }
 
 }

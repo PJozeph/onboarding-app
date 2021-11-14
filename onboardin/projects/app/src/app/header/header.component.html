@@ -1,0 +1,10 @@
+<nav class="navbar fixed-top navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Fixed top</a>
+        <button 
+          type="button" 
+          class="btn btn-outline-primary"
+          [disabled]="!isAuthDialogOpen" 
+          (click)="onLogin()">Login</button>
+    </div>
+  </nav>
