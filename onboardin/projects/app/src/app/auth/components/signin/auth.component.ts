@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { OrganizationService } from 'projects/core/src/lib/services/organization.service';
 import { UserService } from '../../../user/user.service';
 import { AuthService } from '../../services/auth.service';
@@ -12,7 +14,8 @@ export class AuthComponent implements OnInit {
 
   constructor(private authService: AuthService, 
               private userService: UserService,
-              private organizationService : OrganizationService) { }
+              private router : Router,
+              private dialog : MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +24,11 @@ export class AuthComponent implements OnInit {
       this.authService.googleLogin().subscribe( user => {
         this.userService.addUser(user);
       })
+  }
+
+  public onGoogleLogin(){
+    this.authService.googleLogin().subscribe( result => {
+    })
   }
 
 }
