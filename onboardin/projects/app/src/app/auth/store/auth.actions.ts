@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { User } from "../services/user";
+import { User } from "projects/core/src/lib/components/user-card/user.modal";
 
 export const LOGIN_START = '[Auth] Login Start';
 export const LOGIN_SUCCESS = '[Auth] Login Success';
@@ -12,7 +12,7 @@ export class LoginStart implements Action {
 
 export class LoginSuccess implements Action {
     readonly type = LOGIN_SUCCESS;
-    constructor(public payload: { user : User }) {}
+    constructor(public payload:  User ) {}
   }
 
   export class GoogleLoginStart implements Action {

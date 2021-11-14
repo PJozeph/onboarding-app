@@ -8,6 +8,6 @@ export interface AppState {
     auth: authReducer.State;
 }
 
-export const reducers: ActionReducerMap<AppState, any> = {
+export const reducers: ActionReducerMap<AppState> = {
     auth : authReducer.authReducer
   };

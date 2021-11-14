@@ -1,20 +1,22 @@
 <div class="auth-container">
     <div class="title">
-        <span>Login</span>
+        Login
     </div>
     <div class="dialog-form">
         <span>Email</span>
-        <input type="text" class="form-control"  placeholder="Type your email">
+        <input type="text" class="form-control" placeholder="Type your email">
         <span>Password</span>
-        <input type="text" class="form-control"  placeholder="Type your password">
+        <input type="password" class="form-control" placeholder="Type your password">
+    </div>
+    <div class="forgot-password">
+        <span>Forgot password?</span>
     </div>
     <div class="button-container">
-        <button type="button" class="btn btn-outline-primary">Login</button>
+        <button type="button" class="btn btn-outline-primary" style="width: 14rem;">Login</button>
     </div>
-    <span>Forgot password?</span>
     <div class="auth-providers">
-    <span>Or Sign Up using</span>
-        <div class="google-logo">
+    <span>Or Login using</span>
+        <div class="google-logo" (click)="onGoogleLogin()">
             <img  src="assets/icons/google-logo.svg" alt="">
         </div>
     </div>

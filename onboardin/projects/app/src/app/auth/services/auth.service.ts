@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
-import { Storage } from '@angular/fire/storage';
+import { Store } from '@ngrx/store';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Observable, Subject } from 'rxjs';
-
+import * as authActions from './../store/auth.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth: Auth, private storage : Storage) { }
+  constructor(private auth: Auth, private store : Store) { }
 
   public async emailSignUp(email : string, password  : string) : Promise<void>  {
     const credential = await createUserWithEmailAndPassword(
@@ -38,7 +38,8 @@ public googleLogin() : Observable<User> {
     const user = new User(parseInt(result.user.uid),
                           result.user.displayName,
                           result.user.photoURL, 
-                          null)
+                          null);
+    this.store.dispatch(new  authActions.LoginSuccess(user))
     subject.next(user);
   })
   return subject.asObservable()
