@@ -28,8 +28,8 @@ export class TaskManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( param => {
-      const {profileId} = param;
-      this.profile = this.userService.getProfileById(parseInt(profileId));
+      const {profileId: uid} = param;
+      this.profile = this.userService.getProfileById((uid));
       this.tasks = this.taskService.getTasks().slice(this.startIndex, this.endIndex);
       this.selectedTask = this.tasks[0];
     });

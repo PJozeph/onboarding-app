@@ -9,7 +9,7 @@ export interface State {
 }
 
 const initialState: State = {
-    user: null,
+    user: window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user'))  : null ,
     authError: null,
     loading: false
 };

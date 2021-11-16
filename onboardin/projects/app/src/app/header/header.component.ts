@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { AuthComponent } from '../auth/components/signin/auth.component';
-import { AuthService } from '../auth/services/auth.service';
+import { AuthComponent } from '../auth/components/auth/auth.component';
 import * as fromApp from '../store/index';
 
 @Component({
@@ -13,25 +12,33 @@ import * as fromApp from '../store/index';
 })
 export class HeaderComponent implements OnInit {
 
-  public isAuthDialogOpen = false;
+  public isAuthDialogOpen : boolean = false;
+  public isLoggedIn : boolean = false;
 
   constructor(private dialog : MatDialog,
               private store : Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    this.dialog.afterOpened.subscribe( result => this.isAuthDialogOpen = !this.isAuthDialogOpen);
-    this.dialog.afterAllClosed.subscribe( result => this.isAuthDialogOpen = !this.isAuthDialogOpen);
     this.store.select('auth').subscribe((state => {
         if(state.user) {
+            this.isLoggedIn = true
             this.dialog.closeAll();
           }
       }))
   }
 
-  public onLogin(){
+  public onLogin() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.panelClass = 'no-padding'
-    this.dialog.open(AuthComponent, dialogConfig)
+    this.isAuthDialogOpen = !this.isAuthDialogOpen;
+    this.dialog.open(AuthComponent, dialogConfig).afterClosed()
+      .subscribe(() => {
+        this.isAuthDialogOpen = !this.isAuthDialogOpen;
+      })
+  }
+
+  public onLogOut() {
+
   }
 
 }

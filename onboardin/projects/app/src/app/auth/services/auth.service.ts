@@ -35,16 +35,18 @@ public googleLogin() : Observable<User> {
   const provider = new GoogleAuthProvider()
   const auth = getAuth();
   signInWithPopup(auth, provider).then( result  => {
-    const user = new User(parseInt(result.user.uid),
+    result.user.getIdTokenResult().then( token => {
+      window.localStorage.setItem('token', JSON.stringify(token));
+    })
+    const user = new User(result.user.uid,
                           result.user.displayName,
                           result.user.photoURL, 
                           null);
     this.store.dispatch(new  authActions.LoginSuccess(user))
+    window.localStorage.setItem('user', JSON.stringify(user));
     subject.next(user);
   })
   return subject.asObservable()
 }
-
-
 
 }

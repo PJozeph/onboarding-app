@@ -12,12 +12,22 @@
         <span>Forgot password?</span>
     </div>
     <div class="button-container">
-        <button type="button" class="btn btn-outline-primary" style="width: 14rem;">Login</button>
+        <button type="button" 
+                class="btn btn-outline-primary" 
+                style="width: 14rem;"
+                (click)="onEmailLogin()">Login</button>
     </div>
     <div class="auth-providers">
     <span>Or Login using</span>
-        <div class="google-logo" (click)="onGoogleLogin()">
+    <div class="google-logo" (click)="onGoogleLogin()">
             <img  src="assets/icons/google-logo.svg" alt="">
         </div>
+    </div>
+    <hr>
+    <div class="create-account">
+        <button type="button" 
+                class="btn btn-outline-success"
+                (click)="onCreateAccount()">
+                Create Account</button>
     </div>
 </div>

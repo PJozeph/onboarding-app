@@ -4,7 +4,7 @@
     <div *ngIf="showEdit" class="header">
         <img src="assets/icons/three-dots.svg" alt="settings-icon">
     </div>
-    <div class="profile-picture" (click)="onSelect(profile.id)">
+    <div class="profile-picture" (click)="onSelect(profile.uid)">
         <img src={{profile.imagePath}} alt="No profile image found" class="image">
     </div>
     <div class="profile-name">{{profile.name}}</div>

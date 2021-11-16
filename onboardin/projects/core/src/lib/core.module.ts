@@ -12,7 +12,6 @@ import { LeftNavigationComponent } from './components/left-navigation/left-navig
 import { UserCardComponent } from './components/user-card/usercard.component';
 import { UsersComponent } from './components/user-card/users/user.component';
 import { OnHoverDirective } from './directives/onhover.directive';
-import { AddNewcomerComponent } from './pages/addnewcomer/addnewcomer.component';
 
 
 @NgModule({
@@ -22,7 +21,6 @@ import { AddNewcomerComponent } from './pages/addnewcomer/addnewcomer.component'
     ButtonComponent,
     LeftNavigationComponent,
     OnHoverDirective,
-    AddNewcomerComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +36,6 @@ import { AddNewcomerComponent } from './pages/addnewcomer/addnewcomer.component'
     UsersComponent,
     ButtonComponent,
     LeftNavigationComponent,
-    AddNewcomerComponent,
     OnHoverDirective
   ]
 })

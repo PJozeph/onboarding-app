@@ -7,7 +7,9 @@ import { provideFirebaseApp, initializeApp }  from '@angular/fire/app';
 import { getAuth, provideAuth }  from '@angular/fire/auth';
 import { getFirestore, provideFirestore }  from '@angular/fire/firestore';
 import { getStorage, provideStorage }  from '@angular/fire/storage';
-import { AuthComponent } from './components/signin/auth.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AuthComponent } from './components/auth/auth.component';
 
 
 const routes: Routes = [
@@ -16,9 +18,12 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AuthComponent, AuthComponent],
+  declarations: [
+    SignupComponent
+  ],
   imports: [
     CommonModule,
+    MatDialogModule, 
     RouterModule.forChild(routes),
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

@@ -17,8 +17,8 @@ export class UserCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public onSelect(profileId : number){
-    this.router.navigate(['profile/' + profileId])
+  public onSelect(uid : string){
+    this.router.navigate(['profile/' + uid])
   }
 
 }
