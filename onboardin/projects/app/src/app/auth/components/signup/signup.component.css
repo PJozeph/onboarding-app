@@ -1,5 +1,59 @@
-
 .signup-container {
     height: 33rem;
     width: 25rem;
 }
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-input {
+    margin: 0.6rem;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    color: gray;
+}
+
+.action-container {
+    display: flex;
+    width: 100%;
+    margin-top: 0.8rem;
+    justify-content: space-around;
+}
+
+.google-signup {
+    display: flex;
+    flex-direction: column;
+}
+
+.google-icon {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 0.5rem;
+}
+
+.google-icon img{
+    height: 2.3rem;
+}
+
+ span {
+    color: gray;
+ }
+
+ .vallidation-message {
+     height: 1rem;
+ }
+
+ .signup-input {
+     margin-top: 0.4rem;
+ }

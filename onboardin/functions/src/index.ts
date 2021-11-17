@@ -2,6 +2,7 @@ import * as functions from "firebase-functions";
 
 import * as admin from "firebase-admin";
 
+// const admin = require('firebase-admin');
 admin.initializeApp();
 
 // Listens for new messages added to /messages/:documentId/original and creates an
