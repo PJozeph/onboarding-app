@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { AuthComponent } from '../auth/components/auth/auth.component';
+import { AuthService } from '../auth/services/auth.service';
 import * as fromApp from '../store/index';
 
 @Component({
@@ -16,13 +17,16 @@ export class HeaderComponent implements OnInit {
   public isLoggedIn : boolean = false;
 
   constructor(private dialog : MatDialog,
-              private store : Store<fromApp.AppState>) { }
+              private store : Store<fromApp.AppState>,
+              private authService : AuthService) { }
 
   ngOnInit(): void {
     this.store.select('auth').subscribe((state => {
         if(state.user) {
-            this.isLoggedIn = true
+            this.isLoggedIn = true;
             this.dialog.closeAll();
+          } else {
+            this.isLoggedIn = false;
           }
       }))
   }
@@ -38,7 +42,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public onLogOut() {
-
+    this.authService.signOut();
   }
 
 }

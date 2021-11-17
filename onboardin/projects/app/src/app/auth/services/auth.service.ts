@@ -49,4 +49,9 @@ public googleLogin() : Observable<User> {
   return subject.asObservable()
 }
 
+public signOut() {
+  window.localStorage.removeItem('user')
+  this.store.dispatch(new  authActions.Logout());
+}
+
 }
