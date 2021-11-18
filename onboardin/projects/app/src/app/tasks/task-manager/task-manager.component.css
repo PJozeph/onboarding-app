@@ -1,6 +1,8 @@
 
 .task-manager-container {
     display: flex;
+    margin-top: 3rem;
+    margin-left: 3rem;
 }
 
 .upper-container {
@@ -21,9 +23,6 @@
 
 .extension-detailes {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 15rem;
 }
 
 .profile-container {

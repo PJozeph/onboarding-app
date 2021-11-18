@@ -1,0 +1,4 @@
+.selected-goal-container {
+    display: flex;
+    flex-direction: column;
+}

@@ -14,7 +14,7 @@ import { FeedbackExtension } from "../extension/modal/feedbackextension.modal";
       new User('1', 'Nagy Emese', 'assets/profile_0.jpg', new GoalExtension( []) ),
       new User('2', 'Kis Balázs', 'assets/profile-picture.jpg', new GoalExtension( 
         [
-          {id: 1, completed: false, comment: ['Comment1', 'comment2'],name:'1st Complete Terminal Installation'},
+          {id: 1, completed: false, comment: ['Comment1', 'comment2'],name:'Complete Terminal Installation'},
           {id: 2, completed: true, comment: ['Comment1', 'comment2'],name:'Complete Card Activation'},
           {id: 3, completed: true, comment: ['Comment1', 'comment2'],name:'Fix First Bug'},
           {id: 4, completed: false, comment: ['Comment1', 'comment2'],name:'Complete Terminal Installation'},
@@ -24,6 +24,7 @@ import { FeedbackExtension } from "../extension/modal/feedbackextension.modal";
           {id: 8, completed: true, comment: ['Comment1', 'comment2'],name:'Complete Card Activation'},
           {id: 9, completed: true, comment: ['Comment1', 'comment2'],name:'Fix First Bug'},
           {id: 10, completed: false, comment: ['Comment1', 'comment2'],name:'Complete Terminal Installation'},
+
         ])),
       new User('3', 'Nagy Attila', 'assets/Pallagi_profile.jpg', new GoalExtension( [])),
       new User('4', 'Pallagi Andrea', 'assets/funny_profile_pic.jpg', new GoalExtension( [])),

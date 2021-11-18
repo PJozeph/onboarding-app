@@ -7,6 +7,7 @@ import { TaskListComponent } from './tasklist/tasklist.component';
 import { GoalComponent } from './goal/goal.component';
 import { InputComponent } from './goal/input/input.component';
 import { FormsModule } from '@angular/forms';
+import { SelectedGoalComponent } from './goal/selected-goal/selected-goal.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     TaskManagerComponent,
     GoalComponent,
     InputComponent,
+    SelectedGoalComponent,
   ],
   imports: [
     CommonModule, 

@@ -1,37 +1,28 @@
-<div class="container">
-    <div class="task-manager-container">
-        <div class="extension-list">
-            <div (click)="onLeftSelect()" class="arrow-icon" >
-                        <img src="assets/icons/arrow-left.svg" alt="arrow-left" >
-            </div>
-            <div class="task-list">
-                <app-task *ngFor="let task of tasks"
-                    [active]="selectedTask == task"
-                    [task]="task"
-                    [isTaskManager]="true" 
-                    [showIcon]="false"
-                    (click)="onSelect(task)">
-                </app-task>
-            </div>
-            <div (click)="onRightSelect()" class="arrow-icon">
-                <img src="assets/icons/arrow-right.svg" alt="arrow-right">
-            </div>
+<div class="task-manager-container">
+    <div class="extension-list">
+        <div (click)="onLeftSelect()" class="arrow-icon">
+            <img src="assets/icons/arrow-left.svg" alt="arrow-left">
         </div>
-        <div class="profile-container">
-            <lib-user-card 
-                [profile]="profile" 
-                [showEdit]="false">
-            </lib-user-card>
+        <div class="task-list">
+            <app-task *ngFor="let task of tasks" [active]="selectedTask == task" [task]="task" [isTaskManager]="true"
+                [showIcon]="false" (click)="onSelect(task)">
+            </app-task>
+        </div>
+        <div (click)="onRightSelect()" class="arrow-icon">
+            <img src="assets/icons/arrow-right.svg" alt="arrow-right">
         </div>
     </div>
-    <div class="extension-detailes">
-        <div *ngIf="selectedTask.name === 'Goals'">
-                <app-goal
-                    [profile]="profile">
-                </app-goal>
-        </div>
-        <div *ngIf="selectedTask.name === 'Email Template'">
-            <div style="background-color: blue;">email component</div>
-        </div>
+    <div class="profile-container">
+        <lib-user-card [profile]="profile" [showEdit]="false">
+        </lib-user-card>
+    </div>
+</div>
+<div class="extension-detailes">
+    <div *ngIf="selectedTask.name === 'Goals'">
+        <app-goal [profile]="profile">
+        </app-goal>
+    </div>
+    <div *ngIf="selectedTask.name === 'Email Template'">
+        <div style="background-color: blue;">email component</div>
     </div>
 </div>

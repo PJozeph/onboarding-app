@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Subscription } from 'rxjs';
-import { GoalExtension } from '../../extension/modal/extension.goal.modal';
+import { Goal, GoalExtension } from '../../extension/modal/extension.goal.modal';
 import { GoalExtensionService } from './goalextension.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class GoalComponent implements OnInit, OnDestroy {
   isInputActive: boolean = false
 
   goalExtension : GoalExtension ;
+  selectedGoal : Goal;
   private subscription : Subscription;
 
   ngOnInit(): void {
@@ -24,6 +25,13 @@ export class GoalComponent implements OnInit, OnDestroy {
       this.goalExtension = <GoalExtension>result
     });
     this.goalExtensionService.setProfile(this.profile);
+    if(this.goalExtension.goal) {
+        this.selectedGoal = this.goalExtension.goal[0];
+    }
+  }
+
+  public onSelectGoal(goalId: number) {
+    this.selectedGoal = this.goalExtension.goal.find( goal => goal.id === goalId);
   }
 
   public onAddGoalSelect() {
