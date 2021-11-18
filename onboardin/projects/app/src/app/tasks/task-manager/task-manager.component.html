@@ -13,13 +13,13 @@
         </div>
     </div>
     <div class="profile-container">
-        <lib-user-card [profile]="profile" [showEdit]="false">
+        <lib-user-card [user]="user" [showEdit]="false">
         </lib-user-card>
     </div>
 </div>
 <div class="extension-detailes">
     <div *ngIf="selectedTask.name === 'Goals'">
-        <app-goal [profile]="profile">
+        <app-goal [profile]="user">
         </app-goal>
     </div>
     <div *ngIf="selectedTask.name === 'Email Template'">

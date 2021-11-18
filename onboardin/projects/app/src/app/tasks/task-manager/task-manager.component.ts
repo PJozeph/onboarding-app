@@ -13,7 +13,7 @@ import { TaskService } from '../task.service';
 })
 export class TaskManagerComponent implements OnInit {
 
-  profile : User;
+  user : User;
   tasks : TaskModel [];
   selectedTask: TaskModel;
   taskSelected : boolean;
@@ -29,7 +29,7 @@ export class TaskManagerComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( param => {
       const {profileId: uid} = param;
-      this.profile = this.userService.getProfileById((uid));
+      this.user = this.userService.getProfileById((uid));
       this.tasks = this.taskService.getTasks().slice(this.startIndex, this.endIndex);
       this.selectedTask = this.tasks[0];
     });

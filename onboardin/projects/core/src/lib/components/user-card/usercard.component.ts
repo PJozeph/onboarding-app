@@ -11,7 +11,7 @@ export class UserCardComponent implements OnInit {
 
   constructor(private router : Router) { }
 
-  @Input() profile : User;
+  @Input() user : User;
   @Input() showEdit : boolean = true;
 
   ngOnInit(): void {
