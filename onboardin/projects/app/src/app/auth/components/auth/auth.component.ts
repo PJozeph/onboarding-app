@@ -27,6 +27,7 @@ export class AuthComponent implements OnInit {
 
   public onGoogleLogin(){
     this.authService.googleLogin().subscribe( result => {
+      this.dialog.closeAll();
     })
   }
 
@@ -34,7 +35,7 @@ export class AuthComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     this.dialog.open(SignupComponent, dialogConfig).afterClosed().subscribe(
       response => {
-        // this.dialog.closeAll();
+         this.dialog.closeAll();
       }  
     )
   }

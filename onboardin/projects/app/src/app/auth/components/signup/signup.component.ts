@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CustomValidationService } from '../../services/custom-validation.service';
 
@@ -21,11 +21,14 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
-      userName: new FormControl('' , Validators.required),
-      userEmail: new FormControl('', [Validators.required, Validators.email]),
-      userPassword: new FormControl('', Validators.minLength(7)),
-      userPasswordConfirm: new FormControl('', Validators.minLength(7))
-      }
+      userName: new FormControl('', { validators: [Validators.required], updateOn: 'blur' }),
+      userEmail: new FormControl('', { validators: [Validators.required, Validators.email], updateOn: 'blur' }),
+      userPassword: new FormControl('', { validators: [Validators.minLength(7)], updateOn: 'blur' }),
+      userPasswordConfirm: new FormControl('', {
+            validators: [Validators.minLength(7),
+            RetypeConfirm('userPassword')],
+            updateOn: 'blur'})
+        }
     );
   }
 
@@ -45,3 +48,14 @@ export class SignupComponent implements OnInit {
     this.authService.emailSignUp(this.userEmail, this.userPassword);
   }
 }
+
+function RetypeConfirm(newPassword: string): ValidatorFn {
+  return (control: FormControl) => {
+
+      if (!control || !control.parent) {
+          return null;
+      }
+      return control.parent.get(newPassword).value === control.value ? null : { mismatch: true };
+  };
+}
+

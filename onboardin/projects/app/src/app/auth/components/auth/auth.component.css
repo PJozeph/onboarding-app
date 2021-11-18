@@ -34,7 +34,13 @@
 .google-logo img {
     height: 2.3rem;
     margin: 0.8rem;
+}
+
+.google-logo {
     cursor: pointer;
+    margin-top: 1rem;
+    border-radius: 10%;
+    border: 1px solid gray
 }
 
 .auth-providers {
