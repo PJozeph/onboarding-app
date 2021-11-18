@@ -1,0 +1,24 @@
+.goal-item {
+    display: flex;
+}
+
+.goal-item:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
+
+.uncompleted {
+    margin-left: 0.1rem;
+}
+
+.icon-completed {
+    height: 1.6rem;
+}
+
+.goal-name {
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+img{
+    height: 1.3rem;
+}

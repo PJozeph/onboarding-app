@@ -1,0 +1,8 @@
+<div class="goal-item" [ngClass]="{'uncompleted' : !goalItem.completed}" (click)="onSelectGoal(goalItem.id)">
+    <img *ngIf="!goalItem.completed" src="assets/icons/circle.svg" (click)="markCompleted(user, goalItem.id)">
+    <img class="icon-completed" *ngIf="goalItem.completed" src="assets/icons/check2-circle.svg"
+        (click)="undoCompleted(user, goalItem.id)">
+    <div class="goal-name">
+        {{goalItem.name}}
+    </div>
+</div>

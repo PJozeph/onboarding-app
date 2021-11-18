@@ -8,6 +8,7 @@ import { GoalComponent } from './goal/goal.component';
 import { InputComponent } from './goal/input/input.component';
 import { FormsModule } from '@angular/forms';
 import { SelectedGoalComponent } from './goal/selected-goal/selected-goal.component';
+import { GoalItemComponent } from './goal/goal-item/goal-item.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SelectedGoalComponent } from './goal/selected-goal/selected-goal.compon
     GoalComponent,
     InputComponent,
     SelectedGoalComponent,
+    GoalItemComponent,
   ],
   imports: [
     CommonModule, 
