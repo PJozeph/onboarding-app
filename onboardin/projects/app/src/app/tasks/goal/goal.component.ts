@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Subscription } from 'rxjs';
 import { Goal, GoalExtension } from '../../extension/modal/extension.goal.modal';
@@ -19,8 +19,10 @@ export class GoalComponent implements OnInit, OnDestroy {
   goalExtension : GoalExtension ;
   selectedGoal : Goal;
   private subscription : Subscription;
+  public maxHeight : number;
 
   ngOnInit(): void {
+    this.maxHeight = window.innerHeight - 370;
     this.subscription = this.goalExtensionService.getExtension().subscribe(result => {
       this.goalExtension = <GoalExtension>result
     });
@@ -29,7 +31,7 @@ export class GoalComponent implements OnInit, OnDestroy {
         this.selectedGoal = this.goalExtension.goal[0];
     }
   }
-
+  
   public onSelectGoal(goalId: number) {
     this.selectedGoal = this.goalExtension.goal.find( goal => goal.id === goalId);
   }

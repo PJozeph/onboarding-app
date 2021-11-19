@@ -1,26 +1,26 @@
 <div class="goal-extension-container">
     <div class="goal-extension-list">
-        <div class="goals-list">
+        <div class="goals-list" [style.maxHeight.px]="maxHeight">
             <div *ngFor="let goalItem of goalExtension.goal" class="extension-container">
                 <app-goal-item [goalItem]="goalItem" [user]="profile" (onGoalSelect)="onSelectGoal($event)">
                 </app-goal-item>
             </div>
-            <div class="add-goal-container" *ngIf="!isInputActive" (click)="onAddGoalSelect()">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1.3rem" fill="red" class="bi bi-plus-circle-fill"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                </svg>
-                <div class="add-goal-title">
-                    Add goal
-                </div>
-            </div>
-            <div *ngIf="isInputActive" style="margin: 1rem;">
-                <app-input (onCancelEvent)="onInputCancel()" (onAddEvent)="onInputAdd($event)">
-                </app-input>
+        </div>
+        <div class="add-goal-container" *ngIf="!isInputActive" (click)="onAddGoalSelect()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1.3rem" fill="red" class="bi bi-plus-circle-fill"
+                viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+            <div class="add-goal-title">
+                Add goal
             </div>
         </div>
-        <div *ngIf="selectedGoal">
-            <app-selected-goal [selectedGoal]="selectedGoal"></app-selected-goal>
+        <div *ngIf="isInputActive" style="margin: 1rem;">
+            <app-input (onCancelEvent)="onInputCancel()" (onAddEvent)="onInputAdd($event)">
+            </app-input>
         </div>
     </div>
+    <div *ngIf="selectedGoal">
+        <app-selected-goal [selectedGoal]="selectedGoal"></app-selected-goal>
+    </div>
+</div>
