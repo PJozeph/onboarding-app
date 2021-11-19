@@ -1,7 +1,23 @@
 
 <div class="selected-goal-container">
-    {{selectedGoal.name}}
-    <div *ngFor="let comment of selectedGoal.comment">
-        {{comment}}
+    <span>Goal Description</span>
+    <div class="form-group selected-textarea">
+        <textarea class="form-control" rows="3">
+            {{selectedGoal.name}}
+            {{selectedGoal.description}}
+        </textarea>
+    </div>
+    <span>Comments</span>
+    <div>
+        <app-input
+            [addActionName]="'Add Comment'"
+            (onAddEvent)="onAddInput($event)">
+        </app-input>
+    </div>
+    <div class="comment-container">
+        <app-comment-item
+            [user]="user"
+            [selectedGoal]="selectedGoal">
+        </app-comment-item>
     </div>
 </div>

@@ -32,22 +32,30 @@ export class GoalExtensionService {
     this.extensionSubject.next(copyProfile.extension)
   }
 
-  public markCompleted(profile : User, goalId: number){
-    const copyProfile : User = {...profile}
-    const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
+  public markCompleted(user : User, goalId: number) {
+    const copyUser : User = {...user}
+    const goalExtension: GoalExtension = <GoalExtension>copyUser.extension;
 
     let newGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;
     newGoal.completed = true;
   }
 
-  public undoCompleted(profile : User, goalId: number){
-    const copyProfile : User = {...profile}
-    const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
+  public undoCompleted(user : User, goalId: number) {
+    const copyUser : User = {...user}
+    const goalExtension: GoalExtension = <GoalExtension>copyUser.extension;
 
     let newGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;
     newGoal.completed = false;
 
-    this.extensionSubject.next(copyProfile.extension)
+    this.extensionSubject.next(copyUser.extension)
+  }
+
+  public addComment(goalId: number, user : User , comment : string) {
+    const copyUser : User = {...user}
+    const goalExtension: GoalExtension = <GoalExtension>copyUser.extension;
+    let copyGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;
+    copyGoal.comment.push(comment)
+    this.extensionSubject.next(copyUser.extension)
   }
 
 

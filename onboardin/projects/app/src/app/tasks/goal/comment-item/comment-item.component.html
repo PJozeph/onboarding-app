@@ -1,0 +1,15 @@
+<div class="comment-container" *ngFor="let comment of selectedGoal.comment">
+    <div class="user-image">
+        <img src="{{user.imagePath}}" alt="Image not found">
+    </div>
+    <div class="input-content border border-primary">
+        <div style="margin-left: 1rem;">
+            <p class="lead">
+                Jhon Doe
+            </p>
+        </div>
+        <div style="margin-left: 1rem;">
+            {{comment}}
+        </div>
+    </div>
+</div>

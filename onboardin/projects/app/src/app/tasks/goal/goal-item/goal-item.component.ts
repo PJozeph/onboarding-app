@@ -12,6 +12,7 @@ export class GoalItemComponent implements OnInit {
 
   @Input() goalItem : Goal;
   @Input() user : User;
+  @Input() active : boolean;
   @Output() onGoalSelect = new EventEmitter();
 
   constructor(private goalExtensionService: GoalExtensionService) { }

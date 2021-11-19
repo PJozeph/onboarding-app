@@ -16,9 +16,9 @@ import { FeedbackExtension } from "../extension/modal/feedbackextension.modal";
         [
           {id: 1, completed: false, comment: ['Comment1', 'comment2'],name:'Complete Terminal Installation'},
           {id: 2, completed: true, comment: ['Comment1', 'comment2'],name:'Complete Card Activation'},
-          {id: 3, completed: true, comment: ['Comment1', 'comment2'],name:'Fix First Bug'},
-          {id: 4, completed: false, comment: ['Comment1', 'comment2'],name:'Complete Terminal Installation'},
-          {id: 5, completed: true, comment: ['Comment1', 'comment2'],name:'Complete Card Activation'},
+          {id: 3, completed: true, comment: ['asdf', 'asdf22', 'lorem 78'],name:'Fix First Bug'},
+          {id: 4, completed: false, comment: ['just lorem ', 'lorem 3'],name:'Complete Terminal Installation'},
+          {id: 5, completed: true, comment: ['lorem ipsum', ' max size'],name:'Complete Card Activation'},
           {id: 6, completed: true, comment: ['Comment1', 'comment2'],name:'Fix First Bug'},
           {id: 7, completed: false, comment: ['Comment1', 'comment2'],name:'Complete Terminal Installation'},
           {id: 8, completed: true, comment: ['Comment1', 'comment2'],name:'Complete Card Activation'},
@@ -40,7 +40,6 @@ import { FeedbackExtension } from "../extension/modal/feedbackextension.modal";
       new User('14', 'Hollik István', 'assets/profile_8.jpg', 
         new FeedbackExtension( {comment : ['First comment']}  ))
     ]);
-  
   
     constructor() { }
   

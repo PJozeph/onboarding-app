@@ -1,19 +1,19 @@
-<div class="input-container">
-    <input type="text" class="form-control" 
-        [ngModel]="enteredValue" 
-        (ngModelChange)="isInputEmpty()" (ngModelChange)="enteredValue = $event">
+<div class="add-goal-container" *ngIf="!isInputActive" (click)="onAddGoalSelect()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1.3rem" fill="red" class="bi bi-plus-circle-fill"
+        viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+    </svg>
+    <div class="add-goal-title">
+        {{addActionName}}
+    </div>
+</div>
+<div class="input-container" *ngIf="isInputActive">
+    <input type="text" class="form-control" [ngModel]="enteredValue" (ngModelChange)="isInputEmpty()"
+        (ngModelChange)="enteredValue = $event">
     <div class="analog-container">
-        <button 
-            type="button" 
-            style="margin: 0.5rem;" 
-            class="btn btn-outline-success"
-            [disabled]="enteredValue.length === 0"
-            (click)="onAdd(enteredValue)"
-            >Add Goal</button>
-        <button 
-            type="button" 
-            style="margin: 0.5rem;" 
-            class="btn btn-outline-danger"
-            (click)=onCancel()>Cancel</button>
+        <button type="button" style="margin: 0.5rem;" class="btn btn-outline-success"
+            [disabled]="enteredValue.length === 0" (click)="onAdd(enteredValue)">{{addActionName}}</button>
+        <button type="button" style="margin: 0.5rem;" class="btn btn-outline-danger" (click)=onCancel()>Cancel</button>
     </div>
 </div>

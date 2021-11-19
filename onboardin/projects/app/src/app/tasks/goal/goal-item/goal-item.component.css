@@ -3,7 +3,8 @@
 }
 
 .goal-item:hover {
-    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    background-color: rgb(179, 212, 255); 
+    border-radius: 10rem;
 }
 
 .uncompleted {
@@ -21,4 +22,9 @@
 
 img{
     height: 1.3rem;
+}
+
+.active {
+    background-color: rgb(179, 212, 255);
+    border-radius: 10rem;
 }

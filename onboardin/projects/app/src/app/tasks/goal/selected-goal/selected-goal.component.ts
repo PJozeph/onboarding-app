@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Goal } from '../../../extension/modal/extension.goal.modal';
+import { GoalExtensionService } from '../goalextension.service';
 
 @Component({
   selector: 'app-selected-goal',
@@ -9,10 +11,18 @@ import { Goal } from '../../../extension/modal/extension.goal.modal';
 export class SelectedGoalComponent implements OnInit {
 
   @Input() selectedGoal : Goal;
+  @Input() user : User;
 
-  constructor() { }
+  constructor(private goalExtensionService : GoalExtensionService) { }
 
   ngOnInit(): void {
+  }
+
+  public onAddInput(input: string) {
+    this.goalExtensionService.addComment(this.selectedGoal.id, this.user, input);
+  }
+
+  public onCancelInput() {
   }
 
 }

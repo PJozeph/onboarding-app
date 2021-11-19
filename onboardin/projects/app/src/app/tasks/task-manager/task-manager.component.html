@@ -4,7 +4,9 @@
             <img src="assets/icons/arrow-left.svg" alt="arrow-left">
         </div>
         <div class="task-list">
-            <app-task *ngFor="let task of tasks" [active]="selectedTask == task" [task]="task" [isTaskManager]="true"
+            <app-task *ngFor="let task of tasks" 
+                [active]="selectedTask == task" 
+                [task]="task" [isTaskManager]="true"
                 [showIcon]="false" (click)="onSelect(task)">
             </app-task>
         </div>
@@ -19,7 +21,8 @@
 </div>
 <div class="extension-detailes">
     <div *ngIf="selectedTask.name === 'Goals'">
-        <app-goal [profile]="user">
+        <app-goal 
+            [user]="user">
         </app-goal>
     </div>
     <div *ngIf="selectedTask.name === 'Email Template'">

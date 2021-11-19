@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -7,8 +7,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class InputComponent implements OnInit {
 
-  @Output() onCancelEvent = new EventEmitter();
-  @Output() onAddEvent = new EventEmitter<string>();
+  @Output() public onCancelEvent = new EventEmitter();
+  @Output() public onAddEvent = new EventEmitter<string>();
+  @Input() addActionName : String;
+  @Input() isInputActive : boolean;
   public enteredValue : string = "";
   public isEmpty : boolean;
 
@@ -18,8 +20,9 @@ export class InputComponent implements OnInit {
   }
 
   public onCancel() {
-    this.onCancelEvent.emit();
     this.enteredValue = "";
+    this.isInputActive = false;
+    this.onCancelEvent.emit();
   }
 
   public isInputEmpty() {
@@ -27,8 +30,13 @@ export class InputComponent implements OnInit {
   }
 
   public onAdd(input : string) {
-    this.onAddEvent.emit(input);
     this.enteredValue = "";
+    this.isInputActive = false;
+    this.onAddEvent.emit(input);
+  }
+
+  public onAddGoalSelect() {
+    this.isInputActive = true;
   }
 
 }
