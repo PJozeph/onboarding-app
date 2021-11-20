@@ -3,6 +3,7 @@
     display: flex;
     margin-top: 3rem;
     margin-left: 3rem;
+    justify-content: center;
 }
 
 .upper-container {
@@ -23,6 +24,7 @@
 
 .extension-detailes {
     display: flex;
+    justify-content: center;
 }
 
 .profile-container {
@@ -40,4 +42,5 @@ img{
 .arrow-icon{
     display: flex;
     align-items: center;
+    cursor: pointer;
 }

@@ -2,13 +2,12 @@
 .extension-container {
     display: flex;
     flex-direction: column;
-    margin: 1rem;
+    margin: 1rem 0;
     width: 15rem;
 }
 
 .goals-list {
-    overflow: hidden;
-    overflow-y: scroll;
+    overflow: auto;
 }
 
 .goal-extension-container {

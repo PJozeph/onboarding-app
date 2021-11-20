@@ -1,17 +1,14 @@
-.input-container {
-    display: flex;
-    flex-direction: column;
-}
 
 .analog-container {
     margin: 0.5rem;
 }
 
-.add-goal-container {
+.add-action-container {
     display: flex;
+    cursor: pointer
 }
 
-.add-goal-title {
+.add-action-title {
     margin-left: 0.7rem;
     font-family: Arial, Helvetica, sans-serif;
     font-style: italic;

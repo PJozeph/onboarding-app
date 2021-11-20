@@ -26,9 +26,9 @@ export class GoalExtensionService {
   public addGoal(profile : User, goalTitle: string){
     const copyProfile : User = {...profile}
     const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
-    let currentMaxId = goalExtension.goal.length;
+    let currentMaxId = goalExtension.goals.length;
     const incremented = currentMaxId+2
-    goalExtension.goal.push({id: incremented, comment : [], completed : false, name : goalTitle});
+    goalExtension.goals.push({id: incremented, comment : [], completed : false, name : goalTitle});
     this.extensionSubject.next(copyProfile.extension)
   }
 
@@ -36,7 +36,7 @@ export class GoalExtensionService {
     const copyUser : User = {...user}
     const goalExtension: GoalExtension = <GoalExtension>copyUser.extension;
 
-    let newGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;
+    let newGoal  = goalExtension.goals.find(goal => goal.id === goalId)!;
     newGoal.completed = true;
   }
 
@@ -44,7 +44,7 @@ export class GoalExtensionService {
     const copyUser : User = {...user}
     const goalExtension: GoalExtension = <GoalExtension>copyUser.extension;
 
-    let newGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;
+    let newGoal  = goalExtension.goals.find(goal => goal.id === goalId)!;
     newGoal.completed = false;
 
     this.extensionSubject.next(copyUser.extension)
@@ -53,7 +53,7 @@ export class GoalExtensionService {
   public addComment(goalId: number, user : User , comment : string) {
     const copyUser : User = {...user}
     const goalExtension: GoalExtension = <GoalExtension>copyUser.extension;
-    let copyGoal  = goalExtension.goal.find(goal => goal.id === goalId)!;
+    let copyGoal  = goalExtension.goals.find(goal => goal.id === goalId)!;
     copyGoal.comment.push(comment)
     this.extensionSubject.next(copyUser.extension)
   }

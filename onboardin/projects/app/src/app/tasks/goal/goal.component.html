@@ -1,9 +1,9 @@
 <div class="goal-extension-container">
     <div class="goal-extension-list">
         <div class="goals-list" [style.maxHeight.px]="maxHeight">
-            <div *ngFor="let goalItem of goalExtension.goal" class="extension-container">
+            <div *ngFor="let goalItem of goalExtension.goals, index as i" class="extension-container">
                 <app-goal-item 
-                    [active]="selectedGoal == goalItem" 
+                    [active]="selectedGoal == goalItem"
                     [goalItem]="goalItem" 
                     [user]="user" 
                     (onGoalSelect)="onSelectGoal($event)">
@@ -12,15 +12,13 @@
         </div>
         <app-input 
             [isInputActive]='isInputActive' 
-            [addActionName]="'Add Goal'" 
+            [addActionName]="'Add a goal'" 
             (onCancelEvent)="onInputCancel()"
             (onAddEvent)="onInputAdd($event)">
         </app-input>
     </div>
-    <div *ngIf="selectedGoal">
         <app-selected-goal
             [user]="user" 
             [selectedGoal]="selectedGoal">
         </app-selected-goal>
-    </div>
 </div>

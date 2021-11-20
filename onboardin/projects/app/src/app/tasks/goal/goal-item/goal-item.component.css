@@ -1,10 +1,11 @@
 .goal-item {
     display: flex;
+    cursor: pointer;
 }
 
 .goal-item:hover {
     background-color: rgb(179, 212, 255); 
-    border-radius: 10rem;
+    border-radius: 3px;
 }
 
 .uncompleted {
@@ -26,5 +27,5 @@ img{
 
 .active {
     background-color: rgb(179, 212, 255);
-    border-radius: 10rem;
+    border-radius: 3px;
 }

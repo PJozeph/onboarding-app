@@ -3,18 +3,18 @@
     <span>Goal Description</span>
     <div class="form-group selected-textarea">
         <textarea class="form-control" rows="3">
-            {{selectedGoal.name}}
-            {{selectedGoal.description}}
+              {{selectedGoal ? selectedGoal.name : null}}
+            {{selectedGoal ? selectedGoal.description : null}}
         </textarea>
     </div>
     <span>Comments</span>
     <div>
         <app-input
-            [addActionName]="'Add Comment'"
+            [addActionName]="'Add a comment'"
             (onAddEvent)="onAddInput($event)">
         </app-input>
     </div>
-    <div class="comment-container">
+    <div class="comment-container" *ngIf="selectedGoal">
         <app-comment-item
             [user]="user"
             [selectedGoal]="selectedGoal">

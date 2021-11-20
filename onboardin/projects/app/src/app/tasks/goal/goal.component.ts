@@ -35,13 +35,13 @@ export class GoalComponent implements OnInit, OnDestroy {
       this.goalExtension = <GoalExtension>result
     });
     this.goalExtensionService.setProfile(this.user);
-    if(this.goalExtension.goal) {
-        this.selectedGoal = this.goalExtension.goal[0];
+    if(this.goalExtension.goals) {
+        this.selectedGoal = this.goalExtension.goals[0];
     }
   }
   
   public onSelectGoal(goalId: number) {
-    this.selectedGoal = this.goalExtension.goal.find( goal => goal.id === goalId);
+    this.selectedGoal = this.goalExtension.goals.find( goal => goal.id === goalId);
   }
 
   public onAddGoalSelect() {

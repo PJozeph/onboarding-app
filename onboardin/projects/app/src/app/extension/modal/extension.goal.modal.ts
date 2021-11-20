@@ -10,7 +10,7 @@ export interface Goal {
 
 export class GoalExtension extends Extension  {
     
-    constructor(public goal : Goal[]) {
+    constructor(public goals : Goal[]) {
         super(1,"Goal","Desc.","iconPath")
     }
 }
