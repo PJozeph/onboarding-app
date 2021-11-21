@@ -20,12 +20,12 @@
     </div>
 </div>
 <div class="extension-detailes">
-    <div *ngIf="selectedTask.name === 'Goals'">
+    <div *ngIf="selectedTask.name === 'Goals' else comingSoon">
         <app-goal 
             [user]="user">
         </app-goal>
     </div>
-    <div *ngIf="selectedTask.name === 'Email Template'">
-        <div style="background-color: blue;">email component</div>
-    </div>
+    <ng-template #comingSoon>
+        <lib-coming-soon></lib-coming-soon>
+    </ng-template>
 </div>
