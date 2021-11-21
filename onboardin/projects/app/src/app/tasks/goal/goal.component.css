@@ -7,7 +7,7 @@
 }
 
 .goals-list {
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .goal-extension-container {

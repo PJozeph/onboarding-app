@@ -1,6 +1,8 @@
 .goal-item {
     display: flex;
     cursor: pointer;
+    height: 3rem;
+    width: 100%;
 }
 
 .goal-item:hover {
@@ -28,4 +30,19 @@ img{
 .active {
     background-color: rgb(179, 212, 255);
     border-radius: 3px;
+}
+
+.goal-description {
+    margin-left: 0.5rem;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    align-items: baseline;
+}
+
+.goal-item-content {
+    display: flex;
+    flex-direction: column;
 }
