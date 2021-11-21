@@ -11,11 +11,10 @@ import { HeaderComponent } from './header/header.component';
 import { reducers } from './store';
 import { TaskModule } from './tasks/task.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     TaskModule,
