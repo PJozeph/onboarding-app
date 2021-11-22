@@ -2,11 +2,6 @@
     display: flex;
     margin: 0.7rem;
 }
-/* 
-.comment-container:hover {
-    background-color: rgb(179, 212, 255); 
-    border-radius: 10rem;
-} */
 
 img {
     border-radius: 50%;
@@ -23,7 +18,21 @@ img {
 .input-content {
     display: flex;
     width: 100%;
-    border-radius: 15px;
     flex-direction: column;
     margin-left: 1rem;
+}
+
+.title {
+    font-family: 'Roboto';
+    font-weight: 800;
+}
+
+.commenter-name {
+    font-family: 'Roboto';
+    font-weight: 600;
+}
+
+.commenter-message {
+    font-family: 'Roboto';
+    font-weight: 300;
 }

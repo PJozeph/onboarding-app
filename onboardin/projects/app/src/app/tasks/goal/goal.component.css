@@ -1,27 +1,14 @@
 
-.extension-container {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem 0;
-    width: 15rem;
-}
-
-.goals-list {
-    overflow-y: auto;
-}
-
 .goal-extension-container {
     display: flex;
-    width: 60rem;
-    justify-content: space-around;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .goal-extension-list {
     display: flex;
     flex-direction: column;
-}
-
-.comment-container {
-    display: flex;
-    flex-direction: column;
+    width: 50rem;
+    overflow-y: auto;
+    margin-top: 1rem;
 }

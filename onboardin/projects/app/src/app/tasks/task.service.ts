@@ -8,7 +8,7 @@ import { TaskModel } from './task.modal';
 export class TaskService {
 
   tasks : TaskModel []  = [
-      new GoalTask(6, 2, "Goals", "description", "assets/icons/goals.svg", ["Ez egy comment", "Ez a második comment"]),
+      new GoalTask(6, 2, "Goals", "Set goals", "assets/icons/goals.svg", ["Ez egy comment", "Ez a második comment"]),
       new TaskModel(0 , 'Meet your Boddy', 'Ipsum has been \nthe industry ', "assets/icons/people.svg"),
       new TaskModel(1, 'Email Template', 'Ipsum has been \nthe industry ', "assets/icons/email.svg"),
       new TaskModel(2, 'First Project', 'Ipsum has been \nthe industry ', "assets/icons/project.svg"),

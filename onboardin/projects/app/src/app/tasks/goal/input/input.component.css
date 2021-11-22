@@ -10,6 +10,11 @@
 
 .add-action-title {
     margin-left: 0.7rem;
-    font-family: Arial, Helvetica, sans-serif;
-    font-style: italic;
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+
+.button-title {
+    font-family: 'Roboto';
+    font-weight: 400;
 }

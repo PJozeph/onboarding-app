@@ -8,11 +8,19 @@
             (click)="undoCompleted(user, goalItem.id)">
     </div>
     <div class="goal-item-content">
-        <span class="goal-name">
+        <div class="goal-name text-truncate" >
             {{goalItem.name}}
-        </span>
-        <span class="goal-description">
-            {{goalItem.description}}
-        </span>
+        </div>
+        <div class="goal-description text-truncate"  style="max-width: 30rem;">
+            {{goalItem.description ? goalItem.description : null}}
+        </div>
+    </div>
+    <div class="select-icons">
+        <div class="icon-setting">
+            <img src="assets/icons/three-dots.svg" alt="settings-icon">
+        </div>
+        <div class="icon-trash">
+            <img src="assets/icons/trash.svg" alt="settings-icon">
+        </div>
     </div>
 </div>

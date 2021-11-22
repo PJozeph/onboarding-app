@@ -9,13 +9,13 @@ import { Extension } from '../../extension/modal/extension.modal';
 })
 export class GoalExtensionService {
 
-  private profile : User;
+  private user : User;
   private extensionSubject = new Subject<Extension>();
 
   constructor() { }
 
   public setProfile(profile: User) {
-    this.profile = profile;
+    this.user = profile;
     this.extensionSubject.next(profile.extension)
   }
 
@@ -50,13 +50,18 @@ export class GoalExtensionService {
     this.extensionSubject.next(copyUser.extension)
   }
 
-  public addComment(goalId: number, user : User , comment : string) {
+  public addComment(goalId: number, user : User , comment : string, commenterId : string) {
     const copyUser : User = {...user}
     const goalExtension: GoalExtension = <GoalExtension>copyUser.extension;
     let copyGoal  = goalExtension.goals.find(goal => goal.id === goalId)!;
-    copyGoal.comment.push(comment)
+    copyGoal.comment.push({ userId: commenterId, message : comment} )
     this.extensionSubject.next(copyUser.extension)
   }
+
+  public getGoalById(goalId: number, user : User ) {
+
+  }
+
 
 
 }

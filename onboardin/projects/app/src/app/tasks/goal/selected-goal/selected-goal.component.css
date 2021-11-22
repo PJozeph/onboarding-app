@@ -1,17 +1,32 @@
 .selected-goal-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 33rem;
+    height: 100%;
 }
 
 span {
-    color: gray;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
+    font-family: 'Roboto';
+    font-weight: bold;
     margin: 0.5rem;
 }
 
 .selected-textarea {
     width: 100%;
+}
+
+.input-dialog {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.comment-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto';
+    font-weight: 900;
+    margin-top: 0.5rem;
 }

@@ -1,10 +1,12 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Subscription } from 'rxjs';
 import { Goal, GoalExtension } from '../../extension/modal/extension.goal.modal';
-import { GoalExtensionService } from './goalextension.service';
 import * as fromApp from '../../store/index';
+import { GoalExtensionService } from './goalextension.service';
+import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
@@ -22,7 +24,9 @@ export class GoalComponent implements OnInit, OnDestroy {
   private isLoggedIn : boolean = false;
 
   constructor(private goalExtensionService: GoalExtensionService,
-              private store : Store<fromApp.AppState>) { }
+              private store : Store<fromApp.AppState>,
+              private dialogService : MatDialog,
+              ) { }
 
   ngOnInit(): void {
     // this.store.select('auth').subscribe((state => {
@@ -30,7 +34,7 @@ export class GoalComponent implements OnInit, OnDestroy {
     //       this.isLoggedIn = true;
     //     } 
     // }))
-    this.maxHeight = window.innerHeight - 370;
+    this.maxHeight = window.innerHeight - 320;
     this.subscription = this.goalExtensionService.getExtension().subscribe(result => {
       this.goalExtension = <GoalExtension>result
     });
@@ -42,6 +46,11 @@ export class GoalComponent implements OnInit, OnDestroy {
   
   public onSelectGoal(goalId: number) {
     this.selectedGoal = this.goalExtension.goals.find( goal => goal.id === goalId);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '40rem';
+    dialogConfig.width = '40rem';
+    dialogConfig.data =  { 'selectedGoal' : this.selectedGoal, 'selectedUser' : this.user }
+    this.dialogService.open(SelectedGoalComponent, dialogConfig)
   }
 
   public onAddGoalSelect() {

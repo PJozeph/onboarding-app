@@ -1,13 +1,7 @@
 .goal-item {
     display: flex;
     cursor: pointer;
-    height: 3rem;
-    width: 100%;
-}
-
-.goal-item:hover {
-    background-color: rgb(179, 212, 255); 
-    border-radius: 3px;
+    height: 2rem;
 }
 
 .uncompleted {
@@ -19,7 +13,8 @@
 }
 
 .goal-name {
-    font-weight: bold;
+    font-family: 'Roboto';
+    font-weight: 900;
     margin-left: 0.5rem;
 }
 
@@ -33,6 +28,8 @@ img{
 }
 
 .goal-description {
+    font-family: 'Roboto';
+    font-weight: 300;
     margin-left: 0.5rem;
 }
 
@@ -46,3 +43,30 @@ img{
     display: flex;
     flex-direction: column;
 }
+
+.select-icons {
+    display: none;
+    width: 100%;
+    margin: 0.8rem;
+}
+
+.icon-setting {
+    margin: 0 0.4rem;
+}
+
+.icon-setting:hover{
+    background-color: lightgray;
+    border-radius: 3px;
+}
+
+.icon-trash:hover{
+    background-color: lightgray;
+    border-radius: 3px;
+}
+
+.goal-item:hover .select-icons {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-right: 10rem;
+  }
