@@ -16,10 +16,7 @@ span {
 
 .input-dialog {
     display: flex;
-    height: 100%;
     padding: 0.6rem;
-    align-items: flex-end;
-    justify-content: center;
 }
 
 .comment-title {
@@ -30,4 +27,19 @@ span {
     font-family: 'Roboto';
     font-weight: 900;
     margin-top: 0.5rem;
+}
+
+.comment-container {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.custom-add-btn {
+    height: 4rem;
+    margin: auto;
+    font-family: monospace;
+}
+
+.custom-btn-container{
+    margin: 0.5rem;
 }

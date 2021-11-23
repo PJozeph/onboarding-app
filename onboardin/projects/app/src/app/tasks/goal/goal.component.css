@@ -12,3 +12,7 @@
     overflow-y: auto;
     margin-top: 1rem;
 }
+
+textarea:focus {
+    outline: none;
+}

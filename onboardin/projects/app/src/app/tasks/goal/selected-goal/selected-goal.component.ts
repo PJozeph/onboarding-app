@@ -5,6 +5,7 @@ import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Goal } from '../../../extension/modal/extension.goal.modal';
 import * as fromApp from '../../../store/index';
 import { GoalExtensionService } from '../goalextension.service';
+import { GoalInput } from '../input/input.component';
 
 @Component({
   selector: 'app-selected-goal',
@@ -15,7 +16,8 @@ export class SelectedGoalComponent implements OnInit {
 
   public selectedGoal : Goal;
   public selectedUser : User;
-  private loggedInUser : User;
+  public loggedInUser : User;
+  public comment : string = "";
 
   constructor(
             @Inject(MAT_DIALOG_DATA) public data: {selectedGoal: Goal},  
@@ -32,8 +34,9 @@ export class SelectedGoalComponent implements OnInit {
     }))
   }
 
-  public onAddInput(input: string) {
-    this.goalExtensionService.addComment(this.selectedGoal.id, this.selectedUser, input, this.loggedInUser.uid);
+  public onAddComment(comment: string) {
+    this.comment = '';
+    this.goalExtensionService.addComment(this.selectedGoal.id, this.selectedUser, comment, this.loggedInUser.uid);
   }
 
   public onCancelInput() {

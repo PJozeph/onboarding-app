@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { Goal, GoalExtension } from '../../extension/modal/extension.goal.modal';
 import * as fromApp from '../../store/index';
 import { GoalExtensionService } from './goalextension.service';
+import { GoalInput } from './input/input.component';
 import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
 @Component({
   selector: 'app-goal',
@@ -15,26 +16,17 @@ import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
 export class GoalComponent implements OnInit, OnDestroy {
 
   @Input() user : User;
-  
   public isInputActive: boolean = false
   public goalExtension : GoalExtension ;
   public selectedGoal : Goal;
   private subscription : Subscription;
   public maxHeight : number;
-  private isLoggedIn : boolean = false;
 
   constructor(private goalExtensionService: GoalExtensionService,
-              private store : Store<fromApp.AppState>,
-              private dialogService : MatDialog,
-              ) { }
+              private dialogService : MatDialog) { }
 
   ngOnInit(): void {
-    // this.store.select('auth').subscribe((state => {
-    //   if(state.user) {
-    //       this.isLoggedIn = true;
-    //     } 
-    // }))
-    this.maxHeight = window.innerHeight - 320;
+    this.maxHeight = window.innerHeight - 350;
     this.subscription = this.goalExtensionService.getExtension().subscribe(result => {
       this.goalExtension = <GoalExtension>result
     });
@@ -69,8 +61,8 @@ export class GoalComponent implements OnInit, OnDestroy {
     this.isInputActive = false;
   }
 
-  public onInputAdd(goalTitle: string){
-    this.goalExtensionService.addGoal(this.user, goalTitle)
+  public onInputAdd(goal: GoalInput){
+    this.goalExtensionService.addGoal(this.user, goal.goalName, goal.goalDescription)
   }
 
   ngOnDestroy(): void {

@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+
+export interface GoalInput {
+  goalName : string;
+  goalDescription : string
+}
+
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
@@ -8,10 +14,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class InputComponent implements OnInit {
 
   @Output() public onCancelEvent = new EventEmitter();
-  @Output() public onAddEvent = new EventEmitter<string>();
+  @Output() public onAddEvent = new EventEmitter<GoalInput>();
   @Input() addActionName : String;
   @Input() isInputActive : boolean;
   public goalName : string = "";
+  public goalDescription : string = ""
   public isEmpty : boolean;
 
   constructor() { }
@@ -21,6 +28,7 @@ export class InputComponent implements OnInit {
 
   public onCancel() {
     this.goalName = "";
+    this.goalDescription = "";
     this.isInputActive = false;
     this.onCancelEvent.emit();
   }
@@ -29,10 +37,10 @@ export class InputComponent implements OnInit {
     this.isEmpty = this.goalName.length >= 1;
   }
 
-  public onAdd(input : string) {
+  public onAdd() {
+    this.onAddEvent.emit({goalName : this.goalName, goalDescription : this.goalDescription});
     this.goalName = "";
     this.isInputActive = false;
-    this.onAddEvent.emit(input);
   }
 
   public onAddGoalSelect() {

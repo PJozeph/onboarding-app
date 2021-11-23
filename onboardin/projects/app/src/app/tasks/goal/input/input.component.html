@@ -8,17 +8,24 @@
         {{addActionName}}
     </div>
 </div>
-<div class="input-container" *ngIf="isInputActive">
-    <input type="text" class="form-control" [ngModel]="goalName" (ngModelChange)="isInputEmpty()"
-        (ngModelChange)="goalName = $event">
-    <!-- <input type="text" class="form-control" [ngModel]="goalName" (ngModelChange)="isInputEmpty()"
-        (ngModelChange)="goalName = $event"> -->
+<div class="container" *ngIf="isInputActive">
+    <div class="input-container">
+        <input  
+            type="text" 
+            placeholder="e.g Learn revenue Excel table"
+            [ngModel]="goalName" 
+            (ngModelChange)="isInputEmpty()"
+            (ngModelChange)="goalName = $event">
+        <textarea
+            placeholder="Description" 
+            [(ngModel)]="goalDescription"></textarea>
+    </div>    
     <div class="analog-container">
         <button type="button" 
                 style="margin: 0.5rem;" 
                 class="btn btn-outline-success"
                 [disabled]="goalName.length === 0" 
-                (click)="onAdd(goalName)">
+                (click)="onAdd()">
                 {{addActionName}}
             </button>
         <button type="button" 

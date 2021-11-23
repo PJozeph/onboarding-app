@@ -23,12 +23,12 @@ export class GoalExtensionService {
     return this.extensionSubject.asObservable()
   }
 
-  public addGoal(profile : User, goalTitle: string){
+  public addGoal(profile : User, goalTitle: string, description : string){
     const copyProfile : User = {...profile}
     const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
     let currentMaxId = goalExtension.goals.length;
     const incremented = currentMaxId+2
-    goalExtension.goals.push({id: incremented, comment : [], completed : false, name : goalTitle});
+    goalExtension.goals.push({id: incremented, comment : [], completed : false, name : goalTitle, description });
     this.extensionSubject.next(copyProfile.extension)
   }
 
@@ -61,7 +61,5 @@ export class GoalExtensionService {
   public getGoalById(goalId: number, user : User ) {
 
   }
-
-
 
 }

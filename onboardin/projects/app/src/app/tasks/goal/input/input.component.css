@@ -18,3 +18,41 @@
     font-family: 'Roboto';
     font-weight: 400;
 }
+
+input,
+input:focus {
+    border: none;
+    outline: none;
+    font-family: monospace;
+    font-weight: 600;
+}
+
+textarea,
+textarea:focus {
+    border: none;
+    outline: none;
+    font-family: monospace;
+    font-weight: 400;
+}
+
+input::placeholder {
+    font-family: monospace;
+    font-weight: 600;
+}
+
+textarea::placeholder {
+    font-family: monospace;
+    font-weight: 400;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+.input-container:focus-within {
+    border: 2px solid lightblue;
+    box-shadow: 0 0 11px lightblue;
+}
