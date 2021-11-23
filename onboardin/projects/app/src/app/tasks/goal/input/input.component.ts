@@ -11,7 +11,7 @@ export class InputComponent implements OnInit {
   @Output() public onAddEvent = new EventEmitter<string>();
   @Input() addActionName : String;
   @Input() isInputActive : boolean;
-  public enteredValue : string = "";
+  public goalName : string = "";
   public isEmpty : boolean;
 
   constructor() { }
@@ -20,17 +20,17 @@ export class InputComponent implements OnInit {
   }
 
   public onCancel() {
-    this.enteredValue = "";
+    this.goalName = "";
     this.isInputActive = false;
     this.onCancelEvent.emit();
   }
 
   public isInputEmpty() {
-    this.isEmpty = this.enteredValue.length >= 1;
+    this.isEmpty = this.goalName.length >= 1;
   }
 
   public onAdd(input : string) {
-    this.enteredValue = "";
+    this.goalName = "";
     this.isInputActive = false;
     this.onAddEvent.emit(input);
   }

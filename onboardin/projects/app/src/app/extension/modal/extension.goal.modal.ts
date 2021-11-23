@@ -1,10 +1,16 @@
 import { Extension } from "./extension.modal";
 
+
+interface Comment {
+    userId : string;
+    message : string
+} 
+
 export interface Goal {
     id: number
     completed: boolean;
     name: string;
-    comment : string [],
+    comment : Comment [],
     description?: string
 }
 

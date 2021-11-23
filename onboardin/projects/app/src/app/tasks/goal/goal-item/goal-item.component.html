@@ -1,15 +1,25 @@
-<div class="goal-item" 
-    [ngClass]="{'uncompleted' : !goalItem.completed}"
-    [ngClass]="{'active' : active}" 
-    (click)="onSelectGoal(goalItem.id)">
-        <img *ngIf="!goalItem.completed" 
-             src="assets/icons/circle.svg" 
-             (click)="markCompleted(user, goalItem.id)">
-        <img class="icon-completed" 
-            *ngIf="goalItem.completed" 
-            src="assets/icons/check2-circle.svg"
+<div class="goal-item" [ngClass]="{'uncompleted' : !goalItem.completed}" [ngClass]="{'active' : active}">
+    <div class="icon-container">
+        <img *ngIf="!goalItem.completed" src="assets/icons/circle.svg" (click)="markCompleted(user, goalItem.id)">
+    </div>
+    <div class="icon-container">
+        <img class="icon-completed" *ngIf="goalItem.completed" src="assets/icons/check2-circle.svg"
             (click)="undoCompleted(user, goalItem.id)">
-        <div class="goal-name">
+    </div>
+    <div class="goal-item-content" (click)="onSelectGoal(goalItem.id)">
+        <div class="goal-name text-truncate" >
             {{goalItem.name}}
         </div>
+        <div class="goal-description text-truncate"  style="max-width: 30rem;">
+            {{goalItem.description ? goalItem.description : null}}
+        </div>
+    </div>
+    <div class="select-icons">
+        <div class="icon-setting">
+            <img src="assets/icons/three-dots.svg" alt="settings-icon">
+        </div>
+        <div class="icon-trash">
+            <img src="assets/icons/trash.svg" alt="settings-icon">
+        </div>
+    </div>
 </div>

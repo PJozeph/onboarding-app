@@ -13,8 +13,8 @@
 }
 
 .profile-name {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.7rem;
+    font-family: monospace, Arial, Helvetica, sans-serif;
+    font-size: small;
     text-align: center;
     margin-top: 1rem;
     font-weight: bold;

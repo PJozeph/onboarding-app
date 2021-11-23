@@ -12,6 +12,7 @@ import { LeftNavigationComponent } from './components/left-navigation/left-navig
 import { UserCardComponent } from './components/user-card/usercard.component';
 import { UsersComponent } from './components/user-card/users/user.component';
 import { OnHoverDirective } from './directives/onhover.directive';
+import { ScrollBottomDirective } from './directives/scroll-bottom.directive';
 import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
 
 
@@ -23,6 +24,7 @@ import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
     LeftNavigationComponent,
     OnHoverDirective,
     ComingSoonComponent,
+    ScrollBottomDirective,
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
     ButtonComponent,
     LeftNavigationComponent,
     OnHoverDirective,
-    ComingSoonComponent
+    ComingSoonComponent,
+    ScrollBottomDirective
   ]
 })
 export class CoreModule { }

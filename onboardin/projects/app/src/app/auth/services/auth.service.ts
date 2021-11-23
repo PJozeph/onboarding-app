@@ -4,6 +4,9 @@ import { Store } from '@ngrx/store';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Observable, Subject } from 'rxjs';
+import { GoalExtension } from '../../extension/modal/extension.goal.modal';
+import { Extension } from '../../extension/modal/extension.modal';
+import { UserService } from '../../user/user.service';
 import * as authActions from './../store/auth.actions';
 
 @Injectable({
@@ -11,7 +14,9 @@ import * as authActions from './../store/auth.actions';
 })
 export class AuthService {
 
-  constructor(private auth: Auth, private store : Store) { }
+  constructor(private auth: Auth, 
+              private store : Store,
+              private userService : UserService  ) { }
 
   public async emailSignUp(email : string, password  : string) : Promise<void>  {
     const credential = await createUserWithEmailAndPassword(
@@ -40,17 +45,20 @@ public googleLogin() : Observable<User> {
     })
     const user = new User(result.user.uid,
                           result.user.displayName,
-                          result.user.photoURL, 
-                          null);
+                          result.user.photoURL,
+                          new GoalExtension([]));
+
     this.store.dispatch(new  authActions.LoginSuccess(user))
     window.localStorage.setItem('user', JSON.stringify(user));
+    this.userService.addUser(user)
     subject.next(user);
   })
   return subject.asObservable()
 }
 
 public signOut() {
-  window.localStorage.removeItem('user')
+  window.localStorage.removeItem('user');
+  this.userService.reloadUserList();
   this.store.dispatch(new  authActions.Logout());
 }
 

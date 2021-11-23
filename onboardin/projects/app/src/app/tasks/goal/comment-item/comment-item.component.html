@@ -1,15 +1,13 @@
 <div class="comment-container" *ngFor="let comment of selectedGoal.comment">
     <div class="user-image">
-        <img src="{{user.imagePath}}" alt="Image not found">
+        <img src="{{getUserImage(comment.userId)}}" alt="Image not found">
     </div>
-    <div class="input-content border border-primary">
-        <div style="margin-left: 1rem;">
-            <p class="lead">
-                {{user.name}}
-            </p>
-        </div>
-        <div style="margin-left: 1rem;">
-            {{comment}}
-        </div>
+    <div class="input-content">
+        <p class="commenter-name">
+            {{getCommenterName(comment.userId)}}
+        </p>
+        <p class="commenter-message">
+            {{comment.message}}
+        </p>
     </div>
 </div>
