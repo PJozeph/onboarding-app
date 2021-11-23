@@ -1,5 +1,4 @@
-<div class="goal-item" [ngClass]="{'uncompleted' : !goalItem.completed}" [ngClass]="{'active' : active}"
-    (click)="onSelectGoal(goalItem.id)">
+<div class="goal-item" [ngClass]="{'uncompleted' : !goalItem.completed}" [ngClass]="{'active' : active}">
     <div class="icon-container">
         <img *ngIf="!goalItem.completed" src="assets/icons/circle.svg" (click)="markCompleted(user, goalItem.id)">
     </div>
@@ -7,7 +6,7 @@
         <img class="icon-completed" *ngIf="goalItem.completed" src="assets/icons/check2-circle.svg"
             (click)="undoCompleted(user, goalItem.id)">
     </div>
-    <div class="goal-item-content">
+    <div class="goal-item-content" (click)="onSelectGoal(goalItem.id)">
         <div class="goal-name text-truncate" >
             {{goalItem.name}}
         </div>

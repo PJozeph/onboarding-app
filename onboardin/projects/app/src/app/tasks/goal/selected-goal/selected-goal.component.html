@@ -1,13 +1,13 @@
 <div class="selected-goal-container">
     <span>Goal Description</span>
     <div class="form-group selected-textarea">
-        <textarea class="form-control" rows="6">{{selectedGoal ? selectedGoal.description  : null }}</textarea>
+        <textarea class="form-control" rows="3">{{selectedGoal ? selectedGoal.description  : null }}</textarea>
     </div>
     <div class="comment-title">
         <div class="comment-title">Comments</div>
         <hr style="width: 80%; color: blue; height: px;">
     </div>
-    <div class="comment-container" *ngIf="selectedGoal">
+    <div class="comment-container" *ngIf="selectedGoal" #scrollBottom>
         <app-comment-item
          [selectedGoal]="selectedGoal">
         </app-comment-item>
