@@ -16,5 +16,6 @@ img {
 }
 
 .name {
+    font-family: monospace;
     margin: auto 0;
 }
