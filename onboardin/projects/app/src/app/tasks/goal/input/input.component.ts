@@ -40,6 +40,7 @@ export class InputComponent implements OnInit {
   public onAdd() {
     this.onAddEvent.emit({goalName : this.goalName, goalDescription : this.goalDescription});
     this.goalName = "";
+    this.goalDescription = "";
     this.isInputActive = false;
   }
 
