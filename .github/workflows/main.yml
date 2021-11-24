@@ -28,10 +28,3 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: npm install
-
-      # Runs a set of commands using the runners shell
-      - name: run tes
-        run: npm test
-      
-      - name: run build
-        run : npm build
