@@ -26,7 +26,6 @@ const routes: Routes = [
     MatDialogModule, 
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),

@@ -32,8 +32,8 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  public onCreateAccount(email : string , pass : string ) {
-    this.authService.emailSignUp(email, pass);
+  public onCreateAccount(email : string , pass : string, userName : string ) {
+    this.authService.emailSignUp(email, pass, userName);
   }
 
   public onGoogleSignUp() {
@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
   }
 
   public onSubmit(){
-    this.authService.emailSignUp(this.userEmail, this.userPassword);
+    this.authService.emailSignUp(this.userEmail, this.userPassword, this.userName);
   }
 }
 
