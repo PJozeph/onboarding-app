@@ -1,16 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from 'projects/core/src/lib/components/user-card/users/user.component';
-import { TaskManagerComponent } from './tasks/task-manager/task-manager.component';
-import { TaskListComponent } from './tasks/tasklist/tasklist.component';
 
 const routes: Routes = [
-
-  {path: 'tasks' , component : TaskListComponent},
-  {path: 'profile/:profileId' , component : TaskManagerComponent },
-  {path: 'list-newcomers' , component : UsersComponent},
-  {path: '' , component : UsersComponent},
-
+  {path: 'users' , component : UsersComponent},
+  {path : 'user/:userid', loadChildren: ()=> import('./tasks/task.module').then( m => m.TaskModule)},
+  {path: '' , pathMatch : 'full', redirectTo: 'users'  },
 ];
 
 @NgModule({

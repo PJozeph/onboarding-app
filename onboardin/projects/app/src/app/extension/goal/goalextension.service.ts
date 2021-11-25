@@ -25,7 +25,7 @@ export class GoalExtensionService {
 
   public addGoal(profile : User, goalTitle: string, description : string){
     const copyProfile : User = {...profile}
-    const goalExtension: GoalExtension = <GoalExtension>copyProfile.extension;
+    const goalExtension= <GoalExtension>copyProfile.extension;
     let currentMaxId = goalExtension.goals.length;
     const incremented = currentMaxId+2
     goalExtension.goals.push({id: incremented, comment : [], completed : false, name : goalTitle, description });

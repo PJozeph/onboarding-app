@@ -5,7 +5,6 @@ import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Goal } from '../../../extension/modal/extension.goal.modal';
 import * as fromApp from '../../../store/index';
 import { GoalExtensionService } from '../goalextension.service';
-import { GoalInput } from '../input/input.component';
 
 @Component({
   selector: 'app-selected-goal',

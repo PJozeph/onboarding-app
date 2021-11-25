@@ -1,13 +1,14 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { User } from 'projects/core/src/lib/components/user-card/user.modal';
 import { Subscription } from 'rxjs';
 import { Goal, GoalExtension } from '../../extension/modal/extension.goal.modal';
-import * as fromApp from '../../store/index';
+import * as formApp from './../../store/index';
 import { GoalExtensionService } from './goalextension.service';
 import { GoalInput } from './input/input.component';
 import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
+
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
@@ -15,7 +16,8 @@ import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
 })
 export class GoalComponent implements OnInit, OnDestroy {
 
-  @Input() user : User;
+  public selectedUser : User;
+  private userId : string;
   public isInputActive: boolean = false
   public goalExtension : GoalExtension ;
   public selectedGoal : Goal;
@@ -23,17 +25,14 @@ export class GoalComponent implements OnInit, OnDestroy {
   public maxHeight : number;
 
   constructor(private goalExtensionService: GoalExtensionService,
-              private dialogService : MatDialog) { }
+              private dialogService : MatDialog,
+              private store$ : Store<formApp.AppState>) { }
 
   ngOnInit(): void {
     this.maxHeight = window.innerHeight - 350;
-    this.subscription = this.goalExtensionService.getExtension().subscribe(result => {
-      this.goalExtension = <GoalExtension>result
-    });
-    this.goalExtensionService.setProfile(this.user);
-    if(this.goalExtension.goals) {
-        this.selectedGoal = this.goalExtension.goals[0];
-    }
+    this.store$.select('selectedUser').subscribe((user => {
+          this.selectedUser = user.user;
+      }))
   }
   
   public onSelectGoal(goalId: number) {
@@ -41,7 +40,7 @@ export class GoalComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.height = '40rem';
     dialogConfig.width = '40rem';
-    dialogConfig.data =  { 'selectedGoal' : this.selectedGoal, 'selectedUser' : this.user }
+    dialogConfig.data =  { 'selectedGoal' : this.selectedGoal, 'selectedUser' : this.selectedUser }
     this.dialogService.open(SelectedGoalComponent, dialogConfig)
   }
 
@@ -62,7 +61,7 @@ export class GoalComponent implements OnInit, OnDestroy {
   }
 
   public onInputAdd(goal: GoalInput){
-    this.goalExtensionService.addGoal(this.user, goal.goalName, goal.goalDescription)
+    this.goalExtensionService.addGoal(this.selectedUser, goal.goalName, goal.goalDescription)
   }
 
   ngOnDestroy(): void {
