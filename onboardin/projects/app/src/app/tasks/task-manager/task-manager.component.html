@@ -15,16 +15,14 @@
         </div>
     </div>
     <div class="profile-container">
-        <lib-user-card [user]="user" [showEdit]="false">
+        <lib-user-card 
+            [user]="user" 
+            [showEdit]="false">
         </lib-user-card>
     </div>
 </div>
 <div class="extension-detailes">
-    <div *ngIf="selectedTask.name === 'Goals' else comingSoon">
-        <app-goal 
-            [user]="user">
-        </app-goal>
-    </div>
+    <router-outlet></router-outlet>
     <ng-template #comingSoon>
         <lib-coming-soon></lib-coming-soon>
     </ng-template>

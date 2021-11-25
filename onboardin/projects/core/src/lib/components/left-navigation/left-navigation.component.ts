@@ -15,7 +15,7 @@ export class LeftNavigationComponent implements OnInit {
   }
 
   public onListNewComers() {
-    this.router.navigate(['/list-newcomers'])
+    this.router.navigate(['/users'])
   }
 
   public onTasks() {

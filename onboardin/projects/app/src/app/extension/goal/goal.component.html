@@ -1,9 +1,8 @@
 <div class="goal-extension-container">
     <div class="goal-extension-list"  [style.maxHeight.px]="maxHeight">
-        <div *ngFor="let goalItem of goalExtension.goals">
+        <div  *ngFor="let goalItem of goalExtension?.goals ">
             <app-goal-item 
                 [goalItem]="goalItem" 
-                [user]="user"
                 (onGoalSelect)="onSelectGoal($event)">
             </app-goal-item>
             <hr style="width: 80%;">
