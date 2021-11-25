@@ -99,6 +99,6 @@ import { FeedbackExtension } from "../extension/modal/feedbackextension.modal";
       new User('13', 'Hollik István', 'assets/profile_8.jpg', new GoalExtension( [])),
       new User('14', 'Hollik István', 'assets/profile_8.jpg',new FeedbackExtension( {comment : ['First comment']} ))]
     }
-
+    
   }
   
