@@ -20,8 +20,6 @@ import * as authActions from './../store/auth.actions';
 })
 export class AuthService {
 
-  doc: DocumentReference;
-
   constructor(private auth: Auth,
     private store: Store,
     private userService: UserService,
