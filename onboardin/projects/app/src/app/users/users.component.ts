@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'projects/app/src/app/user/user.service';
-import { User } from '../user.modal';
+import { User } from 'projects/core/src/lib/modal/user/user.modal';
 
 @Component({
-  selector: 'lib-users',
+  selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })

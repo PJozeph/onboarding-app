@@ -1,4 +1,4 @@
-import { User } from 'projects/core/src/lib/components/user-card/user.modal';
+import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import * as authAction from './auth.actions';
 import { AuthActions } from './auth.actions';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'projects/core/src/lib/components/user-card/user.modal';
+import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { AuthService } from '../../auth/services/auth.service';
 import { UserService } from '../../user/user.service';
 import { TaskModel } from '../task.modal';

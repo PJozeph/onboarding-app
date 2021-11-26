@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { User } from 'projects/core/src/lib/components/user-card/user.modal';
+import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { Subscription } from 'rxjs';
 import { Goal, GoalExtension } from '../../extension/modal/extension.goal.modal';
 import * as formApp from './../../store/index';
@@ -30,7 +30,7 @@ export class GoalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.maxHeight = window.innerHeight - 350;
-    this.store$.select('selectedUser').subscribe((user => {
+    this.subscription = this.store$.select('selectedUser').subscribe((user => {
           this.selectedUser = user.user;
       }))
   }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'projects/core/src/lib/components/user-card/user.modal';
+import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { Goal } from '../../../extension/modal/extension.goal.modal';
 import { UserService } from '../../../user/user.service';
 

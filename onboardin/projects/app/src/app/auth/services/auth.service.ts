@@ -9,7 +9,7 @@ import {
 import { collection, DocumentReference, Firestore, getDocs, doc, query, where , setDoc} from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { User } from 'projects/core/src/lib/components/user-card/user.modal';
+import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { Observable, Subject } from 'rxjs';
 import { GoalExtension } from '../../extension/modal/extension.goal.modal';
 import { UserService } from '../../user/user.service';

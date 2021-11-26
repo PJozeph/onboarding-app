@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { TaskManagerComponent } from './task-manager/task-manager.component';
 
 const routes: Routes = [
-    { path: '', component: TaskManagerComponent, children : [
-        {path : 'goals', loadChildren : ()=> import('./../extension/goal/goal.module').then(m => m.GoalModule) }
-    ] }
-    
+    { path: '', component: TaskManagerComponent , children : [ 
+        {
+            path : 'goals' , 
+            loadChildren : ()=> import('../extension/goal/goal.module').then(m => m.GoalModule) }
+    ]}
 ];
 
 @NgModule({

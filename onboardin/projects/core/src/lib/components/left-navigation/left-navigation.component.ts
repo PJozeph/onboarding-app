@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'lib-left-navigation',
@@ -8,14 +8,15 @@ import { Router } from '@angular/router';
 })
 export class LeftNavigationComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router,
+              private activatedRoute : ActivatedRoute) { }
 
   public onAddNewComer() {
     this.router.navigate(['/add-newcomer'])
   }
 
   public onListNewComers() {
-    this.router.navigate(['/users'])
+    this.router.navigate(['/users'], { relativeTo: this.activatedRoute })
   }
 
   public onTasks() {

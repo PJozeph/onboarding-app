@@ -22,12 +22,6 @@ import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
     CommonModule,
     CoreModule,
     FormsModule,
-  ],
-  exports: [
-    GoalComponent,
-    InputComponent,
-    SelectedGoalComponent,
-    GoalItemComponent
   ]
 })
 export class GoalModule { }

@@ -9,8 +9,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { environment } from './../../../app/src/environments/environment';
 import { ButtonComponent } from './components/left-navigation/button/button.component';
 import { LeftNavigationComponent } from './components/left-navigation/left-navigation.component';
-import { UserCardComponent } from './components/user-card/usercard.component';
-import { UsersComponent } from './components/user-card/users/user.component';
 import { OnHoverDirective } from './directives/onhover.directive';
 import { ScrollBottomDirective } from './directives/scroll-bottom.directive';
 import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
@@ -18,8 +16,6 @@ import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
 
 @NgModule({
   declarations: [
-    UserCardComponent,
-    UsersComponent,
     ButtonComponent,
     LeftNavigationComponent,
     OnHoverDirective,
@@ -36,8 +32,6 @@ import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
     provideStorage(() => getStorage()),
   ],
   exports: [
-    UserCardComponent,
-    UsersComponent,
     ButtonComponent,
     LeftNavigationComponent,
     OnHoverDirective,

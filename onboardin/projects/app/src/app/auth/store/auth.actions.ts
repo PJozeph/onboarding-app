@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { User } from "projects/core/src/lib/components/user-card/user.modal";
+import { User } from "projects/core/src/lib/modal/user/user.modal";
 
 export const LOGIN_START = '[Auth] Login Start';
 export const LOGIN_SUCCESS = '[Auth] Login Success';

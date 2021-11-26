@@ -1,20 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { SharedService } from '../../services/shared.service';
-import { User } from './user.modal';
-import * as fromApp from "../../../../../app/src/app/store/index"
-import * as selectedUserActions from '../../../../../app/src/app/extension/goal/store/goal.actions'
+import { User } from 'projects/core/src/lib/modal/user/user.modal';
+import * as selectedUserActions from '../../../../../app/src/app/extension/goal/store/goal.actions';
+import * as fromApp from "../../../../../app/src/app/store/index";
 
 @Component({
-  selector: 'lib-user-card',
+  selector: 'app-user-card',
   templateUrl: './usercard.component.html',
   styleUrls: ['./usercard.component.css']
 })
 export class UserCardComponent implements OnInit {
 
   constructor(private router : Router, 
-              private sharedService : SharedService,
               private store : Store<fromApp.AppState>) { }
 
   @Input() user : User;

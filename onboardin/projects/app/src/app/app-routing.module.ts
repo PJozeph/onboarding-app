@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsersComponent } from 'projects/core/src/lib/components/user-card/users/user.component';
+import { LandingPageComponent as LandingPageComponent } from './langing-page/langing-page.component';
 
 const routes: Routes = [
-  {path: 'users' , component : UsersComponent},
-  {path : 'user/:userid', loadChildren: ()=> import('./tasks/task.module').then( m => m.TaskModule)},
-  {path: '' , pathMatch : 'full', redirectTo: 'users'  },
+  { path : "", redirectTo: 'welcome' , pathMatch : 'full' },
+  { path: 'welcome', component : LandingPageComponent},
+  { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
+  { path : 'user/:userid', loadChildren : ()=> import('./tasks/task.module').then(m => m.TaskModule) }
 ];
 
 @NgModule({
