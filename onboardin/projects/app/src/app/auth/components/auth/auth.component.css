@@ -1,0 +1,73 @@
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    height: 33rem;
+    margin: auto;
+    width: 18rem;
+    padding: 1rem;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    height: 2.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: initial;
+    font-size: 1.5rem;
+}
+
+.dialog-form {
+    display: flex;
+    flex-direction: column;
+    height: 11rem;
+    justify-content: space-around;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    width: 15rem;
+}
+
+.google-logo img {
+    height: 2.3rem;
+    margin: 0.8rem;
+}
+
+.google-logo {
+    cursor: pointer;
+    margin-top: 1rem;
+    border-radius: 10%;
+    border: 1px solid gray
+}
+
+.auth-providers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.forgot-password{
+    display: flex;
+    justify-content: end;
+}
+
+span {
+    color: gray;
+}
+
+.create-account{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    height: 2rem;
+}
+
+.create-account-button:hover {
+    border-radius: 4rem;
+    background-color: lightgray;
+}

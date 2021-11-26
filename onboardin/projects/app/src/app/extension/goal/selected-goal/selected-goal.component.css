@@ -1,0 +1,45 @@
+.selected-goal-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+span {
+    font-family: 'Roboto';
+    font-weight: bold;
+    margin: 0.5rem;
+}
+
+.selected-textarea {
+    width: 100%;
+}
+
+.input-dialog {
+    display: flex;
+    padding: 0.6rem;
+}
+
+.comment-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto';
+    font-weight: 900;
+    margin-top: 0.5rem;
+}
+
+.comment-container {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.custom-add-btn {
+    height: 4rem;
+    margin: auto;
+    font-family: monospace;
+}
+
+.custom-btn-container{
+    margin: 0.5rem;
+}

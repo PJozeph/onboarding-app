@@ -1,0 +1,17 @@
+.goal-extension-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.goal-extension-list {
+    display: flex;
+    flex-direction: column;
+    width: 50rem;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+textarea:focus {
+    outline: none;
+}

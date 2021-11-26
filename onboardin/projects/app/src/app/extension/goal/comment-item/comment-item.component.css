@@ -1,0 +1,38 @@
+.comment-container {
+    display: flex;
+    margin: 0.7rem;
+}
+
+img {
+    border-radius: 50%;
+}
+
+.user-image {
+    display: flex;
+    background-color: gray;
+    height: 2rem;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.input-content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+
+.title {
+    font-family: 'Roboto';
+    font-weight: 800;
+}
+
+.commenter-name {
+    font-family: 'Roboto';
+    font-weight: 600;
+}
+
+.commenter-message {
+    font-family: 'Roboto';
+    font-weight: 300;
+}

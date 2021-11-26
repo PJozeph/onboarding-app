@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "myonboarding-dev": {
+      "hosting": {
+        "app": [
+          "myonboarding-dev"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "myonboarding-dev"
+  }
+}

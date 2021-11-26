@@ -1,0 +1,30 @@
+<div class="selected-goal-container">
+    <span>Goal Description</span>
+    <div class="form-group selected-textarea">
+        <textarea class="form-control" rows="3">{{selectedGoal ? selectedGoal.description  : null }}</textarea>
+    </div>
+    <div class="comment-title">
+        <div class="comment-title">Comments</div>
+        <hr style="width: 80%; color: blue; height: px;">
+    </div>
+    <div class="comment-container" *ngIf="selectedGoal" #scrollBottom>
+        <app-comment-item 
+            [selectedGoal]="selectedGoal">
+        </app-comment-item>
+    </div>
+    <div class="input-dialog" *ngIf="loggedInUser; else loginMessage">
+        <textarea class="form-control" rows="3" [(ngModel)]="comment">
+        </textarea>
+        <div class="custom-btn-container">
+            <button class="btn btn-primary custom-add-btn" (click)="onAddComment(comment)"
+                [disabled]="comment.length < 1">
+                Add Comment
+            </button>
+        </div>
+    </div>
+    <ng-template #loginMessage>
+        <div class="alert alert-warning" role="alert" style="font-family: monospace;">
+            Login if you want to add a comment!
+        </div>
+    </ng-template>
+</div>

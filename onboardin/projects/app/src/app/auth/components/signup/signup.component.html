@@ -1,0 +1,108 @@
+<div class="signup-container">
+    <div class="close">
+        <mat-dialog-actions>
+            <button 
+                type="button" 
+                class="btn-close" 
+                aria-label="Close" 
+                mat-button 
+                mat-dialog-close>
+            </button>
+        </mat-dialog-actions>
+    </div>
+    <div class="title-container">
+        <h2 mat-dialog-title>Create Account</h2>
+    </div>
+    <form [formGroup]="signUpForm"  (ngSubmit)="onSubmit()">
+    <mat-dialog-content title="Create Account">
+        <div class="dialog-container">
+            <div class="user-input">
+                <span>Your name</span>
+                <span style="color: lightcoral;" *ngIf="signUpFormControl.userName.invalid && 
+                        (signUpFormControl.userName.dirty || signUpFormControl.userName.touched)">
+                    *Name is required
+                </span>
+                <input 
+                    type="text" 
+                    class="form-control signup-input" 
+                    placeholder="Type your name"
+                    [ngClass]="{'is-invalid' : signUpFormControl.userName.invalid && 
+                    (signUpFormControl.userName.dirty || signUpFormControl.userName.touched)}"
+                    [ngClass]="{'is-valid' : signUpFormControl.userName.valid}"
+                    [(ngModel)] = "userName"
+                    required
+                    formControlName="userName">
+            </div>
+            <div class="user-input">
+                <span>Email</span>
+                <span style="color: lightcoral;" *ngIf="signUpFormControl.userEmail.invalid && 
+                        (signUpFormControl.userEmail.dirty || signUpFormControl.userEmail.touched)">
+                    *Not valid email
+                </span>
+                <input 
+                    type="text" 
+                    class="form-control signup-input" 
+                    placeholder="Type your email"
+                    [ngClass]="{'is-invalid' : signUpFormControl.userEmail.invalid && 
+                    (signUpFormControl.userEmail.dirty || signUpFormControl.userEmail.touched)}"
+                    [ngClass]="{'is-valid' : signUpFormControl.userEmail.valid}"
+                    [(ngModel)]="userEmail"
+                    required
+                    email
+                    formControlName="userEmail">
+            </div>
+            <div class="user-input">
+                <span>Password</span>
+                <span style="color: lightcoral;" *ngIf="signUpFormControl.userPassword.invalid && 
+                (signUpFormControl.userPassword.dirty || signUpFormControl.userPassword.touched)">
+                    *At least 7 character is required
+                </span>
+                <input type="password" 
+                       class="form-control signup-input"
+                       [ngClass]="{'is-invalid' : signUpFormControl.userPassword.invalid && 
+                       (signUpFormControl.userPassword.dirty || signUpFormControl.userPassword.touched)}"
+                       [ngClass]="{'is-valid' : signUpFormControl.userPassword.valid && signUpFormControl.userPassword.touched}"
+                       placeholder="Type password"
+                       [(ngModel)]="userPassword"
+                       formControlName="userPassword">
+            </div>
+            <div class="user-input">
+                <span>Confirm Password</span>
+                <span style="color: lightcoral;" *ngIf="signUpFormControl.userPasswordConfirm.invalid && 
+                    (signUpFormControl.userPasswordConfirm.dirty || signUpFormControl.userPasswordConfirm.touched)">
+                    *At least 7 character is required
+                </span>
+                <input type="password" 
+                       class="form-control signup-input"
+                       [ngClass]="{'is-valid' : signUpFormControl.userPasswordConfirm.valid && signUpFormControl.userPasswordConfirm.touched}"
+                       [(ngModel)]="userPasswordConfirm" 
+                       placeholder="Confirm password"
+                       formControlName="userPasswordConfirm">
+                <span style="color: lightcoral;" 
+                       *ngIf="signUpForm.get('userPasswordConfirm').hasError('mismatch')">
+                        Passwords are not match!
+                </span>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <div class="action-container">
+            <span style="margin: 0.5rem;">Or SignUp with using</span>
+            <div class="actions-buttons">
+                <div class="google-signup">
+                    <div class="google-icon" (click)="onGoogleSignUp()">
+                        <img src="assets/icons/google-logo.svg" alt="Google sign up">
+                    </div>
+                </div>
+                <button 
+                    type="button" 
+                    class="btn btn-outline-success"
+                    type="submit"
+                    [disabled]="signUpForm.invalid">
+                    Create Account
+                </button>
+            </div>
+        </div>
+    </mat-dialog-actions>
+    </form>
+</div>

@@ -1,0 +1,29 @@
+<div class="task-manager-container">
+    <div class="extension-list">
+        <div (click)="onLeftSelect()" class="arrow-icon">
+            <img src="assets/icons/arrow-left.svg" alt="arrow-left">
+        </div>
+        <div class="task-list">
+            <app-task *ngFor="let task of tasks" 
+                [active]="selectedTask == task" 
+                [task]="task" [isTaskManager]="true"
+                [showIcon]="false" (click)="onSelect(task)">
+            </app-task>
+        </div>
+        <div (click)="onRightSelect()" class="arrow-icon">
+            <img src="assets/icons/arrow-right.svg" alt="arrow-right">
+        </div>
+    </div>
+    <div class="profile-container">
+        <app-user-card 
+            [user]="user" 
+            [showEdit]="false">
+        </app-user-card>
+    </div>
+</div>
+<div class="extension-detailes">
+    <router-outlet></router-outlet>
+    <ng-template #comingSoon>
+        <lib-coming-soon></lib-coming-soon>
+    </ng-template>
+</div>

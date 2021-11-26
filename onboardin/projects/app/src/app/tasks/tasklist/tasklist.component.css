@@ -1,0 +1,18 @@
+.task-list-container {
+    flex-wrap: wrap;
+    display: flex;
+    margin : 6rem 15rem;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px)  {
+    .task-list-container { 
+        margin : 6rem 7rem;
+    }
+}

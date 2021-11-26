@@ -1,0 +1,46 @@
+
+.task-manager-container {
+    display: flex;
+    margin-top: 1.5rem;
+    margin-left: 3rem;
+    justify-content: center;
+}
+
+.upper-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 15rem;
+    margin-top: 1.5rem;
+}
+
+.task-list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 40rem;
+    overflow: hidden;
+}
+
+.extension-detailes {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-container {
+    margin-left: 4rem;
+}
+
+img{
+    height: 1.3rem;
+}
+
+.extension-list {
+    display: flex;
+}
+
+.arrow-icon{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
