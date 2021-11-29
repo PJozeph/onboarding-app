@@ -14,22 +14,21 @@ export class GoalItemComponent implements OnInit {
   @Input() user : User;
   @Input() active : boolean;
   @Output() onGoalSelect = new EventEmitter();
-  hideElement : boolean = false
 
   constructor(private goalExtensionService: GoalExtensionService) { }
 
   ngOnInit(): void {
   }
 
-  public markCompleted(profile : User, goalId: number) {
+  public markCompleted(profile : User, goalId: string) {
     this.goalExtensionService.markCompleted(profile, goalId);
   }
 
-  public undoCompleted(profile : User, goalId: number){
+  public undoCompleted(profile : User, goalId: string){
     this.goalExtensionService.undoCompleted(profile, goalId)
   }
 
-  public onSelectGoal(goalId: number) {
+  public onSelectGoal(goalId: string) {
     this.onGoalSelect.emit(goalId)
   }
 

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
@@ -35,7 +35,7 @@ export class SelectedGoalComponent implements OnInit {
 
   public onAddComment(comment: string) {
     this.comment = '';
-    this.goalExtensionService.addComment(this.selectedGoal.id, this.selectedUser, comment, this.loggedInUser.uid);
+    this.goalExtensionService.addComment(this.selectedGoal.goalId, this.selectedUser.uid, comment, this.loggedInUser.uid);
   }
 
   public onCancelInput() {

@@ -2,12 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Goal, GoalExtension } from '../../extension/modal/extension.goal.modal';
 import * as formApp from './../../store/index';
 import { GoalExtensionService } from './goalextension.service';
-import { GoalInput } from './input/input.component';
 import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
+import { first } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-goal',
@@ -17,12 +18,14 @@ import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
 export class GoalComponent implements OnInit, OnDestroy {
 
   public selectedUser : User;
-  private userId : string;
   public isInputActive: boolean = false
-  public goalExtension : GoalExtension ;
+  public goalExtension : GoalExtension;
+  public userGoals : Goal [];
   public selectedGoal : Goal;
   private subscription : Subscription;
   public maxHeight : number;
+
+  private getGoalSubscription : Subscription;
 
   constructor(private goalExtensionService: GoalExtensionService,
               private dialogService : MatDialog,
@@ -30,29 +33,38 @@ export class GoalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.maxHeight = window.innerHeight - 350;
-    this.subscription = this.store$.select('selectedUser').subscribe((user => {
-          this.selectedUser = user.user;
-      }))
+    this.store$.select('selectedUser').subscribe(user => this.selectedUser = user.user)
+    this.store$.select('selectedUser').pipe(
+      switchMap((selectedEmployee) => 
+        this.goalExtensionService.getGoals(selectedEmployee.user.uid))
+    ).pipe().subscribe( goals => {
+      this.userGoals = goals;
+    })
+
   }
   
-  public onSelectGoal(goalId: number) {
-    this.selectedGoal = this.goalExtension.goals.find( goal => goal.id === goalId);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.height = '40rem';
-    dialogConfig.width = '40rem';
-    dialogConfig.data =  { 'selectedGoal' : this.selectedGoal, 'selectedUser' : this.selectedUser }
-    this.dialogService.open(SelectedGoalComponent, dialogConfig)
+  public onSelectGoal(goalId: string) {
+    this.getGoalSubscription = this.goalExtensionService.getGoal(this.selectedUser.uid, goalId)
+    .subscribe(goal => {
+      console.log("open window")
+      this.selectedGoal = goal
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.height = '40rem';
+      dialogConfig.width = '40rem';
+      dialogConfig.data =  { 'selectedGoal' : this.selectedGoal, 'selectedUser' : this.selectedUser }
+      this.dialogService.open(SelectedGoalComponent, dialogConfig);
+    });
   }
 
   public onAddGoalSelect() {
     this.isInputActive = true;
   }
 
-  public markCompleted(profile : User, goalId: number) {
+  public markCompleted(profile : User, goalId: string) {
     this.goalExtensionService.markCompleted(profile, goalId);
   }
 
-  public undoCompleted(profile : User, goalId: number){
+  public undoCompleted(profile : User, goalId: string){
     this.goalExtensionService.undoCompleted(profile, goalId)
   }
 
@@ -60,12 +72,13 @@ export class GoalComponent implements OnInit, OnDestroy {
     this.isInputActive = false;
   }
 
-  public onInputAdd(goal: GoalInput){
-    this.goalExtensionService.addGoal(this.selectedUser, goal.goalName, goal.goalDescription)
+  public onInputAdd(goal: Goal){
+    this.goalExtensionService.addGoal(this.selectedUser.uid, goal)
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.getGoalSubscription.unsubscribe();
   }
 
 }

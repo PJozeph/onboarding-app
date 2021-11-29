@@ -46,7 +46,6 @@ exports.createUserInDb = functions.auth.user().onCreate((user) => {
     imagePath : user.photoURL? user.photoURL : '',
     extensions: []
   }
-
-  return admin.firestore().collection('accounts').add(userModel)
+  return admin.firestore().collection('accounts').doc(user.uid).set(userModel)
 
 });

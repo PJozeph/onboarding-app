@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   signUpForm: FormGroup;
 
   constructor(private authService: AuthService,
-    private dialogRef: MatDialogRef<SignupComponent>) { }
+              private dialogRef: MatDialogRef<SignupComponent>) { }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
@@ -43,7 +43,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   public onGoogleSignUp() {
-    this.authService.googleLogin();
+    this.authService.googleLogin().subscribe((user) => {
+    });
   }
 
   get signUpFormControl() {
@@ -52,8 +53,8 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
     this.signUpSubscription = this.authService.emailSignUp(this.userEmail, this.userPassword)
-    .subscribe((response) => {
-      this.authService.updateName(response, this.userName);
+    .subscribe((uid) => {
+      this.authService.updateName(uid, this.userName);
       this.dialogRef.close()
       }
     );

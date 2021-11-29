@@ -1,32 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
+import { UserService } from 'projects/core/src/lib/services/user.service';
+import { Observable, Subscription } from 'rxjs';
 import { Goal } from '../../../extension/modal/extension.goal.modal';
-import { UserService } from '../../../user/user.service';
 
 @Component({
   selector: 'app-comment-item',
   templateUrl: './comment-item.component.html',
   styleUrls: ['./comment-item.component.css']
 })
-export class CommentItemComponent implements OnInit {
+export class CommentItemComponent implements OnInit, OnDestroy{
 
   @Input() selectedGoal : Goal;
-  @Input() user : User;
-  commenter : User;
+  public imagePath : Observable<string>;
+  public commenterImage = 'image';
+  public commenterName = 'name';
 
-  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-  public getUserImage(userId: string) {
-    const user = this.userService.getUserById(userId);
-    return user.imagePath;
-  }
-
-  public getCommenterName(userId : string) {
-    const user = this.userService.getUserById(userId);
-    return user.name
+  ngOnDestroy(): void {
   }
 
 }

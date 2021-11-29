@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   Auth,
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-  signInWithEmailAndPassword,
-  updateProfile
+  createUserWithEmailAndPassword, signInWithEmailAndPassword
 } from '@angular/fire/auth';
-import { collection, doc, Firestore, getDocs, query, setDoc, where } from '@angular/fire/firestore';
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
@@ -34,17 +31,12 @@ export class AuthService {
     return this.subject.asObservable();
   }
 
-  public async updateName(userId: string, name: string){
-    const accounts = collection(this.fireStore, "accounts");
-    const account = query(accounts, where("uid", "==", userId));
-    const querySnapshot = await getDocs(account);
-    querySnapshot.forEach((user) => {
-      const userRef = doc(this.fireStore, 'accounts', user.id);
-      setDoc(userRef, { name: name }, { merge: true });
-    })
+  public updateName(userId: string, name: string) {
+    const cityRef = doc(this.fireStore, 'accounts', userId);
+    setDoc(cityRef, { name: name }, { merge: true });
   }
 
-  public async emailLogin(email: string, password: string): Promise<any> {
+  public emailLogin(email: string, password: string): Promise<any> {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
@@ -56,7 +48,8 @@ export class AuthService {
       result.user.getIdTokenResult().then(token => {
         window.localStorage.setItem('token', JSON.stringify(token));
       })
-      const user = new User(result.user.uid,
+      const user = new User(
+        result.user.uid,
         result.user.displayName,
         result.user.photoURL,
         new GoalExtension([]));

@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Goal } from '../../modal/extension.goal.modal';
 
 
-export interface GoalInput {
-  goalName : string;
-  goalDescription : string
-}
 
 @Component({
   selector: 'app-input',
@@ -14,12 +11,12 @@ export interface GoalInput {
 export class InputComponent implements OnInit {
 
   @Output() public onCancelEvent = new EventEmitter();
-  @Output() public onAddEvent = new EventEmitter<GoalInput>();
-  @Input() addActionName : String;
-  @Input() isInputActive : boolean;
-  public goalName : string = "";
-  public goalDescription : string = ""
-  public isEmpty : boolean;
+  @Output() public onAddEvent = new EventEmitter<Goal>();
+  @Input() addActionName: String;
+  @Input() isInputActive: boolean;
+  public goalName: string = "";
+  public goalDescription: string = ""
+  public isEmpty: boolean;
 
   constructor() { }
 
@@ -38,7 +35,13 @@ export class InputComponent implements OnInit {
   }
 
   public onAdd() {
-    this.onAddEvent.emit({goalName : this.goalName, goalDescription : this.goalDescription});
+    this.onAddEvent.emit(
+      {
+        name: this.goalName,
+        description: this.goalDescription,
+        completed: false,
+        comment: []
+      });
     this.goalName = "";
     this.goalDescription = "";
     this.isInputActive = false;

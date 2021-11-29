@@ -1,6 +1,6 @@
 <div class="goal-extension-container">
     <div class="goal-extension-list"  [style.maxHeight.px]="maxHeight">
-        <div  *ngFor="let goalItem of goalExtension?.goals ">
+        <div  *ngFor="let goalItem of userGoals ">
             <app-goal-item 
                 [goalItem]="goalItem" 
                 (onGoalSelect)="onSelectGoal($event)">
