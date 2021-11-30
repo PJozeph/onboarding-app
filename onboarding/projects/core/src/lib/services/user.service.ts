@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { collection, doc, Firestore, getDoc, getDocs, onSnapshot, query, setDoc, where } from '@angular/fire/firestore';
-import { Goal } from 'projects/app/src/app/extension/modal/extension.goal.modal';
+import { collection, Firestore, onSnapshot, query } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from '../modal/user/user.modal';
 
@@ -30,19 +29,8 @@ export class UserService {
     return observable;
   }
 
-  public getUserById(userId) : Observable<User> {
+  public getUserById(userId : string) : Observable<User> {
     return this.angularFireStore.doc<User>('accounts/' + userId).valueChanges()
-  }
-
-
-  public async addGoal(userId: string , goal : Goal) {
-    const accounts = collection(this.fireStore, "accounts");
-    const account = query(accounts, where("uid", "==", userId));
-    const querySnapshot = await getDocs(account);
-    querySnapshot.forEach((user) => {
-      const userRef = doc(this.fireStore, 'accounts', user.id);
-      setDoc(userRef, { name: name }, { merge: true });
-    })
   }
 
 }

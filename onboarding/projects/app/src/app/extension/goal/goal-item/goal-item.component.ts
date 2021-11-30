@@ -32,4 +32,8 @@ export class GoalItemComponent implements OnInit {
     this.onGoalSelect.emit(goalId)
   }
 
+  public onDeleteGoal(user : User, goalId: string) {
+    this.goalExtensionService.deleteGoal(user.uid, goalId);
+  }
+
 }

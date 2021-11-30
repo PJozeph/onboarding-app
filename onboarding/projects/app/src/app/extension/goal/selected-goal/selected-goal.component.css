@@ -40,6 +40,13 @@ span {
     font-family: monospace;
 }
 
-.custom-btn-container{
+.custom-btn-container {
     margin: 0.5rem;
+}
+
+.loading { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%
 }

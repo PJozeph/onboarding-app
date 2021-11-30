@@ -3,9 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { UserService } from 'projects/core/src/lib/services/user.service';
 import { switchMap } from 'rxjs/operators';
-import { AuthService } from '../../auth/services/auth.service';
-import { GoalExtensionService } from '../../extension/goal/goalextension.service';
-import { Goal } from '../../extension/modal/extension.goal.modal';
 import { TaskModel } from '../task.modal';
 import { TaskService } from '../task.service';
 
@@ -26,9 +23,7 @@ export class TaskManagerComponent implements OnInit {
 
   constructor(private activatedRoute : ActivatedRoute,
               private userService: UserService,
-              private taskService: TaskService,
-              private authService: AuthService,
-              private goalExtensionService : GoalExtensionService) {}
+              private taskService: TaskService) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.pipe(

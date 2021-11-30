@@ -70,3 +70,7 @@ img{
     align-items: center;
     margin-right: 10rem;
   }
+
+svg:hover path {
+    fill: red;
+}

@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { arrayUnion } from 'firebase/firestore';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { Goal, GoalExtension } from '../../extension/modal/extension.goal.modal';
-import { Extension } from '../../extension/modal/extension.modal';
+import { Goal } from '../../extension/modal/extension.goal.modal';
 
 export interface GoalId extends Goal { goalId: string; }
 
@@ -14,36 +13,26 @@ export interface GoalId extends Goal { goalId: string; }
 })
 export class GoalExtensionService {
 
-  private user: User;
-  private extensionSubject = new Subject<Extension>();
-
   constructor(private fireStore: AngularFirestore) { }
 
-  public setProfile(profile: User) {
-    this.user = profile;
-    this.extensionSubject.next(profile.extension)
-  }
-
-  public getExtension(): Observable<Extension> {
-    return this.extensionSubject.asObservable()
-  }
-
   public markCompleted(user: User, goalId: string) {
-    const copyUser: User = { ...user }
-    const goalExtension: GoalExtension = <GoalExtension>copyUser.extension;
-
-    let newGoal = goalExtension.goals.find(goal => goal.goalId === goalId)!;
-    newGoal.completed = true;
+    this.fireStore.collection("accounts")
+      .doc(user.uid)
+      .collection("goals")
+      .doc(goalId)
+      .set({
+        completed: true
+      }, { merge: true })
   }
 
   public undoCompleted(user: User, goalId: string) {
-    const copyUser: User = { ...user }
-    const goalExtension: GoalExtension = <GoalExtension>copyUser.extension;
-
-    let newGoal = goalExtension.goals.find(goal => goal.goalId === goalId)!;
-    newGoal.completed = false;
-
-    this.extensionSubject.next(copyUser.extension)
+    this.fireStore.collection("accounts")
+      .doc(user.uid)
+      .collection("goals")
+      .doc(goalId)
+      .set({
+        completed: false
+      }, { merge: true })
   }
 
   public addGoal(userId: string, goal: Goal) {
@@ -56,26 +45,34 @@ export class GoalExtensionService {
   public getGoals(userId: String): Observable<Goal[]> {
     const goalCollection: AngularFirestoreDocument<User> = this.fireStore.doc<User>('accounts/' + userId);
     return goalCollection.collection<Goal>('goals')
-          .valueChanges({ idField: 'goalId' })
-          .pipe(debounceTime(500));
+      .valueChanges({ idField: 'goalId' })
+      .pipe(debounceTime(500));
   }
 
-  public getGoal(userId : string , goalId : string) : Observable<Goal> {
+  public getGoal(userId: string, goalId: string): Observable<Goal> {
     return this.fireStore.doc<User>('accounts/' + userId)
-          .collection('goals')
-          .doc<Goal>(goalId)
-          .valueChanges({ idField: 'goalId' }).pipe(debounceTime(500));
+      .collection('goals')
+      .doc<Goal>(goalId)
+      .valueChanges({ idField: 'goalId' })
+      .pipe(debounceTime(500));
   }
 
-  public addComment(commentId : string, userId: string, comment : string, commenterId : string) {
-      this.fireStore.collection("accounts")
+  public addComment(commentId: string, userId: string, comment: string, commenterId: string) {
+    this.fireStore.collection("accounts")
       .doc(userId)
       .collection("goals")
       .doc(commentId)
       .set({
-        comment : arrayUnion({uid: commenterId, message : comment})
+        comment: arrayUnion({ uid: commenterId, message: comment })
       }, { merge: true })
   }
 
+  public deleteGoal(userId: string, goalId: string) {
+    this.fireStore.collection("accounts")
+      .doc(userId)
+      .collection("goals")
+      .doc(goalId)
+      .delete();
+  }
 
 }
