@@ -8,6 +8,8 @@ import { GoalRoutingModule } from './goal-routing.module';
 import { GoalComponent } from './goal.component';
 import { InputComponent } from './input/input.component';
 import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
+import { UserNamePipe } from './pipes/user-name.pipe';
+import { UserImagePipe } from './pipes/user-image.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
     GoalComponent,
     InputComponent,
     SelectedGoalComponent,
-    GoalItemComponent],
+    GoalItemComponent,
+    UserNamePipe,
+    UserImagePipe],
   imports: [
     GoalRoutingModule,
     ReactiveFormsModule,

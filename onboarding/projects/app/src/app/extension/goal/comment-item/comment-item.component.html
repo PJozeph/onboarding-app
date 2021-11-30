@@ -1,10 +1,10 @@
 <div class="comment-container" *ngFor="let comment of selectedGoal.comment">
     <div class="user-image">
-        <img src="{{getUserImage(comment.userId)}}" alt="Image not found">
+        <img [src]="comment.uid | userImage | async " alt="Image not found">
     </div>
     <div class="input-content">
         <p class="commenter-name">
-            {{getCommenterName(comment.userId)}}
+            {{comment.uid | userName | async}}
         </p>
         <p class="commenter-message">
             {{comment.message}}

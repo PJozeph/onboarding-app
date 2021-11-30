@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
-import { AuthService } from '../../auth/services/auth.service';
-import { UserService } from '../../user/user.service';
+import { UserService } from 'projects/core/src/lib/services/user.service';
+import { switchMap } from 'rxjs/operators';
 import { TaskModel } from '../task.modal';
 import { TaskService } from '../task.service';
 
@@ -23,16 +23,15 @@ export class TaskManagerComponent implements OnInit {
 
   constructor(private activatedRoute : ActivatedRoute,
               private userService: UserService,
-              private taskService: TaskService,
-              private authService: AuthService) {}
+              private taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe( param => {
-      const {userid: uid} = param;
-      this.user = this.userService.getUserById((uid));
+    this.activatedRoute.params.pipe(
+      switchMap((params: Params) => this.userService.getUserById(params['userid'])
+      ))
+      .subscribe(user => this.user = user);
       this.tasks = this.taskService.getTasks().slice(this.startIndex, this.endIndex);
       this.selectedTask = this.tasks[0];
-    });
   }
 
   public onSelect(task: TaskModel) {

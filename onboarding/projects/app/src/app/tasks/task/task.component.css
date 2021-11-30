@@ -39,10 +39,10 @@
 
 
 .task-context-container{
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     margin-left: 0.8rem;
-    width: 12rem;
 }
 
 .task-context-container.task-manager{

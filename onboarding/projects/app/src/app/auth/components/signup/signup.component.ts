@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { CustomValidationService } from '../../services/custom-validation.service';
 
@@ -8,16 +10,19 @@ import { CustomValidationService } from '../../services/custom-validation.servic
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
 
-  public userName : string = ''
-  public userEmail : string = ''
-  public userPassword : string = ''
-  public userPasswordConfirm : string = ''
+  public userName: string = ''
+  public userEmail: string = ''
+  public userPassword: string = ''
+  public userPasswordConfirm: string = ''
+
+  private signUpSubscription: Subscription;
 
   signUpForm: FormGroup;
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService: AuthService,
+              private dialogRef: MatDialogRef<SignupComponent>) { }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
@@ -25,37 +30,47 @@ export class SignupComponent implements OnInit {
       userEmail: new FormControl('', { validators: [Validators.required, Validators.email], updateOn: 'blur' }),
       userPassword: new FormControl('', { validators: [Validators.minLength(7)], updateOn: 'blur' }),
       userPasswordConfirm: new FormControl('', {
-            validators: [Validators.minLength(7),
-            RetypeConfirm('userPassword')],
-            updateOn: 'blur'})
-        }
+        validators: [Validators.minLength(7),
+        RetypeConfirm('userPassword')],
+        updateOn: 'blur'
+      })
+    }
     );
   }
 
-  public onCreateAccount(email : string , pass : string, userName : string ) {
-    this.authService.emailSignUp(email, pass, userName);
+  public onCreateAccount(email: string, pass: string, userName: string) {
+    this.authService.emailSignUp(email, pass);
   }
 
   public onGoogleSignUp() {
-    this.authService.googleLogin();
+    this.authService.googleLogin().subscribe((user) => {
+    });
   }
 
   get signUpFormControl() {
     return this.signUpForm.controls;
   }
 
-  public onSubmit(){
-    this.authService.emailSignUp(this.userEmail, this.userPassword, this.userName);
+  public onSubmit() {
+    this.signUpSubscription = this.authService.emailSignUp(this.userEmail, this.userPassword)
+    .subscribe((uid) => {
+      this.authService.updateName(uid, this.userName);
+      this.dialogRef.close()
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.signUpSubscription.unsubscribe();
   }
 }
 
+
 function RetypeConfirm(newPassword: string): ValidatorFn {
   return (control: FormControl) => {
-
-      if (!control || !control.parent) {
-          return null;
-      }
-      return control.parent.get(newPassword).value === control.value ? null : { mismatch: true };
+    if (!control || !control.parent) {
+      return null;
+    }
+    return control.parent.get(newPassword).value === control.value ? null : { mismatch: true };
   };
 }
-

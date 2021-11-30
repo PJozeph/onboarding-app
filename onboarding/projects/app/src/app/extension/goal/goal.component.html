@@ -1,7 +1,9 @@
 <div class="goal-extension-container">
-    <div class="goal-extension-list"  [style.maxHeight.px]="maxHeight">
-        <div  *ngFor="let goalItem of goalExtension?.goals ">
-            <app-goal-item 
+    <div *ngIf="!goalsLoading">
+    <div class="goal-extension-list"  [style.maxHeight.px]="maxHeight" *ngFor="let goalItem of userGoals">
+        <div>
+            <app-goal-item
+                [user] = 'selectedUser' 
                 [goalItem]="goalItem" 
                 (onGoalSelect)="onSelectGoal($event)">
             </app-goal-item>
@@ -14,4 +16,10 @@
         (onCancelEvent)="onInputCancel()"
         (onAddEvent)="onInputAdd($event)">
     </app-input>
+    </div>
+    <div *ngIf="goalsLoading">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only"></span>
+        </div>
+    </div>
 </div>

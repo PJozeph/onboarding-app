@@ -28,6 +28,7 @@ interface UserModel {
   uid: string
   name: string,
   email: string,
+  imagePath : string
   extensions: Extension []
 }
 
@@ -42,9 +43,9 @@ exports.createUserInDb = functions.auth.user().onCreate((user) => {
     name: user.displayName ? user.displayName : '',
     email: user.email ? user.email : '',
     uid: user.uid,
+    imagePath : user.photoURL? user.photoURL : '',
     extensions: []
   }
-
-  return admin.firestore().collection('accounts').add(userModel)
+  return admin.firestore().collection('accounts').doc(user.uid).set(userModel)
 
 });

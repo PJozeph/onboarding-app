@@ -7,7 +7,7 @@ export interface State {
 }
 
 const initialState: State = {
-    user : null ,
+    user : localStorage.getItem('selectedUser') ? JSON.parse(localStorage.getItem('selectedUser')) : null
 };
 
 export function userSelectReducer(state = initialState, action: GoalActions) {

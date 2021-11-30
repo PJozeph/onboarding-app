@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   Auth,
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-  signInWithEmailAndPassword,
-  updateProfile
+  createUserWithEmailAndPassword, signInWithEmailAndPassword
 } from '@angular/fire/auth';
-import { collection, DocumentReference, Firestore, getDocs, doc, query, where , setDoc} from '@angular/fire/firestore';
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
@@ -20,25 +17,26 @@ import * as authActions from './../store/auth.actions';
 })
 export class AuthService {
 
+  private subject = new Subject<string>()
+
   constructor(private auth: Auth,
     private store: Store,
     private userService: UserService,
     private fireStore: Firestore) { }
 
-  public async emailSignUp(email: string, password: string, name: string): Promise<void> {
-    const credential = await createUserWithEmailAndPassword(this.auth, email, password);
-    const accounts = collection(this.fireStore, "accounts");
-    const account = query(accounts, where("uid", "==", credential.user.uid));
-    const querySnapshot = await getDocs(account);
-    querySnapshot.forEach((user) => {
-      const userRef = doc(this.fireStore, 'accounts', user.id);
-      setDoc(userRef, { name: name }, { merge: true });
-    })
-    await updateProfile(credential.user, { displayName: credential.user.displayName, });
-    await sendEmailVerification(credential.user);
+  public emailSignUp(email: string, password: string): Observable<string> {
+    createUserWithEmailAndPassword(this.auth, email, password).then((response) => {
+      this.subject.next(response.user.uid);
+    } )
+    return this.subject.asObservable();
   }
 
-  public async emailLogin(email: string, password: string): Promise<any> {
+  public updateName(userId: string, name: string) {
+    const cityRef = doc(this.fireStore, 'accounts', userId);
+    setDoc(cityRef, { name: name }, { merge: true });
+  }
+
+  public emailLogin(email: string, password: string): Promise<any> {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
@@ -50,7 +48,8 @@ export class AuthService {
       result.user.getIdTokenResult().then(token => {
         window.localStorage.setItem('token', JSON.stringify(token));
       })
-      const user = new User(result.user.uid,
+      const user = new User(
+        result.user.uid,
         result.user.displayName,
         result.user.photoURL,
         new GoalExtension([]));
