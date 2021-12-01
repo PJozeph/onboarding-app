@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import { CustomValidationService } from '../../services/custom-validation.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +16,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   public userPassword: string = ''
   public userPasswordConfirm: string = ''
 
-  private signUpSubscription: Subscription;
+  public displaySpinner : boolean = false;
 
   signUpForm: FormGroup;
 
@@ -33,18 +32,12 @@ export class SignupComponent implements OnInit, OnDestroy {
         validators: [Validators.minLength(7),
         RetypeConfirm('userPassword')],
         updateOn: 'blur'
-      })
-    }
+      })}
     );
   }
 
-  public onCreateAccount(email: string, pass: string, userName: string) {
-    this.authService.emailSignUp(email, pass);
-  }
-
   public onGoogleSignUp() {
-    this.authService.googleLogin().subscribe((user) => {
-    });
+    this.authService.googleLogin()
   }
 
   get signUpFormControl() {
@@ -52,16 +45,22 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit() {
-    this.signUpSubscription = this.authService.emailSignUp(this.userEmail, this.userPassword)
-    .subscribe((uid) => {
-      this.authService.updateName(uid, this.userName);
-      this.dialogRef.close()
+    this.displaySpinner = true
+    this.authService.emailSignUp(this.userEmail, this.userPassword)
+    .then((user) => {
+        setTimeout(() => {
+          this.authService.updateName(user.user.uid, this.userName).then( 
+            () =>{
+              this.displaySpinner = false
+              this.dialogRef.close();
+            }
+          );
+        }, 5500);
       }
     );
   }
 
   ngOnDestroy(): void {
-    this.signUpSubscription.unsubscribe();
   }
 }
 

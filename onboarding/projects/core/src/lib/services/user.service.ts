@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { collection, Firestore, onSnapshot, query } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { User } from '../modal/user/user.modal';
 
 @Injectable({
@@ -9,24 +9,16 @@ import { User } from '../modal/user/user.modal';
 })
 export class UserService {
 
-  constructor(private fireStore: Firestore, 
-              private angularFireStore : AngularFirestore) { }
+  constructor(private angularFireStore : AngularFirestore) { }
 
   public getUsers() : Observable<User[]> {
-    const observable = new Observable<User[]>(subscriber => {
-      const q = query(collection(this.fireStore, "accounts"));
-        onSnapshot(q, (querySnapshot) => {
-        const users : User [] = []
-        querySnapshot.forEach((doc) => {
-          console.log("user name  "  + doc.data())
-            users.push(new User(doc.data().uid,
-                                doc.data().name, 
-                                doc.data().imagePath ? doc.data().imagePath : 'assets/defaultProfileImage.jpg' , null))
-        });
-        subscriber.next(users);
-      });
-    })
-    return observable;
+    return this.angularFireStore
+    .collection<User>('accounts')
+    .valueChanges().pipe(map( users => {
+      return users.map(user => {
+        return new User(user.uid, user.displayName, user.imagePath)
+      })
+    }));
   }
 
   public getUserById(userId : string) : Observable<User> {

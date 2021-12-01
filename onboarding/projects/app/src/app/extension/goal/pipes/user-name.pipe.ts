@@ -11,7 +11,7 @@ export class UserNamePipe implements PipeTransform {
   constructor(private userService: UserService) {}
 
   transform(value: string, ...args: unknown[]): Observable<string> {
-    return this.userService.getUserById(value).pipe(map(user => user.name));
+    return this.userService.getUserById(value).pipe(map(user => user.displayName));
   }
 
 }

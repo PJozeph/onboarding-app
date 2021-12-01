@@ -1,4 +1,4 @@
-<div class="signup-container">
+<div *ngIf="!displaySpinner" class="signup-container">
     <div class="close">
         <mat-dialog-actions>
             <button 
@@ -105,4 +105,9 @@
         </div>
     </mat-dialog-actions>
     </form>
+</div>
+<div *ngIf="displaySpinner">
+    <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only"></span>
+    </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthComponent } from '../auth/components/auth/auth.component';
 import { AuthService } from '../auth/services/auth.service';
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private dialog : MatDialog,
               private store : Store<fromApp.AppState>,
-              private authService : AuthService) { }
+              private authService : AuthService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.store.select('auth').subscribe((state => {
@@ -32,13 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public onLogin() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.panelClass = 'no-padding'
-    this.isAuthDialogOpen = !this.isAuthDialogOpen;
-    this.dialog.open(AuthComponent, dialogConfig).afterClosed()
-      .subscribe(() => {
-        this.isAuthDialogOpen = !this.isAuthDialogOpen;
-      })
+    this.router.navigate(['auth'])
   }
 
   public onLogOut() {

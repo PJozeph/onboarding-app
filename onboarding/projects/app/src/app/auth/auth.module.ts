@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { AuthComponent } from './components/auth/auth.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AuthPinComponent } from './components/auth-pin/auth-pin.component';
 
 const routes: Routes = [
   { path: 'login', component: AuthComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     SignupComponent,
+    AuthPinComponent,
   ],
   imports: [
     CommonModule,

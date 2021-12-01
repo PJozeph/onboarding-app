@@ -21,14 +21,10 @@ export class AuthComponent implements OnInit {
   }
 
   public onEmailLogin(){
-      this.authService.emailLogin('test@test.com', '1234567').then( result => {
-      });
   }
 
   public onGoogleLogin(){
-    this.authService.googleLogin().subscribe( result => {
-      this.dialog.closeAll();
-    })
+    this.authService.googleLogin();
   }
 
   public onCreateAccount() {
