@@ -1,8 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { UserService } from 'projects/core/src/lib/services/user.service';
+import { first } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
+import * as fromApp from './../../../store/index';
+import * as authActions from './../../store/auth.actions';
+
 
 @Component({
   selector: 'app-signup',
@@ -21,7 +26,9 @@ export class SignupComponent implements OnInit, OnDestroy {
   signUpForm: FormGroup;
 
   constructor(private authService: AuthService,
-              private dialogRef: MatDialogRef<SignupComponent>) { }
+              private userService : UserService,
+              private dialogRef: MatDialogRef<SignupComponent>,
+              private store$ : Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
@@ -37,7 +44,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   public onGoogleSignUp() {
-    this.authService.googleLogin()
+    this.authService.googleLogin();
   }
 
   get signUpFormControl() {
@@ -50,9 +57,15 @@ export class SignupComponent implements OnInit, OnDestroy {
     .then((user) => {
         setTimeout(() => {
           this.authService.updateName(user.user.uid, this.userName).then( 
-            () =>{
+            () => {
               this.displaySpinner = false
-              this.dialogRef.close();
+             this.userService.getUserById(user.user.uid).pipe(first()).subscribe(
+                user => {
+                  this.store$.dispatch( new authActions.LoginSuccess(user));
+                  window.localStorage.setItem('user', JSON.stringify(user));
+                  }
+                )
+                this.dialogRef.close();
             }
           );
         }, 5500);
@@ -62,6 +75,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
   }
+
 }
 
 

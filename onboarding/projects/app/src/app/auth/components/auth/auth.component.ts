@@ -30,7 +30,7 @@ export class AuthComponent implements OnInit {
   public onCreateAccount() {
     const dialogConfig = new MatDialogConfig();
     this.dialog.open(SignupComponent, dialogConfig).afterClosed().subscribe(
-      response => {
+      () => {
          this.dialog.closeAll();
       }  
     )
