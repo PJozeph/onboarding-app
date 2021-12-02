@@ -1,7 +1,6 @@
 import * as functions from "firebase-functions";
 
 import * as admin from "firebase-admin";
-import { Extension } from "./model/extension.model";
 
 admin.initializeApp();
 interface UserModel {
@@ -9,7 +8,6 @@ interface UserModel {
   displayName: string,
   email: string,
   imagePath : string
-  extensions: Extension []
 }
 
 exports.createUserInDb = functions.auth.user().onCreate((user) => {
@@ -24,7 +22,6 @@ exports.createUserInDb = functions.auth.user().onCreate((user) => {
     email: user.email ? user.email : '',
     uid: user.uid,
     imagePath : user.photoURL? user.photoURL : '',
-    extensions: []
   }
   return admin.firestore().collection('accounts').doc(user.uid).set(userModel)
 

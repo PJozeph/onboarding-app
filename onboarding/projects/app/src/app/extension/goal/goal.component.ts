@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { switchMap } from 'rxjs/operators';
-import { Goal, GoalExtension } from '../../extension/modal/extension.goal.modal';
+import { Goal  } from '../../extension/modal/extension.goal.modal';
 import * as formApp from './../../store/index';
 import { GoalExtensionService } from './goalextension.service';
 import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
@@ -17,7 +17,6 @@ export class GoalComponent implements OnInit, OnDestroy {
 
   public selectedUser : User;
   public isInputActive: boolean = false
-  public goalExtension : GoalExtension;
   public userGoals : Goal [];
   public maxHeight : number;
   public goalsLoading : boolean = true;
