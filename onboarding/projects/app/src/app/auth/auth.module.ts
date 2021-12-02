@@ -13,13 +13,13 @@ import { AuthComponent } from './components/auth/auth.component';
 import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
-  { path: 'login', component: AuthComponent },
+  { path: '', component: AuthPinComponent },
 ];
-
 
 @NgModule({
   declarations: [
     SignupComponent,
+    AuthComponent,
     AuthPinComponent,
   ],
   imports: [

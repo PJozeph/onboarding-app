@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'welcome', component : LandingPageComponent},
   { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
   { path : 'user/:userid', loadChildren : ()=> import('./tasks/task.module').then(m => m.TaskModule)},
-  { path : 'auth', component: AuthPinComponent }
+  { path : 'auth', loadChildren : ()=> import('././auth/auth.module').then(m => m.AuthModule) }
 
 ];
 

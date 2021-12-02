@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   public displaySpinner : boolean = false;
 
-  signUpForm: FormGroup;
+  public signUpForm: FormGroup;
 
   constructor(private authService: AuthService,
               private userService : UserService,
