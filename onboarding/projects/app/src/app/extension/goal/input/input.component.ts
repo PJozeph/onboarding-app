@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Goal } from '../../modal/extension.goal.modal';
 
-
-
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',

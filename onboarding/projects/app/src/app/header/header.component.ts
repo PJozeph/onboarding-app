@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AuthComponent } from '../auth/components/auth/auth.component';
 import { AuthService } from '../auth/services/auth.service';
 import * as fromApp from '../store/index';
 

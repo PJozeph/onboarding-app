@@ -1,7 +1,5 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { User } from 'projects/core/src/lib/modal/user/user.modal';
-import { UserService } from 'projects/core/src/lib/services/user.service';
-import { Observable, Subscription } from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Goal } from '../../../extension/modal/extension.goal.modal';
 
 @Component({
