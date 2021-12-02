@@ -1,0 +1,26 @@
+
+.goal-feature img {
+    height: 15rem;
+}
+
+p {
+    font-family: monospace;
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+.landing-container {
+    margin-top: 5rem;
+}
+
+.illustrate-row {
+    display: flex;
+}
+
+.col-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 2.5rem;
+}
