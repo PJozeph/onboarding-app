@@ -1,21 +1,21 @@
 
 
 <div *ngIf="!isTaskManager" class="task-container">
-    <img *ngIf="showIcon" src={{task.iconPath}} alt="Task's icon not found">
+    <img *ngIf="showIcon" src={{extension.iconPath}} alt="Task's icon not found">
     <div class="task-context-container">
-        <div class="task-name"> {{task.name}}</div>
-        <div class="task-description">{{task.description}}</div>
+        <div class="task-name"> {{extension.name}}</div>
+        <div class="task-description">{{extension.description}}</div>
     </div>
 </div>
 
 <div *ngIf="isTaskManager" class="task-manager-container" >
-    <img *ngIf="showIcon" src={{task.iconPath}} alt="Task's icon not found">
+    <img *ngIf="showIcon" src={{extension.iconPath}} alt="Task's icon not found">
     <div class="task-context-container task-manager">
         <div class="task-name tm-name" 
-            [ngClass]="{'selected-name' : active}" > {{task.name}}</div>
+            [ngClass]="{'selected-name' : active}" > {{extension.name}}</div>
         <div class="task-description tm-description"
             [ngClass]="{'selected-description' : active}"  
-             >{{task.description}}</div>
+             >{{extension.description}}</div>
     </div>
     <div *ngIf="active">
         <hr style="color: #1890FF; height: 0.1rem; margin: auto;">

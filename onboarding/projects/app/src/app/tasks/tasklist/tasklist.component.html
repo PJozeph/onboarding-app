@@ -1,9 +1,9 @@
 <div class="task-list-container">
     <div class="row">
-        <div class="col-sm" style="width: 18rem;" *ngFor="let task of tasks">
+        <div class="col-sm" style="width: 18rem;" *ngFor="let extension of extensions">
             <div class="item">
                 <app-task onHover
-                    [task] = "task"
+                    [extension] = "extension"
                 ></app-task>
             </div>
         </div>

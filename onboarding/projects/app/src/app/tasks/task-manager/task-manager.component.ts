@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { UserService } from 'projects/core/src/lib/services/user.service';
 import { switchMap } from 'rxjs/operators';
-import { TaskModel } from '../task.modal';
-import { TaskService } from '../task.service';
+import { Extension, TaskService } from '../task.service';
 
 @Component({
   selector: 'app-task-manager',
@@ -14,14 +13,15 @@ import { TaskService } from '../task.service';
 export class TaskManagerComponent implements OnInit {
 
   user : User;
-  tasks : TaskModel [];
-  selectedTask: TaskModel;
+  extensions : Extension [];
+  selectedExtension: Extension;
   taskSelected : boolean;
 
   public startIndex : number = 0;
   public endIndex : number = 4;
 
   constructor(private activatedRoute : ActivatedRoute,
+              private router : Router,
               private userService: UserService,
               private taskService: TaskService) {}
 
@@ -30,19 +30,20 @@ export class TaskManagerComponent implements OnInit {
       switchMap((params: Params) => this.userService.getUserById(params['userid'])
       ))
       .subscribe(user => this.user = user);
-      this.tasks = this.taskService.getTasks().slice(this.startIndex, this.endIndex);
-      this.selectedTask = this.tasks[0];
+      this.extensions = this.taskService.getTasks().slice(this.startIndex, this.endIndex);
+      this.selectedExtension = this.extensions[0];
   }
 
-  public onSelect(task: TaskModel) {
-    this.selectedTask = task;
+  public onSelect(extension: Extension) {
+    this.selectedExtension = extension;
+    this.router.navigate([extension.routeName] ,{relativeTo : this.activatedRoute})
   }
 
   public onRightSelect() {
     if(this.endIndex < this.taskService.getTasks().length)
     this.startIndex++;
     this.endIndex++;
-    this.tasks = this.taskService.getTasks().slice(this.startIndex, this.endIndex);
+    this.extensions = this.taskService.getTasks().slice(this.startIndex, this.endIndex);
     this.checkIndexLength()
   }
 
@@ -50,7 +51,7 @@ export class TaskManagerComponent implements OnInit {
     if(this.startIndex > 0 ){
       this.startIndex--;
       this.endIndex--;
-      this.tasks = this.taskService.getTasks().slice(this.startIndex, this.endIndex);
+      this.extensions = this.taskService.getTasks().slice(this.startIndex, this.endIndex);
     }
   }
 

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TaskModel } from '../task.modal';
+import { Extension } from '../task.service';
 
 @Component({
   selector: 'app-task',
@@ -8,7 +8,7 @@ import { TaskModel } from '../task.modal';
 })
 export class TaskCardComponent implements OnInit {
 
-  @Input() task : TaskModel;
+  @Input() extension : Extension;
   @Input() showIcon : boolean = true;
   @Input() isTaskManager : boolean = false;
   @Input() active : boolean = false;
