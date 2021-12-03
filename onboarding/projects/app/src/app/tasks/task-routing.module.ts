@@ -6,7 +6,12 @@ const routes: Routes = [
     { path: '', component: TaskManagerComponent , children : [ 
         {
             path : 'goals' , 
-            loadChildren : ()=> import('../extension/goal/goal.module').then(m => m.GoalModule) }
+            loadChildren : ()=> import('../extension/goal/goal.module').then(m => m.GoalModule) 
+        },
+        {
+            path : 'sharelink' , 
+            loadChildren : ()=> import('../extension/share-link/share-link.module').then(m => m.ShareLinkModule) 
+        }
     ]}
 ];
 

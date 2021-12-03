@@ -1,8 +1,6 @@
-
 .app-container {
     display: flex;
     overflow: hidden;
-    height: 100%;
   }
   
   .app-navigation {

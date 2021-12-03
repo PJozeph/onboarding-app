@@ -16,12 +16,11 @@ export class TaskService {
       new TaskModel(4, 'Feedback', 'Ipsum has been \nthe industry ',  "assets/icons/feedback.svg"),
       new TaskModel(5, 'Knowledge and Skills', 'Ipsum has been \nthe industry ',  "assets/icons/atom.svg"),
     ]
-      
+
   constructor() { }
 
   public getTasks() {
     return this.tasks;
   }
-
 
 }
