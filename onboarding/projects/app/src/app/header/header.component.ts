@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { AuthService } from '../auth/services/auth.service';
 import * as fromApp from '../store/index';
 
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
 
   public isAuthDialogOpen : boolean = false;
   public isLoggedIn : boolean = false;
+  public loggedInUser : User;
 
   constructor(private dialog : MatDialog,
               private store : Store<fromApp.AppState>,
@@ -22,6 +24,7 @@ export class HeaderComponent implements OnInit {
               private router : Router) { }
 
   ngOnInit(): void {
+    this.loggedInUser = JSON.parse(window.localStorage.getItem('user'));
     this.store.select('auth').subscribe((state => {
         if(state.user) {
             this.isLoggedIn = true;
@@ -38,6 +41,10 @@ export class HeaderComponent implements OnInit {
 
   public onLogOut() {
     this.authService.signOut();
+  }
+
+  public onSelect() {
+    this.router.navigate(['userDashboard'])
   }
 
 }

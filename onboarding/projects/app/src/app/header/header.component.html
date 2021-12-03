@@ -5,8 +5,8 @@
       (click)="onLogin()">
       Login
     </button>
-    <button *ngIf="isLoggedIn" type="button" class="btn btn-outline-primary" [disabled]="isAuthDialogOpen"
-      (click)="onLogOut()">Logout
-    </button>
+    <div *ngIf="isLoggedIn" class="user" (click)="onSelect()">
+      <img src="{{loggedInUser.imagePath}}" alt="Image not found">
+    </div>
   </div>
 </nav>

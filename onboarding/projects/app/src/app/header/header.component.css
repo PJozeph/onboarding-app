@@ -1,0 +1,12 @@
+.user img {
+    border-radius: 50%;
+    height: 2.7rem;
+    width: 2.7rem;
+    cursor: pointer;
+    padding: 4px;
+    border: 2px solid lightsteelblue
+}
+
+.user img:hover {
+    background-color: lightgray;
+}

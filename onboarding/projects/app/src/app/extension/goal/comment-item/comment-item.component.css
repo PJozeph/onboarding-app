@@ -9,7 +9,6 @@ img {
 
 .user-image {
     display: flex;
-    background-color: gray;
     height: 2rem;
     border-radius: 50%;
     margin: auto;

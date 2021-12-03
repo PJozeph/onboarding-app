@@ -21,7 +21,7 @@ exports.createUserInDb = functions.auth.user().onCreate((user) => {
     displayName: user.displayName ? user.displayName : '',
     email: user.email ? user.email : '',
     uid: user.uid,
-    imagePath : user.photoURL? user.photoURL : '',
+    imagePath : user.photoURL? user.photoURL : 'https://avatars.dicebear.com/api/gridy/' + user.uid + '.svg',
   }
   return admin.firestore().collection('accounts').doc(user.uid).set(userModel)
 

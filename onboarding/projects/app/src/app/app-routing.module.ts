@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthPinComponent } from './auth/components/auth-pin/auth-pin.component';
 import { LandingPageComponent as LandingPageComponent } from './langing-page/langing-page.component';
 
 const routes: Routes = [
@@ -8,7 +7,8 @@ const routes: Routes = [
   { path: 'welcome', component : LandingPageComponent},
   { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
   { path : 'user/:userid', loadChildren : ()=> import('./tasks/task.module').then(m => m.TaskModule)},
-  { path : 'auth', loadChildren : ()=> import('././auth/auth.module').then(m => m.AuthModule) }
+  { path : 'auth', loadChildren : ()=> import('././auth/auth.module').then(m => m.AuthModule) },
+  { path : 'userDashboard', loadChildren : ()=> import('./user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule) }
 
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UserCredential } from 'firebase/auth';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
@@ -11,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 import * as authActions from '../../store/auth.actions';
 import { SignupComponent } from '.././signup/signup.component';
 import * as fromApp from './../../../store/index';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './auth.component.html',
@@ -27,7 +29,8 @@ export class AuthComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, 
               private dialog : MatDialog,
               private store$ : Store<fromApp.AppState>,
-              private userService : UserService) { }
+              private userService : UserService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.subscription = this.dialog.afterAllClosed.subscribe( () => this.dialog.closeAll);
@@ -43,7 +46,8 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.userService.getUserById(response.user.uid).pipe(first()).subscribe(
           (user : User) => {
             this.store$.dispatch( new authActions.LoginSuccess(user));
-            window.localStorage.setItem('user', JSON.stringify(user))
+            window.localStorage.setItem('user', JSON.stringify(user));
+            this.router.navigate([''])
           }
         );
       }
