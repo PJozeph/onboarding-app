@@ -12,6 +12,8 @@ import { LeftNavigationComponent } from './components/left-navigation/left-navig
 import { OnHoverDirective } from './directives/onhover.directive';
 import { ScrollBottomDirective } from './directives/scroll-bottom.directive';
 import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
+import { InputComponent } from './dialog/input/input.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,10 +23,12 @@ import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
     OnHoverDirective,
     ComingSoonComponent,
     ScrollBottomDirective,
+    InputComponent,
   ],
   imports: [
     CommonModule,
     MatDialogModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
@@ -36,7 +40,8 @@ import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
     LeftNavigationComponent,
     OnHoverDirective,
     ComingSoonComponent,
-    ScrollBottomDirective
+    ScrollBottomDirective,
+    InputComponent
   ]
 })
 export class CoreModule { }

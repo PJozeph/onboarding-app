@@ -6,7 +6,6 @@ import { CommentItemComponent } from './comment-item/comment-item.component';
 import { GoalItemComponent } from './goal-item/goal-item.component';
 import { GoalRoutingModule } from './goal-routing.module';
 import { GoalComponent } from './goal.component';
-import { InputComponent } from './input/input.component';
 import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
 import { UserNamePipe } from './pipes/user-name.pipe';
 import { UserImagePipe } from './pipes/user-image.pipe';
@@ -15,7 +14,6 @@ import { UserImagePipe } from './pipes/user-image.pipe';
   declarations: [
     CommentItemComponent,
     GoalComponent,
-    InputComponent,
     SelectedGoalComponent,
     GoalItemComponent,
     UserNamePipe,

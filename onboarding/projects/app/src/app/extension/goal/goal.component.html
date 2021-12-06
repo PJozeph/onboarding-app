@@ -10,12 +10,12 @@
             <hr style="width: 80%;">
         </div>
     </div>
-    <app-input style="margin-top: 0.6rem;"
+    <lib-input style="margin-top: 0.6rem;"
         [isInputActive]='isInputActive'
         [addActionName]="'Add a goal'" 
         (onCancelEvent)="onInputCancel()"
-        (onAddEvent)="onInputAdd($event)">
-    </app-input>
+        (onAddGoal)="onInputAdd($event)">
+    </lib-input>
     </div>
     <div *ngIf="goalsLoading">
         <div class="spinner-grow text-primary" role="status">

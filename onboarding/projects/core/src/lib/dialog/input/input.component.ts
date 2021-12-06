@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Goal } from '../../modal/extension.goal.modal';
+import { Goal } from 'projects/app/src/app/extension/modal/extension.goal.modal';
 
 @Component({
-  selector: 'app-input',
+  selector: 'lib-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
 
   @Output() public onCancelEvent = new EventEmitter();
-  @Output() public onAddEvent = new EventEmitter<Goal>();
+  @Output() public onAddGoal = new EventEmitter<Goal>();
   @Input() addActionName: String;
   @Input() isInputActive: boolean;
   public goalName: string = "";
@@ -33,7 +33,7 @@ export class InputComponent implements OnInit {
   }
 
   public onAdd() {
-    this.onAddEvent.emit(
+    this.onAddGoal.emit(
       {
         name: this.goalName,
         description: this.goalDescription,
@@ -48,5 +48,6 @@ export class InputComponent implements OnInit {
   public onAddGoalSelect() {
     this.isInputActive = true;
   }
+
 
 }
