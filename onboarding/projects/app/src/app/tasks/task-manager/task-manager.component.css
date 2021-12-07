@@ -23,8 +23,8 @@
 }
 
 .extension-detailes {
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    margin: 2rem;
 }
 
 .profile-container {

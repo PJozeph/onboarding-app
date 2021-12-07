@@ -1,7 +1,6 @@
 .goal-extension-container {
     display: flex;
     justify-content: center;
-    flex-direction: column;
 }
 
 .goal-extension-list {

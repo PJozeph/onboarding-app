@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { InputDialogService, InputDialogSource } from 'projects/core/src/lib/dialog/input/services/input.service';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
-import { switchMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { filter, switchMap } from 'rxjs/operators';
 import { Goal  } from '../../extension/modal/extension.goal.modal';
 import * as formApp from './../../store/index';
 import { GoalExtensionService } from './goalextension.service';
@@ -20,10 +22,13 @@ export class GoalComponent implements OnInit, OnDestroy {
   public userGoals : Goal [];
   public maxHeight : number;
   public goalsLoading : boolean = true;
+
+  private inputSubscription : Subscription;
   
   constructor(private goalExtensionService: GoalExtensionService,
               private dialogService : MatDialog,
-              private store$ : Store<formApp.AppState>) { }
+              private store$ : Store<formApp.AppState>,
+              private inputDialogService : InputDialogService) { }
 
   ngOnInit(): void {
     this.maxHeight = window.innerHeight - 350;
@@ -39,6 +44,20 @@ export class GoalComponent implements OnInit, OnDestroy {
       this.userGoals = goals;
       this.goalsLoading = false;
     })
+
+    this.inputSubscription = this.inputDialogService.source().pipe(
+      filter(source => source.type === 'GOAL'))
+      .subscribe(
+      (source : InputDialogSource) => {
+          this.addGoal({
+            name: source.title,
+            description : source.description? source.description : '', 
+            completed: false,
+            comment : []
+          })
+      }
+    )
+
   }
   
   public onSelectGoal(goalId: string) {
@@ -57,12 +76,13 @@ export class GoalComponent implements OnInit, OnDestroy {
     this.isInputActive = false;
   }
 
-  public onInputAdd(goal: Goal){
+  public addGoal(goal: Goal){
     this.goalExtensionService.addGoal(this.selectedUser.uid, goal)
   }
 
   ngOnDestroy(): void {
-    window.localStorage.removeItem('selectedUser')
+    window.localStorage.removeItem('selectedUser');
+    this.inputSubscription.unsubscribe();
   }
 
 }

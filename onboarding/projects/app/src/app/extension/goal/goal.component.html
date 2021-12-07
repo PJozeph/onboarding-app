@@ -1,5 +1,5 @@
 <div class="goal-extension-container">
-    <div *ngIf="!goalsLoading">
+    <div *ngIf="!goalsLoading" style="width: 60%;">
     <div class="goal-extension-list"  [style.maxHeight.px]="maxHeight" *ngFor="let goalItem of userGoals">
         <div>
             <app-goal-item
@@ -11,10 +11,10 @@
         </div>
     </div>
     <lib-input style="margin-top: 0.6rem;"
-        [isInputActive]='isInputActive'
-        [addActionName]="'Add a goal'" 
-        (onCancelEvent)="onInputCancel()"
-        (onAddGoal)="onInputAdd($event)">
+        [inputType]="'GOAL'"
+        [addActionName]="'Add Goal'"
+        [titlePlaceholder]="'E.g: Meet our clients'"
+        [descPlaceholder]="'E.g: you can find their content in Outlook'">
     </lib-input>
     </div>
     <div *ngIf="goalsLoading">

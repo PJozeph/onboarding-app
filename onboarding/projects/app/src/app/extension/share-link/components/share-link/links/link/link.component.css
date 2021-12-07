@@ -1,0 +1,35 @@
+.link-container{
+    display: flex;
+    margin: 0.3rem;
+    justify-content: space-between;
+}
+
+.link-name {
+    font-family: monospace;
+    margin-right: 3rem;
+}
+
+.link-url {
+    cursor: pointer;
+    font-family: monospace;
+    margin-right: 1rem;
+}
+
+.link-url:hover {
+    background-color: lightgray;
+    border-radius: 2px;
+}
+
+.action-container {
+    display: flex;
+    justify-content: space-between;
+    width: 2.7rem;
+}
+
+.action-container div:hover {
+    cursor: pointer;
+}
+
+svg:hover path {
+    fill: red;
+}

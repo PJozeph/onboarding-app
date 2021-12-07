@@ -1,3 +1,17 @@
-<lib-input style="margin-top: 0.6rem;"
-        [addActionName]="'Add useful link'">
-</lib-input>
+<div class="link-container">
+    <app-links *ngIf="!isLoading" [ngClass]="'links-container'" 
+        [userLinks]="userLinks"
+        [user]="selectedUser" >
+    </app-links>
+    <div *ngIf="isLoading" 
+         class="spinner-grow text-primary" role="status">
+        <span class="sr-only"></span>
+    </div>
+    <lib-input [ngClass]="'link-input'"
+        style="margin-top: 0.6rem;" 
+        [inputType]="'SHARE_LINK'" 
+        [addActionName]="'Add useful link'"
+        [titlePlaceholder]="'E.g: Angular hero tutorial'" 
+        [descPlaceholder]="'https://angular.io/tutorial'">
+    </lib-input>
+</div>

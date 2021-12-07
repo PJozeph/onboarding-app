@@ -8,31 +8,11 @@
         {{addActionName}}
     </div>
 </div>
-<div class="container" *ngIf="isInputActive">
-    <div class="input-container">
-        <input  
-            type="text" 
-            placeholder="e.g Learn revenue Excel table"
-            [ngModel]="goalName" 
-            (ngModelChange)="isInputEmpty()"
-            (ngModelChange)="goalName = $event">
-        <textarea
-            placeholder="Description" 
-            [(ngModel)]="goalDescription"></textarea>
-    </div>    
-    <div class="analog-container">
-        <button type="button" 
-                style="margin: 0.5rem;" 
-                class="btn btn-outline-success"
-                [disabled]="goalName.length === 0" 
-                (click)="onAdd()">
-                {{addActionName}}
-            </button>
-        <button type="button" 
-                style="margin: 0.5rem;" 
-                class="btn btn-outline-danger" 
-                (click)=onCancel()>
-                Cancel
-            </button>
-    </div>
-</div>
+<lib-input-dialog *ngIf="isInputActive"
+    [inputType]="inputType"
+    [titlePlaceholder]="titlePlaceholder"
+    [descPlaceholder]="descPlaceholder"
+    [addActionName]="addActionName"
+    (onCompleteEvent)="onComplete()"
+    (onCancelEvent)="onCancel()">
+</lib-input-dialog>
