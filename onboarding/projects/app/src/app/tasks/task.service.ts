@@ -23,4 +23,8 @@ export class TaskService {
     return this.tasks;
   }
 
+  public getTaskByRoute(route : string) : Extension {
+    return this.tasks.find( e => e.routeName === route);
+  }
+
 }
