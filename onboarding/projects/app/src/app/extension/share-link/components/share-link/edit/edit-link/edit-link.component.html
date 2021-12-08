@@ -1,8 +1,23 @@
-<div class="container">
-    <textarea type="text" class="form-control" value="{{selectedLink.name}}"></textarea>
-    <textarea type="text" class="form-control" value="{{selectedLink.url}}"></textarea>
+<div class="edit-container">
+    <div class="input-element">
+         <span class="input-group-text">Description</span>
+        <textarea type="text" 
+                  class="form-control" 
+                  [(ngModel)]="selectedLink.name"
+                  name="description"></textarea>
+    </div>
+    <div class="input-element">
+        <span class="input-group-text">URL</span>
+        <textarea type="text" 
+                  class="form-control"  
+                  [(ngModel)]="selectedLink.url"
+                  name="url"></textarea>
+    </div>
     <div class="action-container">
-        <button class="btn btn-success">Save</button>
-        <button class="btn btn-danger">Cancel</button>
+        <button class="btn btn-danger" 
+                (click)="onCancel()">Cancel</button>
+        <button class="btn btn-success" 
+                style="margin-left: 1rem;"
+                (click)="onSave()">Save</button>
     </div>
 </div>

@@ -1,0 +1,15 @@
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.input-element {
+    display: flex;
+    margin: 1rem;
+}
+
+.action-container {
+    display: flex;
+    justify-content: flex-end;
+}

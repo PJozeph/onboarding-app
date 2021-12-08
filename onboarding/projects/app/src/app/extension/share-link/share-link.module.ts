@@ -6,6 +6,7 @@ import { CoreModule } from 'projects/core/src/public-api';
 import { LinksComponent } from './components/share-link/links/links.component';
 import { LinkComponent } from './components/share-link/links/link/link.component';
 import { EditLinkComponent } from './components/share-link/edit/edit-link/edit-link.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { EditLinkComponent } from './components/share-link/edit/edit-link/edit-l
   imports: [
     CommonModule,
     CoreModule,
+    FormsModule,
     ShareLinkRoutingModule
   ]
 })

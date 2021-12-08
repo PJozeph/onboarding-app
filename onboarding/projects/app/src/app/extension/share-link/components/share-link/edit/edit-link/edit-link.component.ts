@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Link } from 'projects/app/src/app/extension/modal/link.extension.modal';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
@@ -21,7 +21,8 @@ export class EditLinkComponent implements OnInit, OnDestroy {
 
   constructor(private linkService : ShareLinkExtensionService,
               private store$ : Store<fromApp.AppState>,
-              @Inject(MAT_DIALOG_DATA) public data: {}) { }
+              @Inject(MAT_DIALOG_DATA) public data: {},
+              private dialogRef: MatDialogRef<EditLinkComponent>) { }
   
   ngOnInit(): void {
     this.store$.select('selectedUser').subscribe(user => {
@@ -35,6 +36,20 @@ export class EditLinkComponent implements OnInit, OnDestroy {
   
   ngOnDestroy(): void {
     this.linkSubscription.unsubscribe();
+  }
+
+  public onCancel() {
+    this.dialogRef.close();
+  }
+
+  public onSave() {
+    const updatedLink : Link = {
+      linkId : this.data['selectedLinkId'],
+      name: this.selectedLink.name,
+      url : this.selectedLink.url
+    }
+    this.linkService.updateLink(this.selectedUser.uid, updatedLink);
+    this.dialogRef.close();
   }
 
 }
