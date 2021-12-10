@@ -1,0 +1,16 @@
+<div class="container">
+    <div *ngIf='!isLoading' class="row">
+        <div class="col" 
+             style="margin: 0.7rem;" 
+             *ngFor="let organization of organizations">
+            <app-organization-card 
+                [organization]="organization">
+            </app-organization-card>
+        </div>
+    </div>
+    <div *ngIf='isLoading'>
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only"></span>
+        </div>
+    </div>
+</div>
