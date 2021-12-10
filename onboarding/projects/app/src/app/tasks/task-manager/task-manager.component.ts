@@ -39,6 +39,7 @@ export class TaskManagerComponent implements OnInit {
       this.store$.select('userDashboard')
       .subscribe( state => {
         state.selectedExtensionName 
+        this.router.navigate([state.selectedExtensionName ] ,{relativeTo : this.activatedRoute})
         this.selectedExtension = this.taskService.getTaskByRoute(state.selectedExtensionName);
       })
   }

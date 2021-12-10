@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Organization name</span>
+        </div>
+        <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Organization name" 
+            aria-label="Username" 
+            aria-describedby="basic-addon1"
+            [(ngModel)] = "organizationName">
+      </div>
+      <div class="actions">
+      <button 
+            type="button" 
+            class="btn btn-outline-danger" 
+            (click)="onCancel()">
+            Cancel
+        </button>
+        <button 
+            type="button" 
+            class="btn btn-outline-success" 
+            style="margin-left: 1rem;"
+            [disabled]="organizationName.length <= 0"
+            (click)="onCreate()">
+            Create
+        </button>
+        </div>
+</div>

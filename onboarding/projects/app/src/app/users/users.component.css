@@ -1,0 +1,24 @@
+.users-header {
+    display: flex;
+    margin: 1.5rem;
+}
+
+.organization-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-family: monospace;
+}
+
+.selected {
+    width: 8rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-left: 0.5rem solid rgb(179, 245, 255);;
+}
+
+.user-search {
+    display: flex;
+    flex-grow: 2;
+    font-family: monospace;
+}

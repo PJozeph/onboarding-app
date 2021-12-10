@@ -29,9 +29,7 @@ export class AuthService {
     .doc(userId)
     .update({
       displayName : name
-    }).catch(error => {
-      console.log(error)
-    })
+    }).catch(error => {})
   }
 
   public emailLogin(email: string, password: string): Promise<any> {

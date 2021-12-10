@@ -1,0 +1,11 @@
+<div *ngIf="inviteUser$ | async as user" class="user">
+    <div>{{user.displayName}}</div>
+    <img src="{{user.imagePath}}">
+</div>
+<button 
+    type="button" 
+    class="btn btn-outline-success"
+    (click)="onAddUser()">
+    Add to Marketing group
+</button>
+

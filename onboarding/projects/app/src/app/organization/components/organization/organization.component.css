@@ -1,0 +1,19 @@
+.organization-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 94vh;
+    flex-direction: column;
+}
+
+.create {
+    margin-top: 2rem;
+}
+
+.row1 {
+    flex-grow: 0.2;
+}
+
+.row2 {
+    flex-grow: 3;
+}

@@ -16,7 +16,7 @@ export class LeftNavigationComponent implements OnInit {
   }
 
   public onListNewComers() {
-    this.router.navigate(['/users'], { relativeTo: this.activatedRoute })
+    this.router.navigate(['/organizations'], { relativeTo: this.activatedRoute })
   }
 
   public onTasks() {

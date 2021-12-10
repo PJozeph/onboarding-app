@@ -25,4 +25,10 @@ export class UserService {
     return this.angularFireStore.doc<User>('accounts/' + userId).valueChanges()
   }
 
+  public getUserByEmail(userEmail : string) : Observable<User[]> {
+    return this.angularFireStore
+    .collection<User>('accounts', ref => ref.where('email', '==', userEmail)).valueChanges();
+
+  }
+
 }

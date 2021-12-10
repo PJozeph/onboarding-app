@@ -1,7 +1,15 @@
-<div class="container">
-    <div class="row">
-      <div class="col" style="margin: 0.7rem;" *ngFor="let profile of users">
-        <app-user-card [user]=profile></app-user-card>
-      </div>
-    </div>
+<div class="users-header">
+
+  <div class="organization-name" *ngIf="selectedOrg$ | async as org" >
+    <div class="selected">{{org.name}}</div>
   </div>
+  <div class="user-search">
+    <div style="margin-right: 1rem;">Invite user</div>
+    <input type="text" placeholder="E.g: johnsmith@gmail.com" style="width: 20rem;" (keyup)="onClick($event)">
+  </div>
+</div>
+<div class="row">
+  <div class="col" style="margin: 0.7rem;" *ngFor="let profile of users$ | async">
+    <app-user-card [user]=profile></app-user-card>
+  </div>
+</div>

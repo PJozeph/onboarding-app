@@ -1,0 +1,19 @@
+.user img {
+    border-radius: 50%;
+    height: 2.7rem;
+    width: 2.7rem;
+    cursor: pointer;
+    padding: 4px;
+    border: 2px solid lightsteelblue;
+}
+
+.user {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-left: 0.5rem solid rgb(179, 245, 255);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 0.3rem;
+    margin: 1rem;
+
+}

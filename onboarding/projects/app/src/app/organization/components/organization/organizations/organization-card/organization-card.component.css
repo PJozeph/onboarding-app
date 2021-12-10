@@ -1,0 +1,16 @@
+.organization-container {
+    height: 6rem;
+    width: 9rem;
+    border-radius: 2px;
+    margin: 1rem;
+    cursor: pointer;
+    border-left: 0.5rem solid rgb(179, 245, 255);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 0.2rem;
+}
+
+.title {
+    font-family: monospace;
+    font-weight: 500;
+    text-align: center;
+}
