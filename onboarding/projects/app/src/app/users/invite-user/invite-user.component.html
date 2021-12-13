@@ -1,11 +1,16 @@
-<div *ngIf="inviteUser$ | async as user" class="user">
-    <div>{{user.displayName}}</div>
-    <img src="{{user.imagePath}}">
-</div>
-<button 
-    type="button" 
-    class="btn btn-outline-success"
-    (click)="onAddUser()">
-    Add to Marketing group
-</button>
-
+    <div *ngIf="inviteUser$ | async as user" >
+        <div *ngIf="userPresent" class="invite-container">
+            <div class="user">
+                <div>{{user.displayName}}</div>
+                <img src="{{user.imagePath}}">
+            </div>
+            <button type="button" class="btn btn-outline-success" (click)="onAddUser()">
+                Add to Marketing group
+            </button>
+        </div>
+    </div>
+    <div *ngIf="!userPresent" class="info-container">
+        <div class="alert alert-warning" role="alert">
+            <p class="email">{{inviteUserEmail}}</p><p>is not present in MyOnboard DB</p>
+        </div>
+    </div>

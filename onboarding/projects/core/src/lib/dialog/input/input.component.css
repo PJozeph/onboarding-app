@@ -1,7 +1,8 @@
 
 .add-action-container {
     display: flex;
-    cursor: pointer
+    cursor: pointer;
+    justify-content: center;
 }
 
 .add-action-title {

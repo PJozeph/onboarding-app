@@ -1,8 +1,8 @@
 <div class="task-manager-container">
     <div class="extension-list">
-        <div (click)="onLeftSelect()" class="arrow-icon">
+        <!-- <div (click)="onLeftSelect()" class="arrow-icon">
             <img src="assets/icons/arrow-left.svg" alt="arrow-left">
-        </div>
+        </div> -->
         <div class="task-list">
             <app-task *ngFor="let extension of extensions" 
                 [active]="selectedExtension == extension" 
@@ -10,9 +10,9 @@
                 [showIcon]="false" (click)="onSelect(extension)">
             </app-task>
         </div>
-        <div (click)="onRightSelect()" class="arrow-icon">
+        <!-- <div (click)="onRightSelect()" class="arrow-icon">
             <img src="assets/icons/arrow-right.svg" alt="arrow-right">
-        </div>
+        </div> -->
     </div>
     <div class="profile-container">
         <app-user-card 

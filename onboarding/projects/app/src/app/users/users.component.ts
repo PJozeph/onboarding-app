@@ -18,8 +18,7 @@ import { InviteUserComponent } from './invite-user/invite-user.component';
 export class UsersComponent implements OnInit, OnDestroy {
 
   public selectedOrg$ : Observable <Organization>;
-  public userEmail : string = 'bob@gmail.com';
-
+  public userEmail : string = '';
 
   constructor(private userService: UserService,
               private sore$ : Store<fromApp.AppState>,
@@ -34,9 +33,6 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.selectedOrg$ = this.sore$.select('organization').pipe(map( state => state.organization));
     this.loggedInUser = this.sore$.select('auth').pipe(map( state => state.user));
     this.users$ = this.selectedOrg$.pipe(switchMap((organization) => this.orgService.getOrganizationMembers(organization.members)));
-
-    this.selectedOrg$.subscribe(res => console.log(res.members))
-
   }
 
   ngOnDestroy(): void {

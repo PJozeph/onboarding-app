@@ -4,6 +4,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { UserCardComponent } from './user-card/usercard.component';
 import { InviteUserComponent } from './invite-user/invite-user.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { InviteUserComponent } from './invite-user/invite-user.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     UsersRoutingModule
   ], 
   exports : [

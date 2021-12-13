@@ -21,4 +21,9 @@
     display: flex;
     flex-grow: 2;
     font-family: monospace;
+    align-items: center;
+}
+
+.org-name {
+    margin: auto 1rem;
 }

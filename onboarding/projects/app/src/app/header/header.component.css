@@ -10,3 +10,16 @@
 .user img:hover {
     background-color: lightgray;
 }
+
+.logo img {
+    height: 3rem;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.custom-header {
+    height: 10vh;
+    background-color: #fafafa;
+}

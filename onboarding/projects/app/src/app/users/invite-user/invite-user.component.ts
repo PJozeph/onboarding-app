@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { UserService } from 'projects/core/src/lib/services/user.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { OrganizationService } from '../../organization/services/organization.service';
 import * as fromApp from '../../store/index';
 
@@ -16,10 +16,11 @@ import * as fromApp from '../../store/index';
 })
 export class InviteUserComponent implements OnInit {
 
-
   public inviteUser$  : Observable<User>;
   private loggedInUserUid : string;
-  private selectedOrgUid  : string ;
+  private selectedOrgUid  : string;
+  public userPresent : boolean = true;
+  public inviteUserEmail : string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {},
              private userService : UserService,
@@ -27,8 +28,13 @@ export class InviteUserComponent implements OnInit {
              private orgService  : OrganizationService) { }
 
   ngOnInit(): void {
+    this.inviteUserEmail = this.data['inviteUserEmail'];
+    console.log(this.inviteUserEmail)
     this.inviteUser$ = this.userService.getUserByEmail(this.data['inviteUserEmail'])
-    .pipe(map(users => users[0]));
+    .pipe(tap( users => { 
+      if(users.length === 0) {
+        this.userPresent = false;
+    }}),map(users => users[0]));
 
     this.store$.select('auth').pipe(map(state => state.user.uid))
     .subscribe(result => this.loggedInUserUid = result);
@@ -38,10 +44,14 @@ export class InviteUserComponent implements OnInit {
   }
 
   public onAddUser() {
-    this.inviteUser$.pipe(map(user => user.uid)).subscribe( 
-      result => {
-        this.orgService.addMember(this.loggedInUserUid, result, this.selectedOrgUid);
-      });
+    this.inviteUser$.pipe(map(user => user.uid))
+    .subscribe( result => {
+      this.orgService.addMember(this.loggedInUserUid, result, this.selectedOrgUid)
+    });
+  }
+
+  public isUserPresent(user : User) {
+    return user === null;
   }
 
 }

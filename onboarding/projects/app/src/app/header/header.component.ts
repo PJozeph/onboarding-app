@@ -35,6 +35,10 @@ export class HeaderComponent implements OnInit {
       }))
   }
 
+  public onLogoClick() {
+    this.router.navigate(['/'])
+  }
+
   public onLogin() {
     this.router.navigate(['auth'])
   }

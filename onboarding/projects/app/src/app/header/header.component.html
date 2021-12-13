@@ -1,12 +1,16 @@
-<nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">MyOnboard.io</a>
-    <button *ngIf="!isLoggedIn" type="button" class="btn btn-outline-primary" [disabled]="isAuthDialogOpen"
-      (click)="onLogin()">
-      Login
-    </button>
-    <div *ngIf="isLoggedIn" class="user" (click)="onSelect()">
-      <img src="{{loggedInUser.imagePath}}" alt="Image not found">
+<div class="custom-header">
+  <nav class="navbar navbar-light">
+    <div class="container-fluid">
+      <div class="logo" (click)="onLogoClick()">
+        <img src="/assets/logo/NewLogo.png" alt="Image not found">
+      </div>
+      <button *ngIf="!isLoggedIn" type="button" class="btn btn-outline-primary" [disabled]="isAuthDialogOpen"
+        (click)="onLogin()">
+        Login
+      </button>
+      <div *ngIf="isLoggedIn" class="user" (click)="onSelect()">
+        <img src="{{loggedInUser.imagePath}}" alt="Image not found">
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>

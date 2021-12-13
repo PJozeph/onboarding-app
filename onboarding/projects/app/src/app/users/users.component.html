@@ -1,11 +1,18 @@
 <div class="users-header">
-
   <div class="organization-name" *ngIf="selectedOrg$ | async as org" >
-    <div class="selected">{{org.name}}</div>
+    <div class="selected">
+      <p class="org-name">{{org.name}}</p>
+    </div>
   </div>
   <div class="user-search">
     <div style="margin-right: 1rem;">Invite user</div>
-    <input type="text" placeholder="E.g: johnsmith@gmail.com" style="width: 20rem;" (keyup)="onClick($event)">
+    <input 
+      type="text"
+      class="form-control" 
+      placeholder="E.g: johnsmith@gmail.com" 
+      style="width: 20rem;"
+      [(ngModel)] = 'userEmail'
+      (keyup)="onClick($event)">
   </div>
 </div>
 <div class="row">
