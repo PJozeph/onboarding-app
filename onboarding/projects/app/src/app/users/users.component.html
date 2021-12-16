@@ -15,8 +15,11 @@
       (keyup)="onClick($event)">
   </div>
 </div>
-<div class="row">
-  <div class="col" style="margin: 0.7rem;" *ngFor="let profile of users$ | async">
-    <app-user-card [user]=profile></app-user-card>
+<div class="row" *ngIf="users">
+  <div class="col" style="margin: 0.7rem;" *ngFor="let profile of users">
+    <app-user-card 
+      [user]=profile
+      (onUserRemove)="removeUser($event)">
+    </app-user-card>
   </div>
 </div>

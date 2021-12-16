@@ -2,11 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
-import { UserService } from 'projects/core/src/lib/services/user.service';
 import { Observable, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Organization, OrganizationService } from '../organization/services/organization.service';
-
+import * as orgActions from '../organization/store/organization.actions';
 import * as fromApp from '../store/index';
 import { InviteUserComponent } from './invite-user/invite-user.component';
 
@@ -18,24 +17,35 @@ import { InviteUserComponent } from './invite-user/invite-user.component';
 export class UsersComponent implements OnInit, OnDestroy {
 
   public selectedOrg$ : Observable <Organization>;
+  public users: User[];
+  public loggedInUser$: Observable<User>;
   public userEmail : string = '';
+  public loggedInUser : User;
+  public selectedOrg : Organization;
+  private subscriptions : Subscription [] = [];
 
-  constructor(private userService: UserService,
-              private sore$ : Store<fromApp.AppState>,
+  constructor(private sore$ : Store<fromApp.AppState>,
               private orgService : OrganizationService,
               private matDialog : MatDialog) { }
 
-  loggedInUser: Observable<User>;
-  users$: Observable <User[]>;
 
   ngOnInit(): void {
-    this.users$ = this.userService.getUsers();
     this.selectedOrg$ = this.sore$.select('organization').pipe(map( state => state.organization));
-    this.loggedInUser = this.sore$.select('auth').pipe(map( state => state.user));
-    this.users$ = this.selectedOrg$.pipe(switchMap((organization) => this.orgService.getOrganizationMembers(organization.members)));
+    this.loggedInUser$ = this.sore$.select('auth').pipe(map( state => state.user));
+    this.subscriptions[2] = this.selectedOrg$.pipe(
+    map(o => o.members.length === 0 ? [''] : o.members ),
+    switchMap((organization) => 
+    this.orgService.getOrganizationMembers(organization)))
+    .subscribe(users => {
+      console.log(users);
+      this.users = users;
+    })
+    this.subscriptions[0] = this.loggedInUser$.subscribe(user => this.loggedInUser = user);
+    this.subscriptions[1] = this.selectedOrg$.subscribe(org => this.selectedOrg = org);
   }
 
   ngOnDestroy(): void {
+    this.subscriptions.forEach( subscription => subscription.unsubscribe());
   }
 
   public onClick(event : KeyboardEvent) {
@@ -46,6 +56,11 @@ export class UsersComponent implements OnInit, OnDestroy {
       dialogConfig.data = { inviteUserEmail : this.userEmail }
       this.matDialog.open(InviteUserComponent, dialogConfig);
     }
+  }
+
+  public removeUser(userUid) {
+    this.orgService.removeMember(this.loggedInUser.uid,this.selectedOrg.uid, userUid);
+    this.sore$.dispatch(new orgActions.RemoveOrgMember(userUid));
   }
   
 

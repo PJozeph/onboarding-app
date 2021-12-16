@@ -1,7 +1,13 @@
 
 <div class="container" style="cursor: pointer;">
     <div *ngIf="showEdit" class="header">
-        <img src="assets/icons/three-dots.svg" alt="settings-icon">
+        <div class="dropdown">
+            <img src="assets/icons/three-dots.svg" alt="settings-icon" data-bs-toggle="dropdown">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li class="dropdown-item" (click)=removeUser(user.uid)>Remove</li>
+              <li class="dropdown-item">View Profile</li>
+            </ul>
+          </div>
     </div>
     <div class="profile-picture" (click)="onSelect(user.uid)">
         <img src={{user.imagePath}} alt="No profile image found" class="image">

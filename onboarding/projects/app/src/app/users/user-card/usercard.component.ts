@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
@@ -17,6 +17,8 @@ export class UserCardComponent implements OnInit {
 
   @Input() user : User;
   @Input() showEdit : boolean = true;
+  @Output() onUserRemove = new EventEmitter();
+
 
   ngOnInit(): void {
   }
@@ -24,6 +26,10 @@ export class UserCardComponent implements OnInit {
   public onSelect(uid : string){
     this.router.navigate(['user/' + uid + '/goals'])
     this.store.dispatch( new selectedUserActions.SelectUser(this.user))
+  }
+
+  public removeUser(userUid: string) {
+    this.onUserRemove.emit(userUid);
   }
 
 }
