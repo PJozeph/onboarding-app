@@ -1,0 +1,17 @@
+.prices-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.description {
+    flex-grow: 0.4;
+    display: flex;
+    align-items: center;
+}
+
+.cards {
+    flex-grow: 1;
+}

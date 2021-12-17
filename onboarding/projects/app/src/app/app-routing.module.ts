@@ -9,7 +9,8 @@ const routes: Routes = [
   { path : 'user/:userid', loadChildren : ()=> import('./tasks/task.module').then(m => m.TaskModule)},
   { path : 'auth', loadChildren : ()=> import('././auth/auth.module').then(m => m.AuthModule) },
   { path : 'userDashboard', loadChildren : ()=> import('./user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule) },
-  { path : 'organizations', loadChildren : ()=> import('./organization/organization.module').then(m => m.OrganizationModule) }
+  { path : 'organizations', loadChildren : ()=> import('./organization/organization.module').then(m => m.OrganizationModule) },
+  { path : 'prices', loadChildren : ()=> import('./prices/pricing.module').then(m => m.PricesModule) }
 
 ];
 

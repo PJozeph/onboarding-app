@@ -54,7 +54,9 @@ export class UsersComponent implements OnInit, OnDestroy {
       dialogConfig.width = '25rem'
       dialogConfig.height = '15rem'
       dialogConfig.data = { inviteUserEmail : this.userEmail }
-      this.matDialog.open(InviteUserComponent, dialogConfig);
+      this.matDialog.open(InviteUserComponent, dialogConfig)
+      .afterClosed()
+      .subscribe(() => this.userEmail = "");
     }
   }
 
