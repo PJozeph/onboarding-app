@@ -1,4 +1,4 @@
-<div class="comment-container" *ngFor="let comment of selectedGoal.comment">
+<div #commentContainer class="comment-container" *ngFor="let comment of comments$ | async">
     <div class="user-image">
         <img [src]="comment.uid | userImage | async " alt="Image not found">
     </div>

@@ -7,10 +7,8 @@
         <div class="comment-title">Comments</div>
         <hr style="width: 80%; color: blue; height: px;">
     </div>
-    <div class="comment-container" *ngIf="selectedGoal || goalIsLoading">
-        <app-comment-item 
-            [selectedGoal]="selectedGoal">
-        </app-comment-item>
+    <div #commentContainer class="comment-container" *ngIf="selectedGoal || goalIsLoading">
+        <app-comment-item></app-comment-item>
     </div>
     <div class="loading" *ngIf="goalIsLoading">
         <div class="spinner-grow text-primary" role="status">
@@ -21,7 +19,8 @@
         <textarea class="form-control" rows="3" [(ngModel)]="comment">
         </textarea>
         <div class="custom-btn-container">
-            <button class="btn btn-primary custom-add-btn" (click)="onAddComment(comment)"
+            <button class="btn btn-primary custom-add-btn" 
+                (click)="onAddComment(comment)"
                 [disabled]="comment.length < 1">
                 Add Comment
             </button>

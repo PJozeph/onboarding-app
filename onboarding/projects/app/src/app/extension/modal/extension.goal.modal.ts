@@ -1,6 +1,9 @@
-interface Comment {
+import { User } from "projects/core/src/lib/modal/user/user.modal";
+
+export interface Comment {
     uid : string;
     message : string
+    commenter?: User
 } 
 
 export interface Goal {

@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { reducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { GoalCommentEffects } from './extension/goal/comment-item/store/goal-comment.effect'
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { reducers } from './store';
     CoreModule,
     FormsModule,
     StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({maxAge : 5}),
+    EffectsModule.forRoot([GoalCommentEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,11 +4,13 @@ import { Store } from '@ngrx/store';
 import { InputDialogService, InputDialogSource } from 'projects/core/src/lib/dialog/input/services/input.service';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { Subscription } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { Goal  } from '../../extension/modal/extension.goal.modal';
 import * as formApp from './../../store/index';
 import { GoalExtensionService } from './goalextension.service';
 import { SelectedGoalComponent } from './selected-goal/selected-goal.component';
+
+import * as goalCommentActions from '../goal/comment-item/store/goal-comment.actions';
 
 @Component({
   selector: 'app-goal',
@@ -62,10 +64,18 @@ export class GoalComponent implements OnInit, OnDestroy {
   
   public onSelectGoal(goalId: string) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.height = '40rem';
-    dialogConfig.width = '40rem';
+    dialogConfig.height = '45rem';
+    dialogConfig.width = '45rem';
     dialogConfig.data =  { 'selectedGoalId' : goalId, 'selectedUserId' : this.selectedUser.uid }
     this.dialogService.open(SelectedGoalComponent, dialogConfig);
+
+    this.store$.select('selectedUser')
+    .pipe(map(state => state.user)).subscribe( selectedUser => {
+      this.store$.
+      dispatch(new goalCommentActions.RetrieveComments(
+            {userId: selectedUser.uid, goalId : goalId}
+          ))
+    })
   }
 
   public onAddGoalSelect() {
