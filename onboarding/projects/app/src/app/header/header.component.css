@@ -19,7 +19,33 @@
     cursor: pointer;
 }
 
-.custom-header {
-    height: 10vh;
+header {
     background-color: #fafafa;
+}
+
+.header-center {
+    flex-grow: 3;
+    display: flex;
+    justify-content: center;
+}
+
+.header-center a {
+    margin: 0 0.3rem;
+}
+
+.right {
+    flex-grow: 1;
+    display: flex;
+    justify-content: end;
+}
+
+.left {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    display: flex;
+    padding: 0.5rem;
 }
