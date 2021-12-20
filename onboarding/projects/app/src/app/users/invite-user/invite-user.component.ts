@@ -20,8 +20,10 @@ export class InviteUserComponent implements OnInit {
   public inviteUser$  : Observable<User>;
   private loggedInUserUid : string;
   private selectedOrgUid  : string;
+  public orgName : string;
   public userPresent : boolean = true;
   public inviteUserEmail : string;
+  public inviteUserUid : string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {},
              private userService : UserService,
@@ -30,6 +32,7 @@ export class InviteUserComponent implements OnInit {
              private dialogRef: MatDialogRef<InviteUserComponent >) { }
 
   ngOnInit(): void {
+    this.orgName = this.data['orgName'];
     this.inviteUserEmail = this.data['inviteUserEmail'];
     this.inviteUser$ = this.userService.getUserByEmail(this.data['inviteUserEmail'])
     .pipe(tap( users => { 
@@ -48,7 +51,7 @@ export class InviteUserComponent implements OnInit {
     this.inviteUser$.pipe(map(user => user.uid))
     .subscribe(memberUid => {
       this.store$.dispatch(new orgActions.AddOrgMember(memberUid));
-      this.orgService.addMember(this.loggedInUserUid, memberUid, this.selectedOrgUid)
+      this.orgService.addMember(memberUid, this.selectedOrgUid)
       .then(() => {
         this.dialogRef.close()
       });

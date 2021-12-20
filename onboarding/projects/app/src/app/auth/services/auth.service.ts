@@ -17,7 +17,6 @@ export class AuthService {
 
   constructor(private auth: Auth,
     private store: Store,
-    private fireStore: Firestore,
     private angularFireStore: AngularFirestore) { }
 
   public async emailSignUp(email: string, password: string) {

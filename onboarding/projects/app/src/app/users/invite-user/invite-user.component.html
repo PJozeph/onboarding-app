@@ -4,8 +4,15 @@
                 <div>{{user.displayName}}</div>
                 <img src="{{user.imagePath}}">
             </div>
+            <div style="display: flex;">
+                <div>select role</div>
+                <select class="form-select" aria-label="Default select example">
+                    <option value="1">Editor</option>
+                    <option value="3">Newcomer</option>
+                  </select>
+            </div>
             <button type="button" class="btn btn-outline-success" (click)="onAddUser()">
-                Add to Marketing group
+                Add to {{orgName}} group
             </button>
         </div>
     </div>

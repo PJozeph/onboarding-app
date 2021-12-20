@@ -28,9 +28,10 @@ export class CreateOrganizationComponent implements OnInit {
   public onCreate() {
     const org : Organization = {
         ownerUid : this.loggedInUser.uid,
-        name : this.organizationName, 
-        members : []}
-    this.organizationService.createOrganization(this.loggedInUser.uid,org).then(
+        name : this.organizationName,
+        editorsUid : [], 
+        members : [this.loggedInUser.uid]}
+    this.organizationService.createOrganization(org).then(
       () => this.dialogRef.close()
     )
   }

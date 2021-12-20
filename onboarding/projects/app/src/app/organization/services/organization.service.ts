@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 export interface Organization {
   uid? : string,
   name : string,
-  members: string[],
+  members: string [],
+  editorsUid? : string []
   ownerUid?: string,
-  editors? : []
 }
 
 @Injectable({
@@ -20,27 +20,27 @@ export class OrganizationService {
 
   constructor(private angularFirestore : AngularFirestore) { }
 
-  public getUserOrganization(uid: string) : Observable <Organization []> {
-    const goalCollection: AngularFirestoreDocument<User> = this.angularFirestore.doc<User>('accounts/' + uid);
-    return goalCollection.collection<Organization>('organizations')
-      .valueChanges({ idField: 'uid' })
+  public getUserOrganizations(uid: string) : Observable <Organization []> {
+    const orgs$  = this.angularFirestore.collection<Organization>
+    ('organizations', ref => 
+      ref.where('members', 'array-contains', uid))
+    return orgs$.valueChanges({ idField: 'uid' })
   }
 
-  public createOrganization(userId : string, organization : Organization) {
-    return this.angularFirestore.collection<Organization>('accounts')
-      .doc(userId)
-      .collection('organizations')
+
+  public createOrganization(organization : Organization) {
+    return this.angularFirestore
+      .collection<Organization>('organizations')
       .add(organization)
   }
 
   public getOrganizationMembers(members : string []) : Observable <User[]> {
-    return this.angularFirestore
-    .collection<User>('accounts', ref => ref.where('uid', 'in', members)).valueChanges();
+   return this.angularFirestore
+   .collection<User>('accounts', ref => ref.where('uid', 'in', members)).valueChanges();
   }
 
-  public addMember(orgOwnerId: string ,usersId: string, organizationId : string) {
-     return this.angularFirestore.collection("accounts")
-      .doc(orgOwnerId)
+  public addMember(usersId: string, organizationId : string) {
+     return this.angularFirestore
       .collection("organizations")
       .doc(organizationId)
       .set({
@@ -48,13 +48,12 @@ export class OrganizationService {
       }, { merge: true });
   }
   
-  public removeMember(orgOwnerId: string , organizationId :string , usersId: string ){
-    this.angularFirestore.collection("accounts")
-    .doc(orgOwnerId)
+  public removeMember(userId: string, organizationId :string , ){
+    this.angularFirestore
     .collection("organizations")
     .doc(organizationId)
     .set({
-      members: arrayRemove( usersId )
+      members: arrayRemove( userId )
     }, { merge: true });
   }
 

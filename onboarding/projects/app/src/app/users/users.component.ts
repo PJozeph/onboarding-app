@@ -53,7 +53,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.width = '25rem'
       dialogConfig.height = '15rem'
-      dialogConfig.data = { inviteUserEmail : this.userEmail }
+      dialogConfig.data = { inviteUserEmail : this.userEmail, orgName : this.selectedOrg.name }
       this.matDialog.open(InviteUserComponent, dialogConfig)
       .afterClosed()
       .subscribe(() => this.userEmail = "");
@@ -61,7 +61,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   public removeUser(userUid) {
-    this.orgService.removeMember(this.loggedInUser.uid,this.selectedOrg.uid, userUid);
+    this.orgService.removeMember(userUid, this.selectedOrg.uid);
     this.sore$.dispatch(new orgActions.RemoveOrgMember(userUid));
   }
   
