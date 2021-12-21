@@ -5,7 +5,7 @@ import { Organization, OrganizationService } from '../../../services/organizatio
 
 import * as fromApp from '../../../../store/index';
 import { Subscription } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-organizations',
@@ -15,7 +15,7 @@ import { catchError } from 'rxjs/operators';
 export class OrganizationsComponent implements OnInit, OnDestroy {
 
   public organizations : Organization [];
-  private loggedInUser : User;
+  public loggedInUserUid : string;
   private userSubscription : Subscription;
   public isLoading : boolean = true;
 
@@ -23,8 +23,10 @@ export class OrganizationsComponent implements OnInit, OnDestroy {
               private store$ : Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    this.store$.select('auth').subscribe(state => this.loggedInUser = state.user);
-    this.userSubscription =  this.organizationService.getUserOrganizations(this.loggedInUser.uid)
+    this.store$.select('auth').pipe(map(
+      state => state.user ? state.user.uid : null 
+    )).subscribe(uid => this.loggedInUserUid = uid);
+    this.userSubscription =  this.organizationService.getUserOrganizations(this.loggedInUserUid)
     .subscribe((response : Organization[]) => {
       this.organizations = response;
       this.isLoading = false;

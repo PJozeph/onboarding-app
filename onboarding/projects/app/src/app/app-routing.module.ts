@@ -10,8 +10,7 @@ const routes: Routes = [
   { path : 'auth', loadChildren : ()=> import('././auth/auth.module').then(m => m.AuthModule) },
   { path : 'userDashboard', loadChildren : ()=> import('./user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule) },
   { path : 'organizations', loadChildren : ()=> import('./organization/organization.module').then(m => m.OrganizationModule) },
-  { path : 'prices', loadChildren : ()=> import('./prices/pricing.module').then(m => m.PricesModule) }
-
+  { path : 'pricing', loadChildren : ()=> import('./pricing/pricing.module').then(m => m.PricesModule) }
 ];
 
 @NgModule({

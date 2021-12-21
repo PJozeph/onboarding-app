@@ -1,0 +1,29 @@
+.card-container {
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    height: 20rem;
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-card {
+    display: flex;
+    margin: 1rem 2rem;
+}
+
+.card-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    font-family: monospace;
+}
+
+.price-content{
+    flex-grow: 0.5;
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+}

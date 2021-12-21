@@ -13,7 +13,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateOrganizationComponent implements OnInit {
 
-  private loggedInUser : User;
+  public loggedInUser : User;
 
   constructor(private organizationService : OrganizationService,
              private store$ : Store<fromApp.AppState>,
