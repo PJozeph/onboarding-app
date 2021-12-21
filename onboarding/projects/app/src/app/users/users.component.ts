@@ -52,7 +52,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     if(event.key === 'Enter') {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.width = '25rem'
-      dialogConfig.height = '15rem'
+      dialogConfig.height = '18rem'
       dialogConfig.data = { inviteUserEmail : this.userEmail, orgName : this.selectedOrg.name }
       this.matDialog.open(InviteUserComponent, dialogConfig)
       .afterClosed()

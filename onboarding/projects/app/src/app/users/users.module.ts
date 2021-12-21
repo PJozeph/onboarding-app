@@ -4,7 +4,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { UserCardComponent } from './user-card/usercard.component';
 import { InviteUserComponent } from './invite-user/invite-user.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

@@ -18,12 +18,14 @@ import * as fromApp from '../../store/index';
 export class InviteUserComponent implements OnInit {
 
   public inviteUser$  : Observable<User>;
-  private loggedInUserUid : string;
   private selectedOrgUid  : string;
   public orgName : string;
   public userPresent : boolean = true;
   public inviteUserEmail : string;
   public inviteUserUid : string;
+  public role : string = '';
+  public selectedValue : string = 'Newcomer'; 
+  public roles : string []  = ['Newcomer', 'Editor'];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {},
              private userService : UserService,
@@ -40,9 +42,6 @@ export class InviteUserComponent implements OnInit {
         this.userPresent = false;
     }}),map(users => users[0]));
 
-    this.store$.select('auth').pipe(map(state => state.user.uid))
-    .subscribe(result => this.loggedInUserUid = result);
-
     this.store$.select('organization').pipe(map(state => state.organization.uid))
     .subscribe(result => this.selectedOrgUid = result)
   }
@@ -51,6 +50,9 @@ export class InviteUserComponent implements OnInit {
     this.inviteUser$.pipe(map(user => user.uid))
     .subscribe(memberUid => {
       this.store$.dispatch(new orgActions.AddOrgMember(memberUid));
+      if(this.selectedValue === 'Editor') {
+        this.orgService.addEditor(memberUid, this.selectedOrgUid);
+      }
       this.orgService.addMember(memberUid, this.selectedOrgUid)
       .then(() => {
         this.dialogRef.close()
@@ -60,6 +62,10 @@ export class InviteUserComponent implements OnInit {
 
   public isUserPresent(user : User) {
     return user === null;
+  }
+
+  public changeRole(role) {
+    console.log(role.target)
   }
 
 }

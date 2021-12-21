@@ -18,6 +18,16 @@ export interface Organization {
 })
 export class OrganizationService {
 
+
+  public addEditor(memberUid: string, selectedOrgUid: string) {
+     this.angularFirestore
+      .collection("organizations")
+      .doc(selectedOrgUid)
+      .set({
+        editors: arrayUnion( memberUid )
+      }, { merge: true });
+  }
+
   constructor(private angularFirestore : AngularFirestore) { }
 
   public getUserOrganizations(uid: string) : Observable <Organization []> {
