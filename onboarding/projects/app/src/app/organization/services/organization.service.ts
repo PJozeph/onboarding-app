@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { arrayRemove } from '@angular/fire/firestore';
 import { arrayUnion } from 'firebase/firestore';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
@@ -24,7 +24,7 @@ export class OrganizationService {
       .collection("organizations")
       .doc(selectedOrgUid)
       .set({
-        editors: arrayUnion( memberUid )
+        editorsUid: arrayUnion( memberUid )
       }, { merge: true });
   }
 
@@ -58,13 +58,20 @@ export class OrganizationService {
       }, { merge: true });
   }
   
-  public removeMember(userId: string, organizationId :string , ){
+  public removeMember(userId: string, organizationId :string) {
     this.angularFirestore
     .collection("organizations")
     .doc(organizationId)
     .set({
       members: arrayRemove( userId )
     }, { merge: true });
+  }
+
+  public removeOrganization(orgId : string) {
+    this.angularFirestore
+    .collection("organizations")
+    .doc(orgId)
+    .delete();
   }
 
 }

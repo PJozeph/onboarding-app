@@ -1,5 +1,14 @@
-<div class="organization-container" (click)="onOrgSelect()">
-    <div class="title">{{organization.name}}</div>
+<div class="organization-container">
+    <div class="header">    
+    <div class="dropdown">
+        <img src="assets/icons/three-dots.svg" alt="settings-icon" data-bs-toggle="dropdown">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li class="dropdown-item" (click)="onRemoveOrg(organization.uid)">Remove</li>
+          <li class="dropdown-item">Edit</li>
+        </ul>
+      </div>
+    </div>
+    <div class="title" (click)="onOrgSelect()">{{organization.name}}</div>
     <hr>
 </div>
 

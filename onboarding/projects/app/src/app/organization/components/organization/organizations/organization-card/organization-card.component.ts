@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Organization } from '../../../../services/organization.service';
+import { Organization, OrganizationService } from '../../../../services/organization.service';
 
 import * as fromApp from '../../../../../store/index';
 import * as orgActions from './../../../../store/organization.actions';
@@ -16,7 +16,8 @@ export class OrganizationCardComponent implements OnInit {
   @Input() organization : Organization
 
   constructor(private router : Router,
-              private store$ : Store<fromApp.AppState>) { }
+              private store$ : Store<fromApp.AppState>,
+              private orgService: OrganizationService) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +26,10 @@ export class OrganizationCardComponent implements OnInit {
     this.store$.dispatch( new orgActions.SelectOrganization(this.organization));
     window.localStorage.setItem('selectedOrg', JSON.stringify(this.organization));
     this.router.navigate(['users'])
+  }
+
+  public onRemoveOrg(orgUid : string) {
+    this.orgService.removeOrganization(orgUid);
   }
 
 }
