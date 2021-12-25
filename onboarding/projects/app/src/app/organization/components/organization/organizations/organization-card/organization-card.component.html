@@ -1,5 +1,5 @@
 <div class="organization-container">
-    <div class="header">    
+    <div class="header" *ngIf="isGroupOwner | async">    
     <div class="dropdown">
         <img src="assets/icons/three-dots.svg" alt="settings-icon" data-bs-toggle="dropdown">
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

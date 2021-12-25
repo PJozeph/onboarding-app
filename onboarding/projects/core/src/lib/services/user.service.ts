@@ -16,7 +16,7 @@ export class UserService {
     .collection<User>('accounts')
     .valueChanges().pipe(map( users => {
       return users.map(user => {
-        return new User(user.uid, user.displayName, user.imagePath)
+        return new User(user.uid, user.stripeUid ,user.displayName, user.imagePath)
       })
     }));
   }

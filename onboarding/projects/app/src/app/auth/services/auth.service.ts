@@ -4,7 +4,6 @@ import {
   createUserWithEmailAndPassword, signInWithEmailAndPassword
 } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Firestore } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
@@ -28,7 +27,7 @@ export class AuthService {
     .doc(userId)
     .update({
       displayName : name
-    }).catch(error => {})
+    }).catch(error => {console.log(error)})
   }
 
   public emailLogin(email: string, password: string): Promise<any> {
@@ -44,6 +43,7 @@ export class AuthService {
       })
       const user = new User(
         result.user.uid,
+        'stripeId',
         result.user.displayName,
         result.user.photoURL);
 

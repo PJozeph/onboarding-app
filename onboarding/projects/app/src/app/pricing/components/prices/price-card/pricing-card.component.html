@@ -4,6 +4,10 @@
     <div class="card-content">Lorem ipsum dolor sit amet</div>
     <div class="price-content">{{price}} €</div>
     <div class="bottom-card">
-        <button  type="button" style="flex-grow: 1;" class="btn btn-outline-primary">Start Now</button>
+        <button  
+            type="button" 
+            style="flex-grow: 1;"
+            (click)=onCheckout() 
+            class="btn btn-outline-primary">Start Now</button>
     </div>
 </div>

@@ -4,15 +4,15 @@ import * as admin from "firebase-admin";
 admin.initializeApp();
 interface UserModel {
   uid: string
+  stripeUid: string,
   displayName: string,
   email: string,
-  stripeUid: string,
   imagePath : string,
 }
 
 const stripe = require('stripe')(functions.config().stripe.testkey)
   exports.createStripeCustomer = functions.auth.user().onCreate( createdUser => {
-       return stripe.customers.create({email : createdUser.email})
+       return stripe.customers.create({ name : createdUser.displayName  ,email : createdUser.email})
        .then((stripeUser : any) => {
         const userModel : UserModel = {
           displayName: createdUser.displayName ? createdUser.displayName : 'name is missing',
@@ -21,18 +21,40 @@ const stripe = require('stripe')(functions.config().stripe.testkey)
           stripeUid : stripeUser.id,
           imagePath : createdUser.photoURL? createdUser.photoURL : 'https://avatars.dicebear.com/api/gridy/' + createdUser.uid + '.svg',
         }
-        return admin.firestore().collection('accounts').doc(createdUser.uid).set(userModel)
+        return admin.firestore()
+        .collection('accounts')
+        .doc(createdUser.uid)
+        .set(userModel)
        }
        );
   });
 
-// exports.createSubscription = functions.database
-//                               .ref('accounts/{userId}/pro-membership/token')
-//                               .onWrite( event => {
-//                                 console.log(event)
-//                               })  
+//  HANDLE RECURRING PAYMENT FROM STRIPE 
+ exports.recurringPayment = functions.https
+              .onRequest((req, res) => {
+                const hook = req.body.type;
+                const data = req.body.data.object;
 
+                if(hook === 'invoice_payment_success') {
+                    const memberShip = {
+                    name : 'pro-membership',
+                    active : true
+                  }
+                    admin.firestore()
+                          .collection('accounts')
+                         .doc('cus_KpaAF6fMpnmKNU')
+                         .update(memberShip)
+                         
+                }
 
+                if(hook === 'invoice_payment_failed') {
+                  admin.firestore()
+                         .collection('accounts')
+                         .doc(data.customer)
+                         .update({"pro-membership" : false})
+                }
 
-
+                res.status(200).send('lorem ipsum');
+              })
+               
 

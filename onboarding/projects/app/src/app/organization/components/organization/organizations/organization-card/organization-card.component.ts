@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Organization, OrganizationService } from '../../../../services/organization.service';
-
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as fromApp from '../../../../../store/index';
+import { Organization, OrganizationService } from '../../../../services/organization.service';
 import * as orgActions from './../../../../store/organization.actions';
+
 
 @Component({
   selector: 'app-organization-card',
@@ -13,13 +15,17 @@ import * as orgActions from './../../../../store/organization.actions';
 })
 export class OrganizationCardComponent implements OnInit {
 
-  @Input() organization : Organization
+  @Input() organization : Organization;
+  public isGroupOwner : Observable<boolean>;
 
   constructor(private router : Router,
               private store$ : Store<fromApp.AppState>,
               private orgService: OrganizationService) { }
 
   ngOnInit(): void {
+    this.isGroupOwner = this.store$.select('auth').pipe(
+    map(state => state.user),
+    map(user => this.organization.ownerUid === user.uid));
   }
   
   public onOrgSelect() {

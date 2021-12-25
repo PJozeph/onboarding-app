@@ -61,8 +61,17 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   public removeUser(userUid) {
-    this.orgService.removeMember(userUid, this.selectedOrg.uid);
-    this.sore$.dispatch(new orgActions.RemoveOrgMember(userUid));
+    if(this.hasRight(this.loggedInUser.uid)) {
+      this.orgService.removeMember(userUid, this.selectedOrg.uid);
+      this.sore$.dispatch(new orgActions.RemoveOrgMember(userUid));
+    } else {
+      alert("Dont have right to remove profile \n Only group owner and editors can remove profiles ")
+    }
+  }
+
+  private hasRight (uid : string) {
+    return (this.selectedOrg.editorsUid.includes(uid) 
+    || this.selectedOrg.ownerUid === uid)
   }
   
 

@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import { PricingComponent } from './components/prices/pricing.component';
 import { PricingRoutingModule } from './pricing-routing';
 import { PriceCardComponent } from './components/prices/price-card/pricing-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     PricingComponent,
-    PriceCardComponent
+    PriceCardComponent,
   ],
   imports: [
     CommonModule,
-    PricingRoutingModule
+    PricingRoutingModule,
+    HttpClientModule
   ]
 })
 export class PricesModule { }
