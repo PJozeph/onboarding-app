@@ -7,16 +7,19 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
+import { UserService } from 'projects/core/src/lib/services/user.service';
+import { Subscription } from 'rxjs';
 import * as authActions from './../store/auth.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  
   constructor(private auth: Auth,
-    private store: Store,
-    private angularFireStore: AngularFirestore) { }
+              private store: Store,
+              private angularFireStore: AngularFirestore,
+              private userService : UserService) { }
 
   public async emailSignUp(email: string, password: string) {
     return await createUserWithEmailAndPassword(this.auth, email, password);
@@ -41,14 +44,10 @@ export class AuthService {
       result.user.getIdTokenResult().then(token => {
         window.localStorage.setItem('token', JSON.stringify(token));
       })
-      const user = new User(
-        result.user.uid,
-        'stripeId',
-        result.user.displayName,
-        result.user.photoURL);
-
-      this.store.dispatch(new authActions.LoginSuccess(user))
-      window.localStorage.setItem('user', JSON.stringify(user));
+     this.userService.getUserById(result.user.uid).subscribe( user => {
+        this.store.dispatch(new authActions.LoginSuccess(user))
+        window.localStorage.setItem('user', JSON.stringify(user));
+      } );
     })
   }
 
