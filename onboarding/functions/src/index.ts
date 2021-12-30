@@ -32,19 +32,25 @@ const stripe = require('stripe')(functions.config().stripe.testkey)
 //  HANDLE RECURRING PAYMENT FROM STRIPE 
  exports.recurringPayment = functions.https
               .onRequest((req, res) => {
-                const hook = req.body.type;
-                const data = req.body.data.object;
 
-                if(hook === 'invoice_payment_success') {
+                const hook = req.body.type;
+                const data = req.body.data;
+
+                if(hook === 'invoice.payment_succeeded') {
                     const memberShip = {
                     name : 'pro-membership',
                     active : true
                   }
+                  
+                  const user = admin.auth().getUserByEmail(req.body.data.object.customer_email)
+                  user.then(user => {
                     admin.firestore()
                           .collection('accounts')
-                         .doc('cus_KpaAF6fMpnmKNU')
-                         .update(memberShip)
-                         
+                          .doc(user.uid)
+                          .collection('membership')
+                          .doc('membership')
+                          .set(memberShip)
+                          })
                 }
 
                 if(hook === 'invoice_payment_failed') {
@@ -53,7 +59,6 @@ const stripe = require('stripe')(functions.config().stripe.testkey)
                          .doc(data.customer)
                          .update({"pro-membership" : false})
                 }
-
                 res.status(200).send('lorem ipsum');
               })
                
