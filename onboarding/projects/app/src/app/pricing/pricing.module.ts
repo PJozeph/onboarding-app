@@ -14,6 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     PricingRoutingModule,
     HttpClientModule
+  ],
+  exports: [
+    PriceCardComponent
   ]
 })
 export class PricesModule { }

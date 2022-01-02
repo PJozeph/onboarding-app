@@ -27,3 +27,7 @@
     justify-content: center;
     font-size: xx-large;
 }
+
+.active-subscription {
+    border: 1px solid blue;
+}

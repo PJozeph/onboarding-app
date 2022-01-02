@@ -1,13 +1,15 @@
-<div class="card-container">
+<div class="card-container" [ngClass]="{'active-subscription' : isSubscriptionActive}">
     <div class="card-content">Lorem ipsum</div>
     <div class="card-content">Contrary to popular belief, Lorem Ipsum is not simply random text. </div>
     <div class="card-content">Lorem ipsum dolor sit amet</div>
-    <div class="price-content">{{price}} €</div>
+    <div class="price-content" *ngIf="showPrice">{{price}} €</div>
     <div class="bottom-card">
         <button  
             type="button" 
             style="flex-grow: 1;"
-            (click)=onCheckout() 
-            class="btn btn-outline-primary">Start Now</button>
+            (click)=onCheckout()
+            class="btn btn-primary"
+            [ngClass]="{ 'btn-danger' : isSubscriptionActive }"
+            >{{isSubscriptionActive ?  'Cancel': buttonText}}</button>
     </div>
 </div>

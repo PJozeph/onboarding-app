@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { AuthService } from '../../../auth/services/auth.service';
 export class UserDashboardComponent implements OnInit {
 
   constructor(private authService : AuthService, 
-    private router : Router) { }
+              private router : Router,
+              private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -18,6 +19,10 @@ export class UserDashboardComponent implements OnInit {
   public onLogout() {
     this.authService.signOut();
     this.router.navigate([''])
+  }
+
+  public onSubscriptionStatus(){
+    this.router.navigate(['subscription-status'], {relativeTo : this.activatedRoute})
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="organization-container">
-    <div class="header" *ngIf="isGroupOwner | async">    
+    <div class="header" *ngIf="isGroupOwner">    
     <div class="dropdown">
         <img src="assets/icons/three-dots.svg" alt="settings-icon" data-bs-toggle="dropdown">
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -8,7 +8,9 @@
         </ul>
       </div>
     </div>
-    <div class="title" (click)="onOrgSelect()">{{organization.name}}</div>
+    <div class="title"
+         [ngClass]="{'top-margin' : !isGroupOwner}"
+         (click)="onOrgSelect()">{{organization.name}}</div>
     <hr>
 </div>
 
