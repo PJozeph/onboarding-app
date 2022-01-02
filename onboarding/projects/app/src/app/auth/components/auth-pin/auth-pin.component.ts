@@ -18,7 +18,7 @@ export class AuthPinComponent implements OnInit {
     dialogConfig.panelClass = 'no-padding'
     this.dialog.open(AuthComponent, dialogConfig).afterClosed()
       .subscribe(() => {
-        this.router.navigate(['users']);
+        this.router.navigate(['organizations']);
       })  
   }
 
