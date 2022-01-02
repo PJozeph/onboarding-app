@@ -24,9 +24,9 @@ export class HeaderComponent implements OnInit {
               private router : Router) { }
 
   ngOnInit(): void {
-    this.loggedInUser = JSON.parse(window.localStorage.getItem('user'));
     this.store.select('auth').subscribe((state => {
-        if(state.user) {
+      if(state.user) {
+          this.loggedInUser = state.user;
             this.isLoggedIn = true;
             this.dialog.closeAll();
           } else {
