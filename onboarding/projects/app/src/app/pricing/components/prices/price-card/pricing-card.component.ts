@@ -5,7 +5,8 @@ import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import * as fromApp from '../../../../store/index'
 import { StripeSessionService } from '../../../services/stripe-session.service';
 import { loadStripe } from '@stripe/stripe-js'; // this is typescript
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { StripeService } from 'projects/app/src/app/user-dashboard/services/stripe.service';
 
 
 @Component({
@@ -17,16 +18,18 @@ export class PriceCardComponent implements OnInit  {
 
   @Input('price') price : string;
   @Input('productId') productId : string;
-  @Input('activeProductId') activeProductId : string;
+  @Input('activeProductId') activeProductId : string = "default";
   @Input('buttonText') buttonText : string = 'Start Now';
   @Input('showPrice') showPrice : boolean = true;
+  @Input('subscriptionId') subscriptionId : string = '';
 
   private stripePromise;
   private loggedInUser :User;
   public isSubscriptionActive = false;
 
   constructor(private store$ : Store<fromApp.AppState>, 
-    private sessionService : StripeSessionService) { }
+              private sessionService : StripeSessionService,
+              private stripeService : StripeService) { }
 
 
   ngOnInit(): void {
@@ -39,8 +42,24 @@ export class PriceCardComponent implements OnInit  {
     }
   }
 
+  public onCancel() {
+    this.stripeService.cancelSubscription(this.subscriptionId).subscribe(
+      res => {
+        console.log("cancel response")
+        console.log(res)
+      }
+    );
+  }
 
-  public async onCheckout(){
+
+  public async onCheckout(activeProductId : string){
+    if(activeProductId) {
+      this.stripeService.getUserSubscription(this.loggedInUser.stripeUid)
+      .pipe(
+        switchMap((subscription : any) => 
+        this.stripeService.cancelSubscription(subscription.data[0].id)))
+        .subscribe( res => {console.log(res)})
+      }
       const stripe = await this.stripePromise;
       this.sessionService.getSession(this.loggedInUser.stripeUid, this.productId)
       .subscribe(session => {

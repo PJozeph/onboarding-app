@@ -1,5 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+const stripe = require('stripe')(functions.config().stripe.testkey)
+
 
 admin.initializeApp();
 interface UserModel {
@@ -10,7 +12,6 @@ interface UserModel {
   imagePath : string,
 }
 
-const stripe = require('stripe')(functions.config().stripe.testkey)
   exports.createStripeCustomer = functions.auth.user().onCreate( createdUser => {
        return stripe.customers.create({ name : createdUser.displayName  ,email : createdUser.email})
        .then((stripeUser : any) => {
@@ -59,7 +60,7 @@ const stripe = require('stripe')(functions.config().stripe.testkey)
                          .doc(data.customer)
                          .update({"pro-membership" : false})
                 }
-                res.status(200).send('lorem ipsum');
+                res.status(200).send('OK');
               })
                
 

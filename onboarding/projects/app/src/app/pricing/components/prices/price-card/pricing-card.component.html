@@ -4,12 +4,19 @@
     <div class="card-content">Lorem ipsum dolor sit amet</div>
     <div class="price-content" *ngIf="showPrice">{{price}} €</div>
     <div class="bottom-card">
-        <button  
+        <button *ngIf="!isSubscriptionActive" 
             type="button" 
             style="flex-grow: 1;"
-            (click)=onCheckout()
+            (click)="onCheckout(activeProductId)"
             class="btn btn-primary"
-            [ngClass]="{ 'btn-danger' : isSubscriptionActive }"
-            >{{isSubscriptionActive ?  'Cancel': buttonText}}</button>
+            >{{buttonText}}
+        </button>
+        <button *ngIf="isSubscriptionActive"  
+            type="button" 
+            style="flex-grow: 1;"
+            (click)="onCancel()"
+            class="btn btn-danger"
+            >Cancel
+        </button>
     </div>
 </div>

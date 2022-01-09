@@ -1,17 +1,14 @@
 <div class="status-container" *ngIf="!loading">
     <app-price-card
+        [subscriptionId] ="subscriptionId"
         [showPrice]="false"
-        [productId]="'prod_KpSSIUM75mOPXq'"
-        [activeProductId]="activeSubscriptionId">
+        [productId]="'price_1KAVIkK22cRi3yGNrnvzLQgt'"
+        [activeProductId]="activeProductId">
     </app-price-card > 
     <app-price-card 
+        [subscriptionId] ="subscriptionId"
         [showPrice]="false"
-        [productId]="'prod_KqBg25XVI7I0YA'"
-        [activeProductId]="activeSubscriptionId">
-    </app-price-card>
-    <app-price-card 
-        [showPrice]="false"
-        [productId]="'prod_KqBg25XVI7I0YAzzz'"
-        [activeProductId]="activeSubscriptionId">
+        [productId]="'price_1K9nXnK22cRi3yGNbI15Om67'"
+        [activeProductId]="activeProductId">
     </app-price-card>
 </div>

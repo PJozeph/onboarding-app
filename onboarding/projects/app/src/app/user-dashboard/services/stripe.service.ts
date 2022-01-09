@@ -22,4 +22,12 @@ export class StripeService {
 
     return this.http.get('https://api.stripe.com/v1/subscriptions', options);
   }
+
+  public cancelSubscription(subscriptionId : string) {
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + environment.stripeKey,
+    });
+
+    return this.http.delete('https://api.stripe.com/v1/subscriptions/' + subscriptionId , {headers : headers} );
+  }
 }
