@@ -7,6 +7,7 @@ import { StripeSessionService } from '../../../services/stripe-session.service';
 import { loadStripe } from '@stripe/stripe-js'; // this is typescript
 import { map, switchMap } from 'rxjs/operators';
 import { StripeService } from 'projects/app/src/app/user-dashboard/services/stripe.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -29,7 +30,9 @@ export class PriceCardComponent implements OnInit  {
 
   constructor(private store$ : Store<fromApp.AppState>, 
               private sessionService : StripeSessionService,
-              private stripeService : StripeService) { }
+              private stripeService : StripeService,
+              private router : Router,
+              private activatedRoute : ActivatedRoute) { }
 
 
   ngOnInit(): void {
@@ -45,8 +48,7 @@ export class PriceCardComponent implements OnInit  {
   public onCancel() {
     this.stripeService.cancelSubscription(this.subscriptionId).subscribe(
       res => {
-        console.log("cancel response")
-        console.log(res)
+        this.router.navigate([this.activatedRoute])
       }
     );
   }
@@ -57,8 +59,7 @@ export class PriceCardComponent implements OnInit  {
       this.stripeService.getUserSubscription(this.loggedInUser.stripeUid)
       .pipe(
         switchMap((subscription : any) => 
-        this.stripeService.cancelSubscription(subscription.data[0].id)))
-        .subscribe( res => {console.log(res)})
+        this.stripeService.cancelSubscription(subscription.data[0].id))).subscribe()
       }
       const stripe = await this.stripePromise;
       this.sessionService.getSession(this.loggedInUser.stripeUid, this.productId)
