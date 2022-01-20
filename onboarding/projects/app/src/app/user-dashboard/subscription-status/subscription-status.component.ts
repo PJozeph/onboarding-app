@@ -15,7 +15,6 @@ import { StripeService } from '../services/stripe.service';
 export class SubscriptionStatusComponent implements OnInit {
 
 
-  loggedInUser : Observable<User>;
   activeProductId : string;
   subscriptionId: string;
   public loading : boolean = true;
@@ -27,7 +26,6 @@ export class SubscriptionStatusComponent implements OnInit {
     this.state$.select('auth').pipe(switchMap(
       (user) => this.stripeService.getUserSubscription(user.user.stripeUid)))
       .subscribe( (res : any) => {
-        console.log(res)
         this.subscriptionId = res.data[0] ? res.data[0].id : '' ;
         this.activeProductId = res.data[0] ? res.data[0].plan.id : '';
         this.loading = false;

@@ -1,10 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './components/about/about.component';
+import { LandingPageComponent } from './landing-page.component';
 
 const routes: Routes = [
-  { path: '', component: AboutComponent },
+  { path: '', component: LandingPageComponent },
 ];
 
 @NgModule({
@@ -14,4 +14,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class PricingRoutingModule { }
+export class LandingRoutingModule { }

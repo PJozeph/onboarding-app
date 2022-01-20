@@ -1,10 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './components/about/about.component';
+import { MobileComponent } from './mobile/mobile.component';
 
 const routes: Routes = [
-  { path: '', component: AboutComponent },
+  { path: '', component: MobileComponent },
 ];
 
 @NgModule({
@@ -14,4 +14,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class PricingRoutingModule { }
+export class MobileRoutingModule { }

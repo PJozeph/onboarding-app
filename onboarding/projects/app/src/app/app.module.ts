@@ -12,6 +12,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { GoalCommentEffects } from './extension/goal/comment-item/store/goal-comment.effect'
 
+import { SubscriptionEffect } from './user-dashboard/subscription-status/store/subscription.effects';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,7 @@ import { GoalCommentEffects } from './extension/goal/comment-item/store/goal-com
     FormsModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({maxAge : 5}),
-    EffectsModule.forRoot([GoalCommentEffects])
+    EffectsModule.forRoot([GoalCommentEffects, SubscriptionEffect])
   ],
   providers: [],
   bootstrap: [AppComponent]

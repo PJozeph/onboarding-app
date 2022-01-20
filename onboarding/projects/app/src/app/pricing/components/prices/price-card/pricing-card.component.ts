@@ -1,13 +1,14 @@
-import { Component, DoCheck, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { User } from 'projects/core/src/lib/modal/user/user.modal';
-
-import * as fromApp from '../../../../store/index'
-import { StripeSessionService } from '../../../services/stripe-session.service';
-import { loadStripe } from '@stripe/stripe-js'; // this is typescript
-import { map, switchMap } from 'rxjs/operators';
-import { StripeService } from 'projects/app/src/app/user-dashboard/services/stripe.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { loadStripe } from '@stripe/stripe-js'; // this is typescript
+import { StripeService } from 'projects/app/src/app/user-dashboard/services/stripe.service';
+import { User } from 'projects/core/src/lib/modal/user/user.modal';
+import { map, switchMap } from 'rxjs/operators';
+import * as fromApp from '../../../../store/index';
+import { StripeSessionService } from '../../../services/stripe-session.service';
+
+import * as subAction from '../../../../user-dashboard/subscription-status/store/subscription.actions'
 
 
 @Component({
@@ -54,7 +55,7 @@ export class PriceCardComponent implements OnInit  {
   }
 
 
-  public async onCheckout(activeProductId : string){
+  public async onCheckout(activeProductId : string) {
     if(activeProductId) {
       this.stripeService.getUserSubscription(this.loggedInUser.stripeUid)
       .pipe(
@@ -68,6 +69,6 @@ export class PriceCardComponent implements OnInit  {
           sessionId : session.id
         })
       })
-  }
+    }
 
 }

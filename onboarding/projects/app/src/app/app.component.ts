@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
@@ -11,10 +12,16 @@ export class AppComponent implements OnInit {
 
   public isMobile : boolean;
 
-  constructor( private deviceDetector : DeviceDetectorService) {}
+  constructor(private deviceDetector : DeviceDetectorService,
+              private router : Router) {}
 
   ngOnInit(): void {
     this.isMobile = this.deviceDetector.isMobile();
+    if(this.isMobile) {
+      this.router.navigate(['mobile'])
+    } else {
+      this.router.navigate(['welcome'])
+    }
   }
 
 

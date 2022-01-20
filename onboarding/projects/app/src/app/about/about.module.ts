@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AboutComponent } from './components/about/about.component';
+import { PricingRoutingModule } from '../pricing/pricing-routing';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    AboutComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    PricingRoutingModule
   ]
 })
 export class AboutModule { }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../modal/user/user.modal';
@@ -29,6 +29,11 @@ export class UserService {
     return this.angularFireStore
     .collection<User>('accounts', ref => ref.where('email', '==', userEmail)).valueChanges();
 
+  }
+
+  public getUserMembership(user : User) : Observable<any> {
+    const userCollection: AngularFirestoreDocument<User> = this.angularFireStore.doc<User>('accounts/' + user.uid);
+    return userCollection.collection('membership').valueChanges()
   }
 
 }
