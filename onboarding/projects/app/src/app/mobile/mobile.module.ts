@@ -14,6 +14,8 @@ import { LandingModule } from '../langing-page/landing.module';
     CommonModule,
     MobileRoutingModule,
     LandingModule
+  ], exports : [
+    MobileHeaderComponent
   ]
 })
 export class MobileModule { }

@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { GoalCommentEffects } from './extension/goal/comment-item/store/goal-comment.effect'
 
 import { SubscriptionEffect } from './user-dashboard/subscription-status/store/subscription.effects';
+import { MobileModule } from './mobile/mobile.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SubscriptionEffect } from './user-dashboard/subscription-status/store/s
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MobileModule,
     CoreModule,
     FormsModule,
     StoreModule.forRoot(reducers),

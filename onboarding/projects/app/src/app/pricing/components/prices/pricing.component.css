@@ -16,6 +16,13 @@
     color: gray;
 }
 
+.custom-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.7rem;
+}
+
 .cards {
     flex-grow: 1;
 }
