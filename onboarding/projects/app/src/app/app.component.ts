@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import * as fromApp from '../app/store/index';
+import * as subscriptionStatus from '../app/user-dashboard/subscription-status/store/subscription.actions';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +11,16 @@ import { DeviceDetectorService } from 'ngx-device-detector';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'MyOnboard.io';
 
   public isMobile : boolean;
 
   constructor(private deviceDetector : DeviceDetectorService,
-              private router : Router) {}
+              private router : Router,
+              private store : Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
+    this.store.dispatch(new subscriptionStatus.GetSubscriptionStatus)
     this.isMobile = this.deviceDetector.isMobile();
     if(this.isMobile) {
       this.router.navigate(['mobile'])
@@ -23,7 +28,5 @@ export class AppComponent implements OnInit {
       this.router.navigate(['welcome'])
     }
   }
-
-
 
 }

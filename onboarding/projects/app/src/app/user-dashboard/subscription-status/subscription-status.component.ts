@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User } from 'projects/core/src/lib/modal/user/user.modal';
-import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import * as fromApp from "../../store/index";
+import * as subscriptionActions from '../../user-dashboard/subscription-status/store/subscription.actions';
 import { StripeService } from '../services/stripe.service';
+
 
 
 @Component({

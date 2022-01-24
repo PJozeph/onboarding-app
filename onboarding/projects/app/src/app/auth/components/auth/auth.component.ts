@@ -51,7 +51,7 @@ export class AuthComponent implements OnInit, OnDestroy {
           }
         );
       }
-    )
+    ).catch(error => this.store$.dispatch(new authActions.LoginFail(error.message)))
   }
 
   public onGoogleLogin(){

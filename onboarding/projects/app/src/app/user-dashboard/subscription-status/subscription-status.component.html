@@ -1,12 +1,14 @@
 <div class="status-container" *ngIf="!loading">
     <app-price-card
+        [title]="'Standard'"
         [showPrice]="true"
         [price] = "'15'" 
         [subscriptionId] ="subscriptionId"
         [productId]="'price_1KAVIkK22cRi3yGNrnvzLQgt'"
         [activeProductId]="activeProductId">
     </app-price-card > 
-    <app-price-card 
+    <app-price-card
+        [title]="'Premium'" 
         [showPrice]="true"
         [price] = "'20'" 
         [subscriptionId] ="subscriptionId"

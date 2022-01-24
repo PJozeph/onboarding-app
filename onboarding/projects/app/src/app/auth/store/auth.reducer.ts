@@ -6,12 +6,14 @@ export interface State {
     user: User;
     authError: string;
     loading: boolean;
+    errorMessage: string;
 }
 
 const initialState: State = {
     user: window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user'))  : null ,
     authError: null,
-    loading: false
+    loading: false,
+    errorMessage : null
 };
 
 export function authReducer(state = initialState, action: AuthActions) {
@@ -31,6 +33,11 @@ export function authReducer(state = initialState, action: AuthActions) {
             return {
                 ...state,
                 user : null
+        }
+        case authAction.LOGIN_FAIL : 
+            return {
+                ...state,
+                errorMessage: action.errorMessage
         }
         default: return state;
     }

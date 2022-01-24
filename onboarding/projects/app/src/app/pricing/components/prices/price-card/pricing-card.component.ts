@@ -19,6 +19,7 @@ import * as subAction from '../../../../user-dashboard/subscription-status/store
 export class PriceCardComponent implements OnInit  {
 
   @Input('price') price : string;
+  @Input('title') title : string;
   @Input('productId') productId : string;
   @Input('activeProductId') activeProductId : string = "default";
   @Input('buttonText') buttonText : string = 'Start Now';

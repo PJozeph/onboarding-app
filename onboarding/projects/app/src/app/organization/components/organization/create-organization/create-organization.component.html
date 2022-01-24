@@ -1,4 +1,4 @@
-<div class="container" *ngIf="loggedInUser">
+<div class="container" *ngIf="activeMember">
     <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Organization name</span>
@@ -27,9 +27,4 @@
             Create
         </button>
         </div>
-</div>
-<div class="container" *ngIf="!loggedInUser">
-    <div class="alert alert-warning" role="alert">
-        Login if you want to use organization feature!
-      </div>
 </div>

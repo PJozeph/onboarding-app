@@ -3,28 +3,35 @@ import { User } from "projects/core/src/lib/modal/user/user.modal";
 
 export const LOGIN_START = '[Auth] Login Start';
 export const LOGIN_SUCCESS = '[Auth] Login Success';
+export const LOGIN_FAIL = '[Auth] Login FAIL';
 export const GOOGLE_LOGIN_START = '[Auth] Google Login Start';
 export const LOGOUT = '[Auth] Logout';
 
 export class LoginStart implements Action {
-    readonly type = LOGIN_START;
-    constructor(public payload: { email: string; password: string }) {}
-  }
+  readonly type = LOGIN_START;
+  constructor(public email: string, public password: string) { }
+}
 
 export class LoginSuccess implements Action {
-    readonly type = LOGIN_SUCCESS;
-    constructor(public payload:  User ) {}
-  }
+  readonly type = LOGIN_SUCCESS;
+  constructor(public payload: User) { }
+}
 
-  export class GoogleLoginStart implements Action {
-    readonly type = GOOGLE_LOGIN_START;
-  }
+export class LoginFail implements Action {
+  readonly type = LOGIN_FAIL;
+  constructor(public errorMessage: string) { }
+}
 
-  export class Logout implements Action {
-    readonly type = LOGOUT;
-  }
+export class GoogleLoginStart implements Action {
+  readonly type = GOOGLE_LOGIN_START;
+}
 
-  export type AuthActions =
-      | LoginStart
-      | LoginSuccess 
-      | Logout
+export class Logout implements Action {
+  readonly type = LOGOUT;
+}
+
+export type AuthActions =
+  | LoginStart
+  | LoginSuccess
+  | Logout
+  | LoginFail

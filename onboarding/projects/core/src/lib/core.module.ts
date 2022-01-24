@@ -15,6 +15,7 @@ import { ComingSoonComponent } from './pages/coming-soon/coming-soon.component';
 import { InputComponent } from './dialog/input/input.component';
 import { FormsModule } from '@angular/forms';
 import { InputDialogComponent } from './dialog/input/input-dialog/input-dialog.component';
+import { MessageDialogComponent } from './dialog/message/message-dialog/message-dialog.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { InputDialogComponent } from './dialog/input/input-dialog/input-dialog.c
     ScrollBottomDirective,
     InputComponent,
     InputDialogComponent,
+    MessageDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { InputDialogComponent } from './dialog/input/input-dialog/input-dialog.c
     OnHoverDirective,
     ComingSoonComponent,
     ScrollBottomDirective,
-    InputComponent
+    InputComponent,
+    MessageDialogComponent
   ]
 })
 export class CoreModule { }

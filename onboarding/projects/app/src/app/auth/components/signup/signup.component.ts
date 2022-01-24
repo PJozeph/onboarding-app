@@ -70,7 +70,7 @@ export class SignupComponent implements OnInit, OnDestroy {
           );
         }, 5500);
       }
-    );
+    ).catch(error => this.store$.dispatch(new authActions.LoginFail(error.message)));
   }
 
   ngOnDestroy(): void {

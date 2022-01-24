@@ -1,16 +1,10 @@
 import { Action } from "@ngrx/store";
 
-export const START_SUBSCRIPTION = '[Subscription] Start Subscription';
-export const CANCEL_SUBSCRIPTION = '[Subscription] Cancel Subscription';
+export const GET_SUBSCRIPTION_STATUS = '[Subscription] Get Subscription Status';
 export const SET_SUBSCRIPTION = '[Subscription] Set Subscription';
 
-export class StartSubscription implements Action {
-    readonly type = START_SUBSCRIPTION;
-    constructor() {}
-  }
-
-export class CancelSubscription implements Action {
-    readonly type = CANCEL_SUBSCRIPTION;
+export class GetSubscriptionStatus implements Action {
+    readonly type = GET_SUBSCRIPTION_STATUS;
     constructor() {}
   }
 
@@ -20,6 +14,5 @@ export class SetSubscription implements Action {
 }  
 
   export type SubscriptionActions =
-      | StartSubscription
-      | CancelSubscription
+      | GetSubscriptionStatus
       | SetSubscription

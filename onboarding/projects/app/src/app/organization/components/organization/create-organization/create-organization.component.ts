@@ -13,24 +13,27 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateOrganizationComponent implements OnInit {
 
-  public loggedInUser : User;
+  public loggedInUser: User;
+  public activeMember: boolean;
 
-  constructor(private organizationService : OrganizationService,
-             private store$ : Store<fromApp.AppState>,
-             private dialogRef: MatDialogRef<CreateOrganizationComponent>) { }
+  constructor(private organizationService: OrganizationService,
+    private store$: Store<fromApp.AppState>,
+    private dialogRef: MatDialogRef<CreateOrganizationComponent>) { }
 
-  public organizationName : string = ''
+  public organizationName: string = ''
 
   ngOnInit(): void {
-    this.store$.select('auth').subscribe(state => this.loggedInUser =  state.user);
+    this.store$.select('auth').subscribe(state => this.loggedInUser = state.user);
+    this.store$.select('subscription').subscribe(state => this.activeMember = state.isActive);
   }
 
   public onCreate() {
-    const org : Organization = {
-        ownerUid : this.loggedInUser.uid,
-        name : this.organizationName,
-        editorsUid : [], 
-        members : [this.loggedInUser.uid]}
+    const org: Organization = {
+      ownerUid: this.loggedInUser.uid,
+      name: this.organizationName,
+      editorsUid: [],
+      members: [this.loggedInUser.uid]
+    }
     this.organizationService.createOrganization(org).then(
       () => this.dialogRef.close()
     )

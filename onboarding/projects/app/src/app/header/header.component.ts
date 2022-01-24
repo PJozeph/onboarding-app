@@ -4,11 +4,9 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { UserService } from 'projects/core/src/lib/services/user.service';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/services/auth.service';
 import * as fromApp from '../store/index';
-import * as subAction from "../user-dashboard/subscription-status/store/subscription.actions";
 
 @Component({
   selector: 'app-header',

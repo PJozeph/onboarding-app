@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../modal/user/user.modal';
 
@@ -32,6 +32,9 @@ export class UserService {
   }
 
   public getUserMembership(user : User) : Observable<any> {
+    if(!user) {
+      return EMPTY
+    }
     const userCollection: AngularFirestoreDocument<User> = this.angularFireStore.doc<User>('accounts/' + user.uid);
     return userCollection.collection('membership').valueChanges()
   }

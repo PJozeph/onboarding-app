@@ -16,7 +16,7 @@ export class SubscriptionEffect {
         private store$: Store<fromApp.AppState>) { }
 
     getMembership$ = createEffect(() => this.actions$.pipe(
-        ofType(subscriptionAction.START_SUBSCRIPTION),
+        ofType(subscriptionAction.GET_SUBSCRIPTION_STATUS),
         switchMap(() => this.store$.select('auth').pipe(map(state => state.user))),
         switchMap((user) =>
             this.userService.getUserMembership(user).pipe(
