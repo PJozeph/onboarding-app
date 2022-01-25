@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { User } from 'projects/core/src/lib/modal/user/user.modal';
 import { UserService } from 'projects/core/src/lib/services/user.service';
-import { Subscription } from 'rxjs';
+import { from, Observable, Subscription } from 'rxjs';
 import * as authActions from './../store/auth.actions';
 
 @Injectable({
@@ -33,8 +33,9 @@ export class AuthService {
     }).catch(error => {console.log(error)})
   }
 
-  public emailLogin(email: string, password: string): Promise<any> {
-    return signInWithEmailAndPassword(this.auth, email, password);
+  public emailLogin(email: string, password: string): Observable<any> {
+    const signInPromise = signInWithEmailAndPassword(this.auth, email, password);
+    return from(signInPromise);
   }
 
   public googleLogin() {

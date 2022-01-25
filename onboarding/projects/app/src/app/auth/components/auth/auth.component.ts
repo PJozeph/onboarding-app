@@ -29,7 +29,6 @@ export class AuthComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, 
               private dialog : MatDialog,
               private store$ : Store<fromApp.AppState>,
-              private userService : UserService,
               private router : Router) { }
 
   ngOnInit(): void {
@@ -41,17 +40,8 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   public onEmailLogin() {
-    this.authService.emailLogin(this.userEmail, this.userPass).then(
-      (response : UserCredential) => {
-        this.userService.getUserById(response.user.uid).pipe(first()).subscribe(
-          (user : User) => {
-            this.store$.dispatch( new authActions.LoginSuccess(user));
-            window.localStorage.setItem('user', JSON.stringify(user));
-            this.router.navigate([''])
-          }
-        );
-      }
-    ).catch(error => this.store$.dispatch(new authActions.LoginFail(error.message)))
+    this.store$.dispatch( new authActions.LoginStart(this.userEmail, this.userPass));
+    this.router.navigate([''])
   }
 
   public onGoogleLogin(){
