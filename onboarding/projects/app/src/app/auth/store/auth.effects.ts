@@ -37,5 +37,16 @@ export class LoginEffect {
                 catchError((error: Error) => of(new authActions.LoginFail(error.message)))
             )
         })));
+
         
+    googleLoginStartEffect$ = createEffect(() => this.actions$.pipe(
+        ofType(authActions.LOGIN_START),
+        switchMap((action: any) => {
+            return this.authService.emailLogin(action.email, action.password).pipe(
+                switchMap((user) => this.userService.getUserById(user.user.uid)),
+                tap(user => window.localStorage.setItem('user', JSON.stringify(user))),
+                map((user: User) => new authActions.LoginSuccess(user)),
+                catchError((error: Error) => of(new authActions.LoginFail(error.message)))
+            )
+        })));
 }

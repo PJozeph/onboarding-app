@@ -5,6 +5,7 @@ import { Organization, OrganizationService } from '../../../services/organizatio
 
 import * as fromApp from '../../../../store/index';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-organization',
@@ -18,13 +19,15 @@ export class CreateOrganizationComponent implements OnInit {
 
   constructor(private organizationService: OrganizationService,
     private store$: Store<fromApp.AppState>,
-    private dialogRef: MatDialogRef<CreateOrganizationComponent>) { }
+    private dialogRef: MatDialogRef<CreateOrganizationComponent>,
+    private router: Router) { }
 
   public organizationName: string = ''
 
   ngOnInit(): void {
     this.store$.select('auth').subscribe(state => this.loggedInUser = state.user);
-    this.store$.select('subscription').subscribe(state => this.activeMember = state.isActive);
+    this.store$.select('subscription')
+      .subscribe(state => this.activeMember = state.isActive);
   }
 
   public onCreate() {
@@ -40,6 +43,16 @@ export class CreateOrganizationComponent implements OnInit {
   }
 
   public onCancel() {
+    this.dialogRef.close();
+  }
+
+  public pricing() {
+    this.router.navigate(['userDashboard/subscription-status']);
+    this.dialogRef.close();
+  }
+
+  public auth() {
+    this.router.navigate(['auth']);
     this.dialogRef.close();
   }
 

@@ -48,6 +48,7 @@ export class PriceCardComponent implements OnInit  {
   }
 
   public onCancel() {
+    this.store$.dispatch(new subAction.CancelSubscription())
     this.stripeService.cancelSubscription(this.subscriptionId).subscribe(
       res => {
         this.router.navigate([this.activatedRoute])

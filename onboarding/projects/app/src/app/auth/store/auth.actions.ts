@@ -5,6 +5,8 @@ export const LOGIN_START = '[Auth] Login Start';
 export const LOGIN_SUCCESS = '[Auth] Login Success';
 export const LOGIN_FAIL = '[Auth] Login FAIL';
 export const GOOGLE_LOGIN_START = '[Auth] Google Login Start';
+export const GOOGLE_LOGIN_SUCCESS = '[Auth] Google Login Success';
+export const GOOGLE_LOGIN_FAIL = '[Auth] Google Login FAIL';
 export const LOGOUT = '[Auth] Logout';
 
 export class LoginStart implements Action {

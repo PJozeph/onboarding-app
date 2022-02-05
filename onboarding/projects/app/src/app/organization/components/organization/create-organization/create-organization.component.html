@@ -1,4 +1,4 @@
-<div class="container" *ngIf="activeMember">
+<div class="container" *ngIf="activeMember && loggedInUser">
     <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Organization name</span>
@@ -27,4 +27,29 @@
             Create
         </button>
         </div>
+</div>
+<div *ngIf="!activeMember && loggedInUser">
+    <div class="alert alert-warning" role="alert">
+        <span>Activate subscription to use organization feature,</span>
+        <br>
+        <strong>1 WEEK trial period</strong> 
+    </div>
+    <div class="org-element-container">
+        <button 
+            type="button" 
+            class="btn btn-success"
+            (click)="pricing()">Select Pricing</button>
+    </div>
+</div>
+<div *ngIf="!loggedInUser">
+    <div class="alert alert-warning" role="alert">
+        Login to use organization feature
+    </div>
+    <div class="org-element-container">
+        <button 
+            type="button" 
+            class="btn btn-success"
+            (click)="auth()">
+            Login</button>
+    </div>
 </div>

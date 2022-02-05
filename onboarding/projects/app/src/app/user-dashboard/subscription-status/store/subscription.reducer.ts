@@ -16,7 +16,6 @@ export function membershipReducer(state = initialState, action: SubscriptionActi
         case subscriptionActions.GET_SUBSCRIPTION_STATUS :
             return {
                 ...state,
-                isActive: true,
             }
             case subscriptionActions.SET_SUBSCRIPTION :
             window.localStorage.setItem('productId', action.product);
@@ -25,6 +24,15 @@ export function membershipReducer(state = initialState, action: SubscriptionActi
                 ...state,
                 isActive : action.isActive,
                 productId : action.product
+        }
+        case subscriptionActions.CANCEL_SUBSCRIPTION : {
+            window.localStorage.removeItem("productId");
+            window.localStorage.removeItem("memberStatus")
+            return {
+                ...state,
+                productId: null,
+                isActive : false
+            }
         }    
         default: return state;
     }
