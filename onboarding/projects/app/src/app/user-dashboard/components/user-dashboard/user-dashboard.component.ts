@@ -18,6 +18,7 @@ export class UserDashboardComponent implements OnInit {
 
   public onLogout() {
     this.authService.signOut();
+    window.localStorage.clear();
     this.router.navigate([''])
   }
 
